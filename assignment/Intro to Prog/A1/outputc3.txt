@@ -1,0 +1,6 @@
+Input:
+80
+
+Output:
+B
+1

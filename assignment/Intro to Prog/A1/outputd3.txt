@@ -1,0 +1,7 @@
+Input:
+-50
+
+Output:
+Enter the marks: 
+Your marks and the no. of conditional expressions executed are:
+Please enter the correct marks

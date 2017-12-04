@@ -1,0 +1,6 @@
+Input:
+51
+
+Output:
+C-
+4

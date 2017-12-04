@@ -1,0 +1,6 @@
+Input: (4*6) - 2
+           EXPRESSION EVALUATOR
+Made by Supreet Singh  -- CS16BTECH11038
+
+Enter your input numbers in range: 1 <= num <= 10^9
+Enter your expression: Result is: 22

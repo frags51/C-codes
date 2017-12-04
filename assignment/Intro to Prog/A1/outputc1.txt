@@ -1,0 +1,6 @@
+Input:
+85
+
+Output:
+A-
+1

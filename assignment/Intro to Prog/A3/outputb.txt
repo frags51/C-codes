@@ -1,0 +1,49 @@
+Input:
+8
+101
+6
+6
+9
+Output:
+          CALCULATOR
+Built by Supreet Singh CS16BTECH11038
+
+MENU:
+Enter the number corresponding to the operation you want to perform.
+1: Add
+2: Multiply
+3: Divide
+4: Subtract
+5: Modulus
+6: Square
+7: Square Root
+8: Log (Base : 10)
+9: Exit
+Your Choice: Enter the number: The result is: 3
+
+MENU:
+Enter the number corresponding to the operation you want to perform.
+1: Add
+2: Multiply
+3: Divide
+4: Subtract
+5: Modulus
+6: Square
+7: Square Root
+8: Log (Base : 10)
+9: Exit
+Your Choice: Enter the number: The result is: 36
+
+MENU:
+Enter the number corresponding to the operation you want to perform.
+1: Add
+2: Multiply
+3: Divide
+4: Subtract
+5: Modulus
+6: Square
+7: Square Root
+8: Log (Base : 10)
+9: Exit
+Your Choice: Thanks for using the calculator!
+Bye!

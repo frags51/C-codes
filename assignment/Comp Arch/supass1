@@ -1,0 +1,54 @@
+.main:
+  movu r0, 3435 /*r0 contains input number*/
+  mov r5, 0 /* r5 contains sum of power of numbers. */
+  call .foo
+  .print r1
+  .print r5
+  b .eof
+
+.foo:
+  sub sp, sp, 4
+  st ra, [sp] /*store ret address in memory (in this case line 3) */
+  mov r6, r0 /* r6 contains copy of r0 */
+  
+  .loopfoo:
+    mod r2, r6, 10 /*r2 contains last digit. */
+    call .pow
+    div r6, r6, 10
+    cmp r6, 0
+    bgt .loopfoo
+  
+  cmp r5, r0
+  beq .suc
+  mov r1, 0
+  b .gb
+  .suc:
+    mov r1, 1
+    
+  .gb:  
+    ld ra, [sp]
+    add sp, sp, 4
+    ret /* ret from .foo*/
+
+.pow:
+  
+  cmp r2, 0
+  beq .s1
+  mov r7, 1 /* r7 is number ^ number */
+  mov r4, 1 /* r4 is loop counter here */
+  
+  .looppow:
+    cmp r4, r2
+    bgt .s2
+    mul r7, r7, r2
+    add r4, r4, 1
+    b .looppow
+
+  .s1:
+    addu r5, r5, 1
+    ret
+  .s2: 
+    add r5, r5, r7
+    ret
+
+.eof:

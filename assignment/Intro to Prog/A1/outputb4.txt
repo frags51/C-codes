@@ -1,0 +1,5 @@
+Input:
+-20
+
+Output:
+Please enter the correct marks

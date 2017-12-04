@@ -1,0 +1,7 @@
+**/*.class
+**/.vscode
+**/.idea
+**/*.out
+cmake-build-debug/*
+**/*.zip
+**/*.pdf

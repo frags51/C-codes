@@ -1,0 +1,8 @@
+Input:
+79
+
+Output:
+Enter the marks: 
+Your marks and the no. of conditional expressions executed are:
+B
+1

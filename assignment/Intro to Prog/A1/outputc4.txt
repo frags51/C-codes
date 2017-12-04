@@ -1,0 +1,6 @@
+Input:
+30
+
+Output:
+FR
+1

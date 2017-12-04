@@ -1,0 +1,6 @@
+Input:
+50
+
+Output:
+D
+1

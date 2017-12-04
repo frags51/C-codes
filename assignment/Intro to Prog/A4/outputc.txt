@@ -1,0 +1,10 @@
+BIG INT CALCULATOR
+Built by Supreet Singh CS16BTECH11038
+MENU: 
+1) Add
+2) Multiply
+3) Divide
+4) Subtract
+5) Exit
+Your Choice: Thanks for using this big int calculator!
+Bye!

@@ -1,0 +1,11 @@
+input: 1002
+output: 2001
+
+input: 1000
+output: 0001
+
+input: -100
+output: -001
+
+input: 158988
+output: 889851

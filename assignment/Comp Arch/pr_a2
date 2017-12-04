@@ -1,0 +1,39 @@
+/*cs16btech11038 CS2323 Prog Assignment 2*/
+/*PLEASE REPLACE SAMPLE ARRAY INITIALIZATION CODE with your code!!!*/
+.main:
+    
+    mov r3, 6 @ r3 stores the array size 
+    @begin array element initialization up to the array size
+    mov r1, 13  
+    st r1, 0[r0] @element 1
+    mov r1, 2
+    st r1, 4[r0] @element 2
+    mov r1, 32
+    st r1, 8[r0] @element 3
+    mov r1, 4
+    st r1, 12[r0] @element 4
+    mov r1, 0
+    st r1, 16[r0] @element 5
+    mov r1, 16
+    st r1, 20[r0] @element 6
+
+    mov r5, r0 @Copy of r0
+    ld r2, [r5] @Set it to array[0]
+    mov r6, 2 @Loop counter (Main)
+    .lm:
+        cmp r6, r3
+        bgt .eolm @If greater jump to end of loop
+        
+        add r5, r5, 4
+        ld r1, [r5]
+        add r6, r6, 1
+        cmp r1, r2
+        bgt .lm1
+        b .lm
+        .lm1:
+            mov r2, r1        
+            b .lm
+
+    .eolm:
+
+    .print r2

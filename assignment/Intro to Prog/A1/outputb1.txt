@@ -1,0 +1,6 @@
+Input:
+100
+
+Output:
+A+
+10

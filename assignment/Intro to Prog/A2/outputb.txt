@@ -1,0 +1,19 @@
+Input:
+Enter the number: 58
+Output:
+The prime factor(s) are: 2, 29
+
+Input:
+Enter the number: 10001
+Output:
+The prime factor(s) are: 73, 137
+
+Input:
+Enter the number: -87
+Output:
+Input a number >= 2
+
+Input:
+Enter the number: 1102259847
+Output:
+The prime factor(s) are: 3, 13, 293, 96461

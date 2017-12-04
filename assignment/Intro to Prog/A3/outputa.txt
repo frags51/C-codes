@@ -1,0 +1,154 @@
+Input: 1
+2016
+4
+5
+Output: 
+[3;J[H[2J	  CALENDAR
+Made By SUPREET SINGH -- CS16BTECH11038
+
+
+MENU:
+1: Display year
+2: Display month
+3: Move right
+4: Move left
+5: Exit
+Enter a year:
+                                          2016
+        January                         February                        March
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                     1   2      |       1   2   3   4   5   6  |             1   2   3   4   5
+
+ 3   4   5   6   7   8   9      |   7   8   9  10  11  12  13  |     6   7   8   9  10  11  12
+
+10  11  12  13  14  15  16      |  14  15  16  17  18  19  20  |    13  14  15  16  17  18  19
+
+17  18  19  20  21  22  23      |  21  22  23  24  25  26  27  |    20  21  22  23  24  25  26
+
+24  25  26  27  28  29  30      |  28  29                      |    27  28  29  30  31
+
+31                              |                              |
+
+                                         2016
+        April                           May                             June
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                     1   2      |   1   2   3   4   5   6   7  |                 1   2   3   4
+
+ 3   4   5   6   7   8   9      |   8   9  10  11  12  13  14  |     5   6   7   8   9  10  11
+
+10  11  12  13  14  15  16      |  15  16  17  18  19  20  21  |    12  13  14  15  16  17  18
+
+17  18  19  20  21  22  23      |  22  23  24  25  26  27  28  |    19  20  21  22  23  24  25
+
+24  25  26  27  28  29  30      |  29  30  31                  |    26  27  28  29  30
+
+                                         2016
+        July                            August                          September
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                     1   2      |       1   2   3   4   5   6  |                     1   2   3
+
+ 3   4   5   6   7   8   9      |   7   8   9  10  11  12  13  |     4   5   6   7   8   9  10
+
+10  11  12  13  14  15  16      |  14  15  16  17  18  19  20  |    11  12  13  14  15  16  17
+
+17  18  19  20  21  22  23      |  21  22  23  24  25  26  27  |    18  19  20  21  22  23  24
+
+24  25  26  27  28  29  30      |  28  29  30  31              |    25  26  27  28  29  30
+
+31                              |                              |
+
+                                         2016
+        October                         November                        December
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                         1      |           1   2   3   4   5  |                     1   2   3
+
+ 2   3   4   5   6   7   8      |   6   7   8   9  10  11  12  |     4   5   6   7   8   9  10
+
+ 9  10  11  12  13  14  15      |  13  14  15  16  17  18  19  |    11  12  13  14  15  16  17
+
+16  17  18  19  20  21  22      |  20  21  22  23  24  25  26  |    18  19  20  21  22  23  24
+
+23  24  25  26  27  28  29      |  27  28  29  30              |    25  26  27  28  29  30  31
+
+30  31                          |                              |
+
+
+MENU:
+1: Display year
+2: Display month
+3: Move right
+4: Move left
+5: Exit
+                                         2015
+        January                         February                        March
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                 1   2   3      |   1   2   3   4   5   6   7  |     1   2   3   4   5   6   7
+
+ 4   5   6   7   8   9  10      |   8   9  10  11  12  13  14  |     8   9  10  11  12  13  14
+
+11  12  13  14  15  16  17      |  15  16  17  18  19  20  21  |    15  16  17  18  19  20  21
+
+18  19  20  21  22  23  24      |  22  23  24  25  26  27  28  |    22  23  24  25  26  27  28
+
+25  26  27  28  29  30  31      |                              |    29  30  31
+
+                                         2015
+        April                           May                             June
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+             1   2   3   4      |                       1   2  |         1   2   3   4   5   6
+
+ 5   6   7   8   9  10  11      |   3   4   5   6   7   8   9  |     7   8   9  10  11  12  13
+
+12  13  14  15  16  17  18      |  10  11  12  13  14  15  16  |    14  15  16  17  18  19  20
+
+19  20  21  22  23  24  25      |  17  18  19  20  21  22  23  |    21  22  23  24  25  26  27
+
+26  27  28  29  30              |  24  25  26  27  28  29  30  |    28  29  30
+
+                                |  31                          |
+
+                                         2015
+        July                            August                          September
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+             1   2   3   4      |                           1  |             1   2   3   4   5
+
+ 5   6   7   8   9  10  11      |   2   3   4   5   6   7   8  |     6   7   8   9  10  11  12
+
+12  13  14  15  16  17  18      |   9  10  11  12  13  14  15  |    13  14  15  16  17  18  19
+
+19  20  21  22  23  24  25      |  16  17  18  19  20  21  22  |    20  21  22  23  24  25  26
+
+26  27  28  29  30  31          |  23  24  25  26  27  28  29  |    27  28  29  30
+
+                                |  30  31                      |
+
+                                         2015
+        October                         November                        December
+Su  Mo  Tu  We  Th  Fr  Sa      |  Su  Mo  Tu  We  Th  Fr  Sa  |    Su  Mo  Tu  We  Th  Fr  Sa
+
+                 1   2   3      |   1   2   3   4   5   6   7  |             1   2   3   4   5
+
+ 4   5   6   7   8   9  10      |   8   9  10  11  12  13  14  |     6   7   8   9  10  11  12
+
+11  12  13  14  15  16  17      |  15  16  17  18  19  20  21  |    13  14  15  16  17  18  19
+
+18  19  20  21  22  23  24      |  22  23  24  25  26  27  28  |    20  21  22  23  24  25  26
+
+25  26  27  28  29  30  31      |  29  30                      |    27  28  29  30  31
+
+
+MENU:
+1: Display year
+2: Display month
+3: Move right
+4: Move left
+5: Exit
+Thanks for using this calendar.
+Bye!

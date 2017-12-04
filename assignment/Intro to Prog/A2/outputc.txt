@@ -1,0 +1,27 @@
+Input:
+Enter the day: 18
+Enter the month: 9
+Enter the year: 1998
+Output:
+Friday
+
+Input:
+Enter the day: 01
+Enter the month: 2
+Enter the year: 2012
+Output:
+Wednesday
+
+Input:
+Enter the day: 1
+Enter the month: 25
+Enter the year: 1998
+Output:
+Enter valid dates
+
+Input:
+Enter the day: 28
+Enter the month: 10
+Enter the year: 2016
+Output:
+Friday
