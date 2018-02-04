@@ -1,0 +1,151 @@
+/**
+*	DO NOT INPUT ANY NUMBER WITH ZEROES AT THE FRONT
+*	Using Karatsuba's Algorithm To compute product of long ints.
+*	CS16BTECH11038 Supreet Singh
+*/
+package main;
+
+import ("fmt")
+
+type Numb struct{ // Struct to store numbers
+	val string
+	neg int
+}
+
+func main(){
+	var tCases int
+	fmt.Scanf("%d", &tCases)
+	for t:=0; t < tCases; t++ { // Eval each test case.
+		var n int // degree
+		var m int // Number of points to evaluate at
+		fmt.Scanf("%d", &n)
+		var coeffs = make([]string, 0, n+1) // The coefficients of the polynomial
+		var a string // Temporary
+		for i:=0; i <= n; i++{ // take the coeffs as input
+			fmt.Scanf("%s ", &a)
+			coeffs = append(coeffs, pad(a))
+		} // coeff scanning loop
+		
+		fmt.Scanf("%d", &m)
+		var toEval = make([]string, 0, m)
+
+		for i:=0; i < n; i++{ // take the coeffs as input
+			fmt.Scanf("%s ", &a)
+			toEval = append(toEval, pad(a))
+		} 
+
+	} // test case loop
+} // main
+
+func pad(s string) string{ // Here s is a positive number
+	var x = len(s)
+	if(x==1 || x==2) {
+		return s
+	} else if(x<=4){
+		return fmt.Sprintf("%04s", s )
+	} else if(x<=8){
+		return fmt.Sprintf("%08s", s)
+	} else if(x<=16){
+		return fmt.Sprintf("%016s", s)
+	} else if(x<=32){
+		return fmt.Sprintf("%032s", s)
+	} else if(x<=64){
+		return fmt.Sprintf("%064s", s)
+	} else if(x<=128){
+		return fmt.Sprintf("%0128s", s)
+	} else if(x<=256){
+		return fmt.Sprintf("%0256s", s)
+	} else if(x<=512){
+		return fmt.Sprintf("%0512s", s)
+	} else if(x<=1024){
+		return fmt.Sprintf("%01024s", s)
+	}
+	return s
+} //pad
+
+func pad2(s string, d int) string{ // padding with argument given as total final length
+	return fmt.Sprintf("%0*s", d, s)
+}
+
+func strrev(s string) string{ // To revers a string
+	runes := []rune(s)
+    for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+        runes[i], runes[j] = runes[j], runes[i]
+    }
+    return string(runes)
+} //rev
+
+func bitshift(s string, n int) string{ // ON A REVERSED NUMBER!, equal to number x 10^n
+	return fmt.Sprintf("%0*s", n+len(s), s)
+}
+
+func sub(n1 string, n2 string) (string, int8){ // Does the neccessary assertions for subDriver
+	if(len(n1)>len(n2)){
+		n2=pad2(n2, len(n1))
+		n1=strrev(n1)
+		n2=strrev(n2)
+		return strrev(subDriver(n1, n2)), 0
+	} else if(len(n1)<len(n2)){ // n1<n2
+		n1=pad2(n1, len(n2))
+		n1=strrev(n1)
+		n2=strrev(n2)
+		return strrev(subDriver(n2, n1)), 1
+	} else{
+		n1=strrev(n1)
+		n2=strrev(n2)
+		for i:=len(n1)-1; i>=0; i--{
+            if(n1[i] < n2[i]) {return strrev(subDriver(n2, n1)), 1
+			} else if(n1[i] > n2[i]) {return strrev(subDriver(n1, n2)), 0
+			} else if(n1[i]==n2[i] && i == 0) { return "0", 0}
+        }//for
+	} // else
+	return "0", 0// This part of code is never reached
+} // sub
+
+func subDriver(n1 string, n2 string) string{ // Subtract two numbers s.t n1>n2, lenght is same (padding)
+	// Numbers are reversed once, and len is equal!
+	// Numbers are positive 
+	// Returns the reversed Number
+	var carry int8 // bytes are unsigned, and so are 'chars' string[i] in golang
+	carry = 0
+	result:= make([] byte, len(n1), len(n1))
+	for i:=0; i< len(n1); i++{
+		if((carry==0 && n1[i]>=n2[i]) || (carry==-1 && n1[i]>=(n2[i]+1))){
+			result[i]=n1[i]-n2[i]+'0'
+			if(carry==-1) {result[i] = result[i]-1}
+			carry=0
+		} else{
+			result[i]=n1[i]-n2[i]+10+'0'
+			if(carry==-1) {result[i] = result[i]-1}
+			carry = -1
+		}
+	} // for loop
+	return string(result)
+} // subDriver
+
+func add(n1 string, n2 string) string{
+	if(len(n1)>len(n2)){
+		n2=pad2(n2, len(n1))
+	} else{
+		n1=pad2(n1, len(n2))
+	}
+	return strrev(addDriver(strrev(n1), strrev(n2)))
+}
+
+func addDriver(n1 string, n2 string) string{ // Does the actuacl addition
+	//Equal Sized Numbers, positive
+	var carry uint8 // carry can only be positive in this case
+	carry = 0
+	result:= make([] byte, len(n1)+1) // Since addition can increase length by atmost 1
+	var i int
+	for i=0; i < len(n1); i++{
+		result[i] = ((n1[i]+n2[i]+carry - '0' - '0')%10)+'0';
+      	carry = (n1[i]+n2[i]+carry -'0' - '0')/10;
+	}
+	if(carry!=0){
+		result[i]=carry+'0'
+		carry=0
+	}
+	return string(result)
+}
+
