@@ -13,7 +13,7 @@ type Numb struct{ // Struct to store numbers
 } */
 
 func main(){
-	fmt.Printf("%s\n", mult("11", "11"))
+	fmt.Printf("%s\n", mult("2598", "69198"))
 	/*
 	var tCases int
 	fmt.Scanf("%d", &tCases)
@@ -122,6 +122,11 @@ func subDriver(n1 string, n2 string) string{ // Subtract two numbers s.t n1>n2, 
 			carry = -1
 		}
 	} // for loop
+	/*var j int
+	for j=len(result)-1; j>=0; j--{ // truncate zeroes?
+		if(result[j]!='0') {break}
+	}
+	if(j>=0) {result=result[:(j+1)]}*/
 	return string(result)
 } // subDriver
 
@@ -149,6 +154,11 @@ func addDriver(n1 string, n2 string) string{ // Does the actuacl addition
 		result = append(result, carry+'0')
 		carry=0
 	} 
+	/*var j int
+	for j=len(result)-1; j>=0; j--{ // truncate zeroes?
+		if(result[j]!='0') {break}
+	}
+	if(j>=0) {result=result[:(j+1)]} */
 	return string(result)
 }
 
@@ -161,6 +171,7 @@ func mult(n1 string, n2 string) string{
 		n2=pad(n2)
 		n1=pad2(n1, len(n2))
 	}
+
 	return multDriver(n1, n2)
 }
 
@@ -169,7 +180,7 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 	var carry uint8
 	carry = 0
 	result:= make([] byte, len(n1)+1)
-	
+	//fmt.Println(">>>>> Recd: ", n1, " and ", n2, "<<<<<<<<<<<<<<<<<<<")
 	if(len(n1)==1){ // if len is equal to 1 then do this
 		var a uint8
 		a = (n1[0]-'0')*(n2[0]-'0')
@@ -177,7 +188,8 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		carry /= 10
 		result[1] = a%10 + '0'
 		result[0]=carry+'0'
-		//fmt.Println("Done driver")
+		//fmt.Println("Done driver for: n1 =", n1, " len: ", len(n1), " n2=", n2, " len ", len(n2))
+		//fmt.Println("------- Retd 1 len: ", string(result), " of len ", len(result))
 		return string(result)
 	} else{ // in case len >1
 		//fmt.Printf("%s, %s\n", n1, n2)
@@ -187,20 +199,36 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		bl:=n2[:l]
 		br:=n2[l:]
 		//fmt.Println("l: ", l, "> al:", al, " bl:", bl)
-		albl:=multDriver(al, bl)
+		albl:=mult(al, bl)
 		
-		arbr:=multDriver(ar,br)
-
+		arbr:=mult(ar,br)
+		//fmt.Println("albl: ", albl, "arbr", arbr, " len", len(arbr))
 		a_:=add(al, ar)
 		b_:= add(bl, br)
 		//fmt.Println(">>>", "al: ",al," ar: ", ar, " sum:", a_, " ; bl:", bl, " br:",br," sum:", b_)
 		//fmt.Println("Len of sum: ", len(a_))
 		midMult:=mult(a_, b_)
+		
 		midMult,_ = sub(midMult, albl) // these subs should be positive only
 		midMult,_ = sub(midMult, arbr)
+		//fmt.Println("Mid term: ", midMult)
+
+		bs1:=bitshift(midMult, l)
+		bs2:=bitshift(albl, 2*l)
+		//fmt.Println("bs1: ", bs1)
+		//fmt.Println("bs2: ", bs2)
+
+		res:=add(arbr, bs1)
+		//fmt.Println(">Res: ",res)
+		res=add(res, bs2)
+		//fmt.Println(">------------------------ Final Res: ",res," for" ,n1, " and ", n2, "<<<<<<--")
 		
-		res:=add(arbr, bitshift(midMult, l))
-		res=add(res, bitshift(albl, 2*l))
+		var j int
+		for j=0; j<len(res); j++{ // truncate zeroes?
+			if(res[j]!='0') {break}
+		}
+		if(j<len(res)) {res=res[j:]}
+
 		return res
 	} // len > 1
 	
