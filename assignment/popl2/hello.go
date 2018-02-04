@@ -6,13 +6,15 @@
 package main;
 
 import ("fmt")
-
+/*
 type Numb struct{ // Struct to store numbers
 	val string
 	neg int
-}
+} */
 
 func main(){
+	fmt.Printf("%s\n", mult("11", "11"))
+	/*
 	var tCases int
 	fmt.Scanf("%d", &tCases)
 	for t:=0; t < tCases; t++ { // Eval each test case.
@@ -34,7 +36,7 @@ func main(){
 			toEval = append(toEval, pad(a))
 		} 
 
-	} // test case loop
+	} // test case loop */
 } // main
 
 func pad(s string) string{ // Here s is a positive number
@@ -75,8 +77,8 @@ func strrev(s string) string{ // To revers a string
     return string(runes)
 } //rev
 
-func bitshift(s string, n int) string{ // ON A REVERSED NUMBER!, equal to number x 10^n
-	return fmt.Sprintf("%0*s", n+len(s), s)
+func bitshift(s string, n int) string{ // ON A NON REVERSED NUMBER!, equal to number x 10^n
+	return strrev(fmt.Sprintf("%0*s", n+len(s), strrev(s)))
 }
 
 func sub(n1 string, n2 string) (string, int8){ // Does the neccessary assertions for subDriver
@@ -133,19 +135,73 @@ func add(n1 string, n2 string) string{
 }
 
 func addDriver(n1 string, n2 string) string{ // Does the actuacl addition
-	//Equal Sized Numbers, positive
+	//Equal Sized Numbers, positive, ARE REVERSED!!!!
 	var carry uint8 // carry can only be positive in this case
 	carry = 0
-	result:= make([] byte, len(n1)+1) // Since addition can increase length by atmost 1
+	result:= make([] byte, len(n1), len(n1)+1) // Since addition can increase length by atmost 1
 	var i int
 	for i=0; i < len(n1); i++{
 		result[i] = ((n1[i]+n2[i]+carry - '0' - '0')%10)+'0';
       	carry = (n1[i]+n2[i]+carry -'0' - '0')/10;
 	}
 	if(carry!=0){
-		result[i]=carry+'0'
+		//result[i]=carry+'0'
+		result = append(result, carry+'0')
 		carry=0
-	}
+	} 
 	return string(result)
 }
 
+func mult(n1 string, n2 string) string{
+	// First make len power of 2 and equal
+	if(len(n1)>=len(n2)){
+		n1=pad(n1)
+		n2=pad2(n2, len(n1))
+	} else{
+		n2=pad(n2)
+		n1=pad2(n1, len(n2))
+	}
+	return multDriver(n1, n2)
+}
+
+func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and is equal
+	//takes and returns unreversed number
+	var carry uint8
+	carry = 0
+	result:= make([] byte, len(n1)+1)
+	
+	if(len(n1)==1){ // if len is equal to 1 then do this
+		var a uint8
+		a = (n1[0]-'0')*(n2[0]-'0')
+		carry = uint8(a)
+		carry /= 10
+		result[1] = a%10 + '0'
+		result[0]=carry+'0'
+		//fmt.Println("Done driver")
+		return string(result)
+	} else{ // in case len >1
+		//fmt.Printf("%s, %s\n", n1, n2)
+		l:=int(len(n1)/2)
+		al:=n1[:l]
+		ar:=n1[l:]
+		bl:=n2[:l]
+		br:=n2[l:]
+		//fmt.Println("l: ", l, "> al:", al, " bl:", bl)
+		albl:=multDriver(al, bl)
+		
+		arbr:=multDriver(ar,br)
+
+		a_:=add(al, ar)
+		b_:= add(bl, br)
+		//fmt.Println(">>>", "al: ",al," ar: ", ar, " sum:", a_, " ; bl:", bl, " br:",br," sum:", b_)
+		//fmt.Println("Len of sum: ", len(a_))
+		midMult:=mult(a_, b_)
+		midMult,_ = sub(midMult, albl) // these subs should be positive only
+		midMult,_ = sub(midMult, arbr)
+		
+		res:=add(arbr, bitshift(midMult, l))
+		res=add(res, bitshift(albl, 2*l))
+		return res
+	} // len > 1
+	
+}
