@@ -13,7 +13,7 @@ type Numb struct{ // Struct to store numbers
 } */
 
 func main(){
-	fmt.Printf("%s\n", mult("2598", "69198"))
+	fmt.Printf("%s\n", mult("25968", "69198"))
 	/*
 	var tCases int
 	fmt.Scanf("%d", &tCases)
@@ -82,6 +82,17 @@ func bitshift(s string, n int) string{ // ON A NON REVERSED NUMBER!, equal to nu
 }
 
 func sub(n1 string, n2 string) (string, int8){ // Does the neccessary assertions for subDriver
+	var j int
+	for j=0; j<len(n1); j++{ // truncate zeroes?
+		if(n1[j]!='0') {break}
+	}
+	if(j<len(n1)) {n1=n1[j:]}
+	for j=0; j<len(n2); j++{ // truncate zeroes?
+		if(n2[j]!='0') {break}
+	}
+	if(j<len(n2)) {n2=n2[j:]}
+
+	
 	if(len(n1)>len(n2)){
 		n2=pad2(n2, len(n1))
 		n1=strrev(n1)
@@ -131,6 +142,16 @@ func subDriver(n1 string, n2 string) string{ // Subtract two numbers s.t n1>n2, 
 } // subDriver
 
 func add(n1 string, n2 string) string{
+	var j int
+	for j=0; j<len(n1); j++{ // truncate zeroes?
+		if(n1[j]!='0') {break}
+	}
+	if(j<len(n1)) {n1=n1[j:]}
+	for j=0; j<len(n2); j++{ // truncate zeroes?
+		if(n2[j]!='0') {break}
+	}
+	if(j<len(n2)) {n2=n2[j:]}
+
 	if(len(n1)>len(n2)){
 		n2=pad2(n2, len(n1))
 	} else{
@@ -163,6 +184,16 @@ func addDriver(n1 string, n2 string) string{ // Does the actuacl addition
 }
 
 func mult(n1 string, n2 string) string{
+	var j int
+	for j=0; j<len(n1); j++{ // truncate zeroes?
+		if(n1[j]!='0') {break}
+	}
+	if(j<len(n1)) {n1=n1[j:]}
+	for j=0; j<len(n2); j++{ // truncate zeroes?
+		if(n2[j]!='0') {break}
+	}
+	if(j<len(n2)) {n2=n2[j:]}
+
 	// First make len power of 2 and equal
 	if(len(n1)>=len(n2)){
 		n1=pad(n1)
