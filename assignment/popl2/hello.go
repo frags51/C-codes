@@ -13,8 +13,8 @@ type Numb struct{ // Struct to store numbers
 } */
 
 func main(){
-	fmt.Printf("%s\n", mult("259678", "691998"))
-	/*
+	//fmt.Printf("%s\n", mult("259678", "691998"))
+	
 	var tCases int
 	fmt.Scanf("%d", &tCases)
 	for t:=0; t < tCases; t++ { // Eval each test case.
@@ -23,20 +23,21 @@ func main(){
 		fmt.Scanf("%d", &n)
 		var coeffs = make([]string, 0, n+1) // The coefficients of the polynomial
 		var a string // Temporary
-		for i:=0; i <= n; i++{ // take the coeffs as input
-			fmt.Scanf("%s ", &a)
-			coeffs = append(coeffs, pad(a))
+		for i:=0; i <= n; i++{ // take the coeffs as input ==n+1
+			fmt.Scanf("%s", &a)
+
+			coeffs = append(coeffs, a)
 		} // coeff scanning loop
 		
 		fmt.Scanf("%d", &m)
 		var toEval = make([]string, 0, m)
 
-		for i:=0; i < n; i++{ // take the coeffs as input
-			fmt.Scanf("%s ", &a)
-			toEval = append(toEval, pad(a))
-		} 
+		for i:=0; i < m; i++{ // take the coeffs as input
+			fmt.Scanf("%s", &a)
+			toEval = append(toEval, a)
+		}
 
-	} // test case loop */
+	} // test case loop 
 } // main
 
 func pad(s string) string{ // Here s is a positive number
@@ -285,4 +286,14 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		return res
 	} // len > 1
 	
+}
+
+func pow(x string, n int) string{ //returns x^n
+	if(n==0) {return "1"}
+	if(n%2==0) {
+		return pow(mult(x,x), n/2)
+	} else{
+		return mult(x, pow(mult(x,x), n/2))
+	}
+
 }
