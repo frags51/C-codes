@@ -1,6 +1,6 @@
 /**
 *	DO NOT INPUT ANY NUMBER WITH ZEROES AT THE FRONT
-*	Using Karatsuba's Algorithm To compute product of long ints.
+*	Using Parallel Karatsuba's Algorithm To compute product of long ints.
 *	CS16BTECH11038 Supreet Singh
 */
 package main;
@@ -211,7 +211,7 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 	var carry uint8
 	carry = 0
 	result:= make([] byte, len(n1)+1)
-	//fmt.Println(">>>>> Recd: ", n1, " and ", n2, "<<<<<<<<<<<<<<<<<<<")
+	fmt.Println(">>>>> Recd: ", n1, " and ", n2, "<<<<<<<<<<<<<<<<<<<")
 	if(len(n1)==1){ // if len is equal to 1 then do this
 		var a uint8
 		a = (n1[0]-'0')*(n2[0]-'0')
@@ -219,8 +219,14 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		carry /= 10
 		result[1] = a%10 + '0'
 		result[0]=carry+'0'
-		//fmt.Println("Done driver for: n1 =", n1, " len: ", len(n1), " n2=", n2, " len ", len(n2))
+		fmt.Println(">>>>Done driver for: n1 =", n1, " len: ", len(n1), " n2=", n2, " len ", len(n2))
 		//fmt.Println("------- Retd 1 len: ", string(result), " of len ", len(result))
+		var j int
+		for j=0; j<len(result); j++{ // truncate zeroes?
+			if(result[j]!='0') {break}
+		}
+		if(j<len(result)) {result=result[j:]} else {return "0"}
+
 		return string(result)
 	} else{ // in case len >1
 		//fmt.Printf("%s, %s\n", n1, n2)
@@ -233,7 +239,20 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		albl:=mult(al, bl)
 		
 		arbr:=mult(ar,br)
-		//fmt.Println("albl: ", albl, "arbr", arbr, " len", len(arbr))
+
+		var j int
+		for j=0; j<len(albl); j++{ // truncate zeroes?
+			if(albl[j]!='0') {break}
+		}
+		if(j<len(albl)) {albl=albl[j:]}
+
+		for j=0; j<len(arbr); j++{ // truncate zeroes?
+			if(arbr[j]!='0') {break}
+		}
+		if(j<len(arbr)) {arbr=arbr[j:]}
+
+
+		fmt.Println("albl: ", albl, "arbr", arbr, " len", len(arbr))
 		a_:=add(al, ar)
 		b_:= add(bl, br)
 		//fmt.Println(">>>", "al: ",al," ar: ", ar, " sum:", a_, " ; bl:", bl, " br:",br," sum:", b_)
@@ -242,7 +261,7 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		
 		midMult,_ = sub(midMult, albl) // these subs should be positive only
 		midMult,_ = sub(midMult, arbr)
-		//fmt.Println("Mid term: ", midMult)
+		fmt.Println("Mid term: ", midMult," for" ,n1, " and ", n2,"!!")
 
 		bs1:=bitshift(midMult, l)
 		bs2:=bitshift(albl, 2*l)
@@ -252,9 +271,9 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		res:=add(arbr, bs1)
 		//fmt.Println(">Res: ",res)
 		res=add(res, bs2)
-		//fmt.Println(">------------------------ Final Res: ",res," for" ,n1, " and ", n2, "<<<<<<--")
+		fmt.Println(">------------------------ Final Res: ",res," for" ,n1, " and ", n2, "<<<<<<--\n")
 		
-		var j int
+		//var j int
 		for j=0; j<len(res); j++{ // truncate zeroes?
 			if(res[j]!='0') {break}
 		}
