@@ -45,7 +45,11 @@ func main(){
 		for i:=0;i<m;i++{ // eval loop
 			
 			ans:=coeffs[n] // a0
-			gotback:=make(chan string, n)
+			//gotback:=make([]chan string, 1)
+			var chans [4]chan string
+			for i := range chans {
+   				chans[i] = make(chan string, 1)
+			}
 
 			var x, x2, x3, x4 string
 			x=toEval[i]
@@ -58,26 +62,43 @@ func main(){
 			x3 = <-blah
 			go mult(x3,x,blah)
 			x4 = <-blah
+			x4orig:=x4
 
 			for j:=n-1;j>=0;j-=4{ // each value of x
-				go mult(coeffs[j], x, gotback)
-				if(j-1>=0) {go mult(coeffs[j-1], x2, gotback)}		
-				if(j-2>=0) {go mult(coeffs[j-2], x3, gotback)}
-				if(j-3>=0) {go mult(coeffs[j-3], x4, gotback)}
+				go mult(coeffs[j], x, chans[0])
+				if(j-1>=0) {go mult(coeffs[j-1], x2, chans[1])}		
+				if(j-2>=0) {go mult(coeffs[j-2], x3, chans[2])}
+				if(j-3>=0) {go mult(coeffs[j-3], x4, chans[3])}
+				for i := range chans {
+					if(j-i>=0){
+					gh:= <- chans[i]
+					//fmt.Println("*********\nAdded: ", gh)
+					//fmt.Println("x2 was: ", x2, "\ncoeff was: ",coeffs[j-i], "\n")
+					ans=signedAdder(ans, gh)
+					//fmt.Println("now: ", ans, "\n") 
+					} // if
+			 	}
 				if(j-4>=0){
-					go mult(x4,x,blah)
+					go mult(x4orig,x,blah)
 					x = <-blah
-					go mult(x4,x2,blah)
+					go mult(x4orig,x2,blah)
 					x2 = <-blah
-					go mult(x4,x3,blah)
+					go mult(x4orig,x3,blah)
 					x3 = <-blah
-					go mult(x4,x4,blah)
+					go mult(x4orig,x4,blah)
 					x4 = <-blah
 				}
+				
 			} // coeff loop
-			for pt:=0; pt<n; pt++{
-				ans=signedAdder(ans, <-gotback)
+			
+
+			var rr int
+			for rr=0; rr<len(ans); rr++{ // truncate zeroes?
+				if(ans[rr]!='0') {break}
 			}
+			if(rr<len(ans)) {ans=ans[rr:]} else{ans="0"}
+		
+
 			fmt.Println(ans)
 		} // eval loop
 
