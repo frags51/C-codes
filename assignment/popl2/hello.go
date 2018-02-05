@@ -41,8 +41,9 @@ func main(){
 		}
 		
 		// ********* Start printing output! ****************** //
-		fmt.Println("#")
-		for i:=0;i<m;i++{ // eval loop	
+		fmt.Println("#")	
+		for i:=0;i<m;i++{ // eval loop
+			
 			ans:=coeffs[n] // a0
 			gotback:=make(chan string, n)
 
@@ -81,7 +82,7 @@ func main(){
 		} // eval loop
 
 	} // test case loop 
-	
+	fmt.Println("#")
 } // main
 
 func signedAdder(n1 string, n2 string) string{
