@@ -53,7 +53,6 @@ func main(){
 
 			var x, x2, x3, x4 string
 			x=toEval[i]
-			xOrig:=x
 			// Make X positive and set negFlagX
 	
 			blah:=make(chan string, 1)
@@ -63,7 +62,7 @@ func main(){
 			x3 = <-blah
 			go mult(x3,x,blah)
 			x4 = <-blah
-			//x4orig:=x4
+			x4orig:=x4
 
 			for j:=n-1;j>=0;j-=4{ // each value of x
 				go mult(coeffs[j], x, chans[0])
@@ -80,13 +79,13 @@ func main(){
 					} // if
 			 	}
 				if(j-4>=0){
-					go mult(x4,xOrig,blah)
+					go mult(x4orig,x,blah)
 					x = <-blah
-					go mult(xOrig,x,blah)
+					go mult(x4orig,x2,blah)
 					x2 = <-blah
-					go mult(xOrig,x2,blah)
+					go mult(x4orig,x3,blah)
 					x3 = <-blah
-					go mult(xOrig,x3,blah)
+					go mult(x4orig,x4,blah)
 					x4 = <-blah
 				}
 				
