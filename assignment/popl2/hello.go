@@ -1,6 +1,7 @@
 /**
 *	DO NOT INPUT ANY NUMBER WITH ZEROES AT THE FRONT
 *	Using Parallel Karatsuba's Algorithm To compute product of long ints.
+*	Computes albl, arbr, and midterm parallely and passses it back through a channel
 *	CS16BTECH11038 Supreet Singh
 */
 package main;
@@ -13,7 +14,9 @@ type Numb struct{ // Struct to store numbers
 } */
 
 func main(){
-	//fmt.Printf("%s\n", mult("259678", "691998"))
+	//p := make(chan string, 1)
+	//go mult("9849516516499298598298298498295292985985929924894298259674564568", "499249842942984299841984691998", p)
+	//fmt.Printf("%s\n", pow("5985985529829984987579248298292894298418941659", 17))
 	
 	var tCases int
 	fmt.Scanf("%d", &tCases)
@@ -36,9 +39,73 @@ func main(){
 			fmt.Scanf("%s", &a)
 			toEval = append(toEval, a)
 		}
+		
+		// ********* Start printing output! ****************** //
+		fmt.Println("#")
+		for i:=0;i<m;i++{ // eval loop	
+			ans:=coeffs[n] // a0
+			gotback:=make(chan string, n)
+
+			var x, x2, x3, x4 string
+			x=toEval[i]
+			// Make X positive and set negFlagX
+	
+			blah:=make(chan string, 1)
+			go mult(x,x,blah)
+			x2 = <-blah
+			go mult(x2,x,blah)
+			x3 = <-blah
+			go mult(x3,x,blah)
+			x4 = <-blah
+
+			for j:=n-1;j>=0;j-=4{ // each value of x
+				go mult(coeffs[j], x, gotback)
+				if(j-1>=0) {go mult(coeffs[j-1], x2, gotback)}		
+				if(j-2>=0) {go mult(coeffs[j-2], x3, gotback)}
+				if(j-3>=0) {go mult(coeffs[j-3], x4, gotback)}
+				if(j-4>=0){
+					go mult(x4,x,blah)
+					x = <-blah
+					go mult(x4,x2,blah)
+					x2 = <-blah
+					go mult(x4,x3,blah)
+					x3 = <-blah
+					go mult(x4,x4,blah)
+					x4 = <-blah
+				}
+			} // coeff loop
+			for pt:=0; pt<n; pt++{
+				ans=signedAdder(ans, <-gotback)
+			}
+			fmt.Println(ans)
+		} // eval loop
 
 	} // test case loop 
+	
 } // main
+
+func signedAdder(n1 string, n2 string) string{
+	nf1, nf2:=0, 0
+	if(n1[0]=='-'){
+		nf1=1
+		n1=n1[1:]
+	}
+	if(n2[0]=='-'){
+		nf2=1
+		n2=n2[1:]
+	}
+	if(nf1==nf2 && nf2==0){
+		return add(n1, n2)
+	} else if(nf1==nf2 && nf1==1){ // both neg
+		return "-"+add(n1, n2)
+	} else if(nf1==1){ // number 1 is negative
+		res, neg := sub(n2, n1)
+		if(neg!=0) {return "-"+res} else {return res}
+	} else{ // number 2 is negatove
+		res, neg := sub(n1, n2)
+		if(neg!=0) {return "-"+res} else {return res}
+	}
+}
 
 func pad(s string) string{ // Here s is a positive number
 	var x = len(s)
@@ -186,7 +253,18 @@ func addDriver(n1 string, n2 string) string{ // Does the actuacl addition
 	return string(result)
 }
 
-func mult(n1 string, n2 string) string{
+func mult(n1 string, n2 string, res chan string) {
+	// Make positive numbers
+	nf1, nf2:=0, 0
+	if(n1[0]=='-'){
+		nf1=1
+		n1=n1[1:]
+	}
+	if(n2[0]=='-'){
+		nf2=1
+		n2=n2[1:]
+	}
+
 	var j int
 	for j=0; j<len(n1); j++{ // truncate zeroes?
 		if(n1[j]!='0') {break}
@@ -207,7 +285,8 @@ func mult(n1 string, n2 string) string{
 		n1=pad2(n1, len(n2))
 	}
 
-	return multDriver(n1, n2)
+	//return multDriver(n1, n2)
+	if(nf1==nf2) {res <- multDriver(n1, n2) } else {res <- ("-"+multDriver(n1, n2))}
 }
 
 func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and is equal
@@ -240,12 +319,19 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 		bl:=n2[:l]
 		br:=n2[l:]
 		//fmt.Println("l: ", l, "> al:", al, " bl:", bl)
-		albl:=mult(al, bl)
-		
-		arbr:=mult(ar,br)
+
+		// ***** PARALLEL EXEC ... Three channels to return results to ************ //
+		d1 := make(chan string, 1)
+		d2:= make(chan string, 1)
+		d3 := make(chan string, 1)
+
+		//albl:=mult(al, bl)
+		go mult(al, bl, d1)
+		//arbr:=mult(ar,br)
+		go mult(ar,br, d2)
 
 		var j int
-		for j=0; j<len(albl); j++{ // truncate zeroes?
+		/*for j=0; j<len(albl); j++{ // truncate zeroes?
 			if(albl[j]!='0') {break}
 		}
 		if(j<len(albl)) {albl=albl[j:]}
@@ -254,15 +340,21 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 			if(arbr[j]!='0') {break}
 		}
 		if(j<len(arbr)) {arbr=arbr[j:]}
-
+		*/
 
 		//fmt.Println("albl: ", albl, "arbr", arbr, " len", len(arbr))
 		a_:=add(al, ar)
 		b_:= add(bl, br)
 		//fmt.Println(">>>", "al: ",al," ar: ", ar, " sum:", a_, " ; bl:", bl, " br:",br," sum:", b_)
 		//fmt.Println("Len of sum: ", len(a_))
-		midMult:=mult(a_, b_)
 		
+		//midMult:=mult(a_, b_)
+		go mult(a_, b_, d3)
+		
+		albl:= <-d1
+		arbr:= <-d2
+		midMult:= <- d3
+
 		midMult,_ = sub(midMult, albl) // these subs should be positive only
 		midMult,_ = sub(midMult, arbr)
 		//fmt.Println("Mid term: ", midMult," for" ,n1, " and ", n2,"!!")
@@ -290,10 +382,14 @@ func multDriver(n1 string, n2 string) string{ // Lenght is an even integer and i
 
 func pow(x string, n int) string{ //returns x^n
 	if(n==0) {return "1"}
+	p := make(chan string, 1)
 	if(n%2==0) {
-		return pow(mult(x,x), n/2)
+		go mult(x,x, p)
+		return pow(<- p, n/2)
 	} else{
-		return mult(x, pow(mult(x,x), n/2))
+		p2:=make(chan string, 1)
+		go mult(x,x, p)
+		mult(x, pow(<-p, n/2), p2)
+		return <-p2
 	}
-
 }
