@@ -1,3 +1,8 @@
+/**
+ * CS16BTECH11038
+ * OS2 Assignment 3
+ * Fair solution to reader/writer problem
+ */ 
 #include <iostream>     /* Writing to stdout, stderr */
 #include <fstream>      /* File writing */
 #include <pthread.h>    /* POSIX pthread library */
@@ -7,7 +12,7 @@
 #include <atomic>
 #include <ctime>
 #include <mutex>
-#include <semaphore.h>  /* For Semaphores */
+#include <semaphore.h>  /* For POSIX Semaphores */
 
 using namespace std;
 
