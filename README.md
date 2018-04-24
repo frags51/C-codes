@@ -7,6 +7,7 @@ Some C codes, assignments:
 * Computer Architecture
 * PoPL
 * Data Structures (1 and 2)
-
+* OS-2 : Includes a simple slab allocator, implementation of Reader-writer problems and other synchronisation problems
+* Compilers 1 : Done in COOL - Classroom Object Oriented Language: A stack interpretor. 
 ------------------------------
 
