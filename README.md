@@ -9,5 +9,7 @@ Some C codes, assignments:
 * Data Structures (1 and 2)
 * OS-2 : Includes a simple slab allocator, implementation of Reader-writer problems and other synchronisation problems
 * Compilers 1 : Done in COOL - Classroom Object Oriented Language: A stack interpreter. 
+* Parallel and Concurrent Programming
+* Networks 2 : Socket Programming
 ------------------------------
 
