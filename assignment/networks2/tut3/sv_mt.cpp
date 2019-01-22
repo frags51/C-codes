@@ -1,52 +1,42 @@
 
-// usae: .file port
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/socket.h>
-#include <sys/time.h> 
-#include <netinet/in.h>
-#include <sys/types.h> 
-#include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <pthread.h>
-#include <signal.h>
-#include <math.h>
-
-#define MAX_ARGS 40
-
-#define SQRT 0
-#define ADD 1
-#define DIV 2
-#define ANS 3
-
-typedef struct _msg{
-    int id; // what type of function etc
-    int argsize;
-    float args[MAX_ARGS];
-} msg_struct;
-
+#include "sv.h"
 
 void *threadMain(void *arg);
 
-const int N = 40;
 int socket_id;
 int clCount = 0;
 
-int *clId;
+namespace server{
+    std::mutex lock;
+}
+
+std::vector<int> clId;
+
 pthread_t *tId;
 void sigIntHandler(int id){
-    for(int i=0; i<clCount; i++) close(clId[clCount]);
+    //for(int i=0; i<clId.size(); i++) close(clId[clCount]);
 	close(socket_id);
-    printf(">> Closed!\n");
+    printf(">> Closed Sockets!\n");
     
 	exit(1);
 }
 
 int main(int argc, char *argv[])
 {
-    clId = (int *) malloc(N*sizeof(int));
-    tId = (int *) malloc(N*sizeof(pthread_t ));
+    // sig-action handler
+    struct sigaction handler;
+    handler.sa_handler = sigIntHandler;
+    sigfillset(&handler.sa_mask);
+    handler.sa_flags =0;
+    if (sigaction(SIGINT, &handler, 0)<0)
+    {
+        perror("sigaction faield!@\n");
+        exit(1);
+    }
+    // Sigs handled
+    
+    clId.reserve(N);
+    tId = (pthread_t *) malloc(N*sizeof(pthread_t ));
     
     char buffer[2048] = {0};
     int read_val;
@@ -73,10 +63,10 @@ int main(int argc, char *argv[])
     {
         printf("listen error");
     }
+    // ************************** Listen setup, now just accept connections indefinitely.
     //printf("Waiting for %d clients to connect\n", N);
+    //
     while(1){
-        printf("main is here!\n");
-        sleep(1);
         int incoming_socket = accept(socket_id, (struct sockaddr *)&server_address,  
                        (socklen_t*)&length);
         if ((incoming_socket  <0) )
@@ -85,39 +75,23 @@ int main(int argc, char *argv[])
         }
         else printf(">> COnnnected to id: %d\n", incoming_socket); 
         clId[clCount++] = incoming_socket;
-    if (pthread_create (&(tId[clCount-1]), NULL, threadMain, (void *) incoming_socket) != 0) {perror("thread create fail\n"); exit(1);} 
+        if (pthread_create (&(tId[clCount-1]), NULL, threadMain, (void *) incoming_socket) != 0) {perror("thread create fail\n"); exit(1);} 
 
 
-        if(clCount == N) break;
+        while(clCount == N) sleep(2);
     } // while 
 
-
-    struct sigaction handler;
-	handler.sa_handler = sigIntHandler;
-	sigfillset(&handler.sa_mask);
-	handler.sa_flags =0;
-	if (sigaction(SIGINT, &handler, 0)<0)
-	{
-		perror("sigaction faield!@\n");
-		exit(1);
-    }
-
+    // never reached!
     for(;;) sleep(1);
     
     //    for(int i=0; i<clCount; i++) close(clId[clCount]);
 
     close(socket_id);
-    
-    free(clId);
-
 
 }
 
 void *threadMain(void *arg){
     int clientId = (pthread_t) arg;
-    
-
-
     pthread_detach(pthread_self());
     
     msg_struct rcvBuffer;
@@ -126,18 +100,18 @@ void *threadMain(void *arg){
 
     else printf("Recvd!! %f..\n", rcvBuffer.args[0]);
 
-    printf("blah");
+
     int op = (rcvBuffer.id);
     switch(op){
         case SQRT:
-        
+            {
             rcvBuffer.id = (ANS);
             rcvBuffer.argsize = (1);
             int num = (rcvBuffer.args[0]);
             rcvBuffer.args[0] = (sqrt(num));
             fprintf(stderr, "setnding %f", rcvBuffer.args[0]);
             if (send(clientId, &rcvBuffer, sizeof(rcvBuffer), 0) <0 ) perror("error in send");
-            perror("snet!");
+        }
         break;
 
         case ADD:{
@@ -173,4 +147,12 @@ void *threadMain(void *arg){
         break;
     }
     close(clientId);
+
+    int i;
+    for(i=0; i<clId.size() && clId[i]!=clientId; i++) ; // loop until you get this client ID.
+    if(i < clId.size()) {
+        server::lock.lock();
+        clId.erase(clId.begin()+i);
+        server::lock.lock();
+    } 
 }

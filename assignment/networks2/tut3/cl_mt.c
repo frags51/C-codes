@@ -1,28 +1,5 @@
 // usae: .file port
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/socket.h>
-#include <sys/time.h> 
-#include <netinet/in.h>
-#include <sys/types.h> 
-#include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <signal.h>
-#include <pthread.h>
-
-#define SQRT 0
-#define ADD 1
-#define DIV 2
-#define ANS 3
-
-#define MAX_ARGS 40
-
-typedef struct _msg{
-    int id; // what type of function etc
-    int argsize;
-    float args[MAX_ARGS];
-} msg_struct;
+#include "sv.h"
 
 int socket_id;
 
@@ -90,7 +67,7 @@ struct sigaction handler;
         break;
 
         case ADD:{
-int num; printf("Enter number of arguments to add: ");
+            int num; printf("Enter number of arguments to add: ");
             scanf("%d", &num);
             float b;
             msg_struct a;            
