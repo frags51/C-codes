@@ -17,13 +17,12 @@ using namespace std;
 
 // The counter for DAM
 int64_t counter {1};
-int64_t temp;
 std::mutex mtx;
 
 int64_t getAndIncrement(){ 
 	mtx.lock();
 	++counter;
-	temp = counter;
+	int64_t temp = counter;
 	mtx.unlock();
 	return temp;
 }
@@ -70,16 +69,18 @@ void threadFuncDAM(const short which, const int64_t MAX, const int M, const std:
 	int64_t start = getAndIncrement();
 	// we know that 1 is not a prime number.
 	
-	if(start==2){
-		primes->at(which)->push_back(2);
-	}
-	else if(start==3){
-		primes->at(which)->push_back(3);
-	}
+
 	
 	for(;start<MAX;){
+		if(start==2){
+			primes->at(which)->push_back(2);
+		}
+		else if(start==3){
+			//std::cout<<"Added 3!"<<std::endl;
+			primes->at(which)->push_back(3);
+		}
+		else if(start <MAX && isPrime(start)) primes->at(which)->push_back((int64_t) start);
 		start = getAndIncrement();
-		if(start <MAX && isPrime(start)) primes->at(which)->push_back((int64_t) start);
 	} 
 }
 
@@ -120,8 +121,10 @@ int main(){
 	auto end = std::chrono::system_clock::now();
 	auto elapsed1 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	//time << elapsed.count() << ' ';
-	if(DEB) cout<<"SAM1 Debug: time: "<<elapsed.count() << " ms\n";
+	if(DEB) cout<<"SAM1 Debug: time: "<<elapsed1.count() << " ms\n";
 	// Timing finished!
+
+	/*
 
 	// merge all these primes!
 	std::vector<int64_t> merged;
@@ -134,8 +137,9 @@ int main(){
 
 	// output to file!
 	ofstream out {"Primes-SAM1.txt"};
-	for(auto i: merged) out<<i<<" ";
+	for(auto i: merged) out<<i<<"\n";
 	out.close();
+	*/
 
 	// deletion -- memory management
 	for(int i=0; i<M; i++) delete primes->at(i);
@@ -165,6 +169,7 @@ int main(){
 	time.close();
 	// Timing finished!
 
+	/*
 	// now merge!
 	merged.clear();
 	for(int i=0;i<M; i++){
@@ -176,8 +181,9 @@ int main(){
 
 	// output to file!
 	ofstream out1 {"Primes-DAM.txt"};
-	for(auto i: merged) out1<<i<<" ";
+	for(auto i: merged) out1<<i<<"\n";
 	out1.close();
+	*/
 
 	// mem management
 	for(int i=0; i<M; i++) delete primes->at(i);
