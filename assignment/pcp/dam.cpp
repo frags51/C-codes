@@ -43,7 +43,7 @@ void threadFuncSAM1(const short which, const int64_t MAX, const int M, const std
 
 	while(from < MAX){
 		to = from + SLICE; //exclusive.
-		to = to > MAX ? MAX : to;		
+		if(to > MAX) to = MAX;	
 		
 		// *********** start sieving.
 		// [to, from)
@@ -70,10 +70,11 @@ void threadFuncSAM1(const short which, const int64_t MAX, const int M, const std
 
 			int64_t firstMultiple; // The first odd multiple in range [from, to).
 
-			firstMultiple = ((int)((from+i-1)/i)) * i;
-			// only mark multiples above i*i;
-			firstMultiple = firstMultiple < i*i ? i*i : firstMultiple;
+			firstMultiple = ((int64_t)((from+i-1)/i)) * i;
 
+			// only mark multiples above i*i;
+			//firstMultiple = firstMultiple < i*i ? i*i : firstMultiple;
+			if(firstMultiple < i*i) firstMultiple = i*i;
 			// Skipping even multiples!
 			if((firstMultiple & 1) == 0) firstMultiple+= i;
 
@@ -89,7 +90,7 @@ void threadFuncSAM1(const short which, const int64_t MAX, const int M, const std
 		if(from<=2) primes->at(which)->push_back(2);
 		delete[] isNumPrime; 
 		// *********** end sieving.
-		from+= (M*SLICE);
+		from+= ((int64_t)M*SLICE);
 	} // thread while!
  
 }
