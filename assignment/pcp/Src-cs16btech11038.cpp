@@ -13,6 +13,8 @@
 #include <cmath>			/* For POW function */
 using namespace std;
 
+const bool FILEIO = true;
+
 #define DEB true
 
 // The counter for DAM
@@ -36,6 +38,7 @@ bool isPrime(const int64_t num){
 	int64_t i = 5;
 	int w = 2;
 
+	// multiples are of type 6k-1 and 6k+1 only!.
 	while(i*i <= num){ // check divisility only by primes < sqrt(num)!
 		if(num%i == 0) return false;
 		i+=w;
@@ -117,29 +120,29 @@ int main(){
 	}
 
 	// Output time in milliseconds
-	fstream time {"Times.txt"};
+	ofstream time {"Times.txt"};
 	auto end = std::chrono::system_clock::now();
 	auto elapsed1 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	//time << elapsed.count() << ' ';
 	if(DEB) cout<<"SAM1 Debug: time: "<<elapsed1.count() << " ms\n";
 	// Timing finished!
 
-	/*
-
-	// merge all these primes!
-	std::vector<int64_t> merged;
-	for(int i=0;i<M; i++){
-		for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
-	}
 	
-	// SORT!
-	std::sort(merged.begin(), merged.end());
-
-	// output to file!
-	ofstream out {"Primes-SAM1.txt"};
-	for(auto i: merged) out<<i<<"\n";
-	out.close();
-	*/
+	if(FILEIO){
+		// merge all these primes!
+		std::vector<int64_t> merged;
+		for(int i=0;i<M; i++){
+			for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
+		}
+		
+		// SORT!
+		std::sort(merged.begin(), merged.end());
+	
+		// output to file!
+		ofstream out {"Primes-SAM1.txt"};
+		for(auto i: merged) out<<i<<" ";
+		out.close();
+	}
 
 	// deletion -- memory management
 	for(int i=0; i<M; i++) delete primes->at(i);
@@ -163,27 +166,33 @@ int main(){
 		thread_pool[i].join();
 	}
 	end = std::chrono::system_clock::now();
+
+
+
 	auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	time << elapsed.count() << ' '<<elapsed1.count();
+
+
+
 	if(DEB) cout<<"Debug: DAM time: "<<elapsed.count() << " ms\n";
 	time.close();
 	// Timing finished!
 
-	/*
-	// now merge!
-	merged.clear();
-	for(int i=0;i<M; i++){
-		for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
+	if(FILEIO){
+		// now merge!
+		merged.clear();
+		for(int i=0;i<M; i++){
+			for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
+		}
+	
+		// SORT!
+		std::sort(merged.begin(), merged.end());
+	
+		// output to file!
+		ofstream out1 {"Primes-DAM.txt"};
+		for(auto i: merged) out1<<i<<" ";
+		out1.close();
 	}
-
-	// SORT!
-	std::sort(merged.begin(), merged.end());
-
-	// output to file!
-	ofstream out1 {"Primes-DAM.txt"};
-	for(auto i: merged) out1<<i<<"\n";
-	out1.close();
-	*/
 
 	// mem management
 	for(int i=0; i<M; i++) delete primes->at(i);

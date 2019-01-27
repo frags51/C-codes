@@ -1,5 +1,5 @@
 /**
- * Implements SAM-2
+ * Implements SAM-2-Sieve
  */
 #include <chrono>
 #include <algorithm>		/* Sort */
@@ -10,6 +10,8 @@
 #include <vector>			/* For vector of threads */
 #include <cmath>			/* For POW function */
 using namespace std;
+
+const bool FILEIO = true;
 
 #define DEB true
 
@@ -130,29 +132,30 @@ int main(){
 	}
 
 	// Output time in milliseconds
-	fstream time {"Times-SAM2.txt"};
+	fstream time {"Times-SAM2-sieve.txt"};
 	auto end = std::chrono::system_clock::now();
 	auto elapsed1 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	time << elapsed1.count() << ' ';
-	if(DEB) cout<<"SAM2 Debug: time: "<<elapsed1.count() << " ms\n";
+	if(DEB) cout<<"SAM2 sieve Debug: time: "<<elapsed1.count() << " ms\n";
 	// Timing finished!
 	time.close();
 
-	/*
-	// merge all these primes!
-	std::vector<int64_t> merged;
-	for(int i=0;i<M; i++){
-		for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
-	}
 	
-	// SORT!
-	std::sort(merged.begin(), merged.end());
-
-	// output to file!
-	ofstream out {"Primes-SAM2.txt"};
-	for(auto i: merged) out<<i<<" ";
-	out.close();
-	*/
+	// merge all these primes!
+	if(FILEIO){
+		std::vector<int64_t> merged;
+		for(int i=0;i<M; i++){
+			for(int j=0; j<primes->at(i)->size();j++) merged.push_back(primes->at(i)->at(j));
+		}
+		
+		// SORT!
+		std::sort(merged.begin(), merged.end());
+	
+		// output to file!
+		ofstream out {"Primes-SAM2-sieve.txt"};
+		for(auto i: merged) out<<i<<" ";
+		out.close();
+	}
 
 	// deletion -- memory management
 	for(int i=0; i<M; i++) delete primes->at(i);
