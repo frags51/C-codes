@@ -1,0 +1,1560 @@
+0th time the Thread 0 becomes hungry at 19:50:01
+0th time the Thread 0 eats at 19:50:01
+0th time the Thread 2 becomes hungry at 19:50:01
+0th time the Thread 1 becomes hungry at 19:50:01
+0th time the Thread 0 has eaten at 19:50:01
+0th time the Thread 3 becomes hungry at 19:50:01
+0th time the Thread 4 becomes hungry at 19:50:01
+0th time the Thread 5 becomes hungry at 19:50:01
+0th time the Thread 6 becomes hungry at 19:50:01
+0th time the Thread 7 becomes hungry at 19:50:01
+0th time the Thread 2 eats at 19:50:01
+0th time the Thread 9 becomes hungry at 19:50:01
+0th time the Thread 8 becomes hungry at 19:50:01
+0th time the Thread 10 becomes hungry at 19:50:01
+0th time the Thread 11 becomes hungry at 19:50:01
+1th time the Thread 0 becomes hungry at 19:50:01
+0th time the Thread 13 becomes hungry at 19:50:01
+0th time the Thread 37 becomes hungry at 19:50:01
+0th time the Thread 14 becomes hungry at 19:50:01
+0th time the Thread 2 has eaten at 19:50:01
+0th time the Thread 15 becomes hungry at 19:50:01
+0th time the Thread 1 eats at 19:50:01
+1th time the Thread 2 becomes hungry at 19:50:01
+0th time the Thread 33 becomes hungry at 19:50:01
+0th time the Thread 35 becomes hungry at 19:50:01
+0th time the Thread 34 becomes hungry at 19:50:01
+0th time the Thread 30 becomes hungry at 19:50:01
+0th time the Thread 24 becomes hungry at 19:50:01
+0th time the Thread 25 becomes hungry at 19:50:01
+0th time the Thread 26 becomes hungry at 19:50:01
+0th time the Thread 27 becomes hungry at 19:50:01
+0th time the Thread 29 becomes hungry at 19:50:01
+0th time the Thread 32 becomes hungry at 19:50:01
+0th time the Thread 31 becomes hungry at 19:50:01
+0th time the Thread 23 becomes hungry at 19:50:01
+0th time the Thread 22 becomes hungry at 19:50:01
+0th time the Thread 21 becomes hungry at 19:50:01
+0th time the Thread 20 becomes hungry at 19:50:01
+0th time the Thread 19 becomes hungry at 19:50:01
+0th time the Thread 18 becomes hungry at 19:50:01
+0th time the Thread 36 becomes hungry at 19:50:01
+0th time the Thread 12 becomes hungry at 19:50:01
+0th time the Thread 28 becomes hungry at 19:50:01
+0th time the Thread 39 becomes hungry at 19:50:01
+0th time the Thread 40 becomes hungry at 19:50:01
+0th time the Thread 41 becomes hungry at 19:50:01
+0th time the Thread 42 becomes hungry at 19:50:01
+0th time the Thread 43 becomes hungry at 19:50:01
+0th time the Thread 44 becomes hungry at 19:50:01
+0th time the Thread 45 becomes hungry at 19:50:01
+0th time the Thread 46 becomes hungry at 19:50:01
+0th time the Thread 47 becomes hungry at 19:50:01
+0th time the Thread 48 becomes hungry at 19:50:01
+0th time the Thread 49 becomes hungry at 19:50:01
+0th time the Thread 38 becomes hungry at 19:50:01
+0th time the Thread 16 becomes hungry at 19:50:01
+0th time the Thread 17 becomes hungry at 19:50:01
+0th time the Thread 1 has eaten at 19:50:01
+0th time the Thread 3 eats at 19:50:01
+1th time the Thread 1 becomes hungry at 19:50:01
+0th time the Thread 3 has eaten at 19:50:01
+0th time the Thread 4 eats at 19:50:01
+0th time the Thread 4 has eaten at 19:50:01
+0th time the Thread 5 eats at 19:50:01
+1th time the Thread 3 becomes hungry at 19:50:01
+1th time the Thread 4 becomes hungry at 19:50:01
+0th time the Thread 5 has eaten at 19:50:01
+0th time the Thread 6 eats at 19:50:01
+1th time the Thread 5 becomes hungry at 19:50:01
+0th time the Thread 6 has eaten at 19:50:01
+0th time the Thread 7 eats at 19:50:01
+1th time the Thread 6 becomes hungry at 19:50:01
+0th time the Thread 7 has eaten at 19:50:01
+0th time the Thread 9 eats at 19:50:01
+1th time the Thread 7 becomes hungry at 19:50:01
+0th time the Thread 9 has eaten at 19:50:01
+0th time the Thread 8 eats at 19:50:01
+0th time the Thread 8 has eaten at 19:50:01
+0th time the Thread 10 eats at 19:50:01
+1th time the Thread 9 becomes hungry at 19:50:01
+0th time the Thread 10 has eaten at 19:50:01
+1th time the Thread 8 becomes hungry at 19:50:01
+1th time the Thread 8 eats at 19:50:01
+1th time the Thread 8 has eaten at 19:50:01
+1th time the Thread 10 becomes hungry at 19:50:01
+1th time the Thread 10 eats at 19:50:01
+1th time the Thread 10 has eaten at 19:50:01
+0th time the Thread 13 eats at 19:50:01
+2th time the Thread 10 becomes hungry at 19:50:01
+2th time the Thread 8 becomes hungry at 19:50:01
+0th time the Thread 13 has eaten at 19:50:01
+0th time the Thread 37 eats at 19:50:01
+1th time the Thread 13 becomes hungry at 19:50:01
+0th time the Thread 37 has eaten at 19:50:01
+0th time the Thread 14 eats at 19:50:01
+1th time the Thread 37 becomes hungry at 19:50:01
+0th time the Thread 14 has eaten at 19:50:01
+0th time the Thread 15 eats at 19:50:01
+1th time the Thread 14 becomes hungry at 19:50:01
+0th time the Thread 15 has eaten at 19:50:01
+1th time the Thread 2 eats at 19:50:01
+1th time the Thread 2 has eaten at 19:50:01
+1th time the Thread 15 becomes hungry at 19:50:01
+0th time the Thread 33 eats at 19:50:01
+2th time the Thread 2 becomes hungry at 19:50:01
+0th time the Thread 33 has eaten at 19:50:01
+0th time the Thread 35 eats at 19:50:01
+1th time the Thread 33 becomes hungry at 19:50:01
+0th time the Thread 35 has eaten at 19:50:01
+0th time the Thread 34 eats at 19:50:01
+0th time the Thread 34 has eaten at 19:50:01
+0th time the Thread 30 eats at 19:50:01
+1th time the Thread 34 becomes hungry at 19:50:01
+0th time the Thread 30 has eaten at 19:50:01
+0th time the Thread 24 eats at 19:50:01
+1th time the Thread 30 becomes hungry at 19:50:01
+1th time the Thread 35 becomes hungry at 19:50:01
+0th time the Thread 24 has eaten at 19:50:01
+0th time the Thread 25 eats at 19:50:01
+1th time the Thread 24 becomes hungry at 19:50:01
+0th time the Thread 25 has eaten at 19:50:01
+0th time the Thread 26 eats at 19:50:01
+1th time the Thread 25 becomes hungry at 19:50:01
+0th time the Thread 26 has eaten at 19:50:01
+0th time the Thread 27 eats at 19:50:01
+0th time the Thread 27 has eaten at 19:50:01
+1th time the Thread 26 becomes hungry at 19:50:01
+0th time the Thread 29 eats at 19:50:01
+0th time the Thread 29 has eaten at 19:50:01
+0th time the Thread 32 eats at 19:50:01
+1th time the Thread 27 becomes hungry at 19:50:01
+0th time the Thread 32 has eaten at 19:50:01
+1th time the Thread 29 becomes hungry at 19:50:01
+0th time the Thread 31 eats at 19:50:01
+1th time the Thread 32 becomes hungry at 19:50:01
+0th time the Thread 31 has eaten at 19:50:01
+0th time the Thread 23 eats at 19:50:01
+0th time the Thread 23 has eaten at 19:50:01
+0th time the Thread 22 eats at 19:50:01
+1th time the Thread 31 becomes hungry at 19:50:01
+1th time the Thread 23 becomes hungry at 19:50:01
+0th time the Thread 22 has eaten at 19:50:01
+0th time the Thread 21 eats at 19:50:01
+1th time the Thread 22 becomes hungry at 19:50:01
+0th time the Thread 21 has eaten at 19:50:01
+0th time the Thread 20 eats at 19:50:01
+1th time the Thread 21 becomes hungry at 19:50:01
+0th time the Thread 20 has eaten at 19:50:01
+0th time the Thread 19 eats at 19:50:01
+1th time the Thread 20 becomes hungry at 19:50:01
+0th time the Thread 19 has eaten at 19:50:01
+0th time the Thread 18 eats at 19:50:01
+1th time the Thread 19 becomes hungry at 19:50:01
+0th time the Thread 18 has eaten at 19:50:01
+0th time the Thread 36 eats at 19:50:01
+0th time the Thread 36 has eaten at 19:50:01
+0th time the Thread 12 eats at 19:50:01
+1th time the Thread 18 becomes hungry at 19:50:01
+1th time the Thread 36 becomes hungry at 19:50:01
+0th time the Thread 12 has eaten at 19:50:01
+0th time the Thread 28 eats at 19:50:01
+1th time the Thread 12 becomes hungry at 19:50:01
+0th time the Thread 28 has eaten at 19:50:01
+0th time the Thread 39 eats at 19:50:01
+1th time the Thread 28 becomes hungry at 19:50:01
+0th time the Thread 39 has eaten at 19:50:01
+0th time the Thread 40 eats at 19:50:01
+1th time the Thread 39 becomes hungry at 19:50:01
+0th time the Thread 40 has eaten at 19:50:01
+0th time the Thread 41 eats at 19:50:01
+1th time the Thread 40 becomes hungry at 19:50:01
+0th time the Thread 41 has eaten at 19:50:01
+0th time the Thread 42 eats at 19:50:01
+1th time the Thread 41 becomes hungry at 19:50:01
+0th time the Thread 42 has eaten at 19:50:01
+0th time the Thread 43 eats at 19:50:01
+1th time the Thread 42 becomes hungry at 19:50:01
+0th time the Thread 43 has eaten at 19:50:01
+0th time the Thread 44 eats at 19:50:01
+1th time the Thread 43 becomes hungry at 19:50:01
+0th time the Thread 44 has eaten at 19:50:01
+0th time the Thread 45 eats at 19:50:01
+1th time the Thread 44 becomes hungry at 19:50:01
+0th time the Thread 45 has eaten at 19:50:01
+0th time the Thread 46 eats at 19:50:01
+1th time the Thread 45 becomes hungry at 19:50:01
+0th time the Thread 46 has eaten at 19:50:01
+0th time the Thread 47 eats at 19:50:01
+1th time the Thread 46 becomes hungry at 19:50:01
+0th time the Thread 47 has eaten at 19:50:01
+0th time the Thread 48 eats at 19:50:01
+1th time the Thread 47 becomes hungry at 19:50:01
+0th time the Thread 48 has eaten at 19:50:01
+0th time the Thread 49 eats at 19:50:01
+1th time the Thread 48 becomes hungry at 19:50:01
+0th time the Thread 49 has eaten at 19:50:01
+0th time the Thread 38 eats at 19:50:01
+1th time the Thread 49 becomes hungry at 19:50:01
+The cook fills the empty pot at 19:50:01
+0th time the Thread 38 has eaten at 19:50:01
+1th time the Thread 38 becomes hungry at 19:50:01
+0th time the Thread 16 eats at 19:50:01
+0th time the Thread 16 has eaten at 19:50:01
+0th time the Thread 17 eats at 19:50:01
+1th time the Thread 16 becomes hungry at 19:50:01
+0th time the Thread 17 has eaten at 19:50:01
+1th time the Thread 1 eats at 19:50:01
+1th time the Thread 17 becomes hungry at 19:50:01
+1th time the Thread 1 has eaten at 19:50:01
+1th time the Thread 3 eats at 19:50:01
+2th time the Thread 1 becomes hungry at 19:50:01
+1th time the Thread 3 has eaten at 19:50:01
+2th time the Thread 3 becomes hungry at 19:50:01
+2th time the Thread 3 eats at 19:50:01
+2th time the Thread 3 has eaten at 19:50:01
+3th time the Thread 3 becomes hungry at 19:50:01
+3th time the Thread 3 eats at 19:50:01
+3th time the Thread 3 has eaten at 19:50:01
+1th time the Thread 6 eats at 19:50:01
+4th time the Thread 3 becomes hungry at 19:50:01
+1th time the Thread 6 has eaten at 19:50:01
+1th time the Thread 7 eats at 19:50:01
+2th time the Thread 6 becomes hungry at 19:50:01
+1th time the Thread 7 has eaten at 19:50:01
+1th time the Thread 9 eats at 19:50:01
+2th time the Thread 7 becomes hungry at 19:50:01
+1th time the Thread 9 has eaten at 19:50:01
+1th time the Thread 5 eats at 19:50:01
+2th time the Thread 9 becomes hungry at 19:50:01
+1th time the Thread 5 has eaten at 19:50:01
+1th time the Thread 0 eats at 19:50:01
+2th time the Thread 5 becomes hungry at 19:50:01
+1th time the Thread 0 has eaten at 19:50:01
+2th time the Thread 10 eats at 19:50:01
+2th time the Thread 0 becomes hungry at 19:50:01
+2th time the Thread 10 has eaten at 19:50:01
+2th time the Thread 8 eats at 19:50:01
+3th time the Thread 10 becomes hungry at 19:50:01
+2th time the Thread 8 has eaten at 19:50:01
+1th time the Thread 13 eats at 19:50:01
+1th time the Thread 13 has eaten at 19:50:01
+1th time the Thread 37 eats at 19:50:01
+2th time the Thread 13 becomes hungry at 19:50:01
+3th time the Thread 8 becomes hungry at 19:50:01
+1th time the Thread 37 has eaten at 19:50:01
+1th time the Thread 14 eats at 19:50:01
+2th time the Thread 37 becomes hungry at 19:50:01
+1th time the Thread 14 has eaten at 19:50:01
+1th time the Thread 15 eats at 19:50:01
+1th time the Thread 15 has eaten at 19:50:01
+2th time the Thread 2 eats at 19:50:01
+2th time the Thread 15 becomes hungry at 19:50:01
+2th time the Thread 14 becomes hungry at 19:50:01
+2th time the Thread 2 has eaten at 19:50:01
+1th time the Thread 33 eats at 19:50:01
+3th time the Thread 2 becomes hungry at 19:50:01
+1th time the Thread 33 has eaten at 19:50:01
+1th time the Thread 34 eats at 19:50:01
+1th time the Thread 34 has eaten at 19:50:01
+2th time the Thread 33 becomes hungry at 19:50:01
+1th time the Thread 30 eats at 19:50:01
+1th time the Thread 30 has eaten at 19:50:01
+2th time the Thread 34 becomes hungry at 19:50:01
+2th time the Thread 34 eats at 19:50:01
+2th time the Thread 34 has eaten at 19:50:01
+1th time the Thread 24 eats at 19:50:01
+2th time the Thread 30 becomes hungry at 19:50:01
+1th time the Thread 24 has eaten at 19:50:01
+3th time the Thread 34 becomes hungry at 19:50:01
+1th time the Thread 25 eats at 19:50:01
+1th time the Thread 25 has eaten at 19:50:01
+2th time the Thread 24 becomes hungry at 19:50:01
+1th time the Thread 26 eats at 19:50:01
+2th time the Thread 25 becomes hungry at 19:50:01
+1th time the Thread 26 has eaten at 19:50:01
+1th time the Thread 27 eats at 19:50:01
+1th time the Thread 27 has eaten at 19:50:01
+1th time the Thread 29 eats at 19:50:01
+2th time the Thread 26 becomes hungry at 19:50:01
+1th time the Thread 29 has eaten at 19:50:01
+2th time the Thread 27 becomes hungry at 19:50:01
+2th time the Thread 27 eats at 19:50:01
+2th time the Thread 27 has eaten at 19:50:01
+2th time the Thread 29 becomes hungry at 19:50:01
+2th time the Thread 29 eats at 19:50:01
+2th time the Thread 29 has eaten at 19:50:01
+3th time the Thread 27 becomes hungry at 19:50:01
+1th time the Thread 23 eats at 19:50:01
+1th time the Thread 23 has eaten at 19:50:01
+3th time the Thread 29 becomes hungry at 19:50:01
+1th time the Thread 22 eats at 19:50:01
+1th time the Thread 22 has eaten at 19:50:01
+1th time the Thread 21 eats at 19:50:01
+2th time the Thread 23 becomes hungry at 19:50:01
+2th time the Thread 22 becomes hungry at 19:50:01
+1th time the Thread 21 has eaten at 19:50:01
+1th time the Thread 20 eats at 19:50:01
+1th time the Thread 20 has eaten at 19:50:01
+2th time the Thread 21 becomes hungry at 19:50:01
+2th time the Thread 21 eats at 19:50:01
+2th time the Thread 21 has eaten at 19:50:01
+1th time the Thread 18 eats at 19:50:01
+2th time the Thread 20 becomes hungry at 19:50:01
+3th time the Thread 21 becomes hungry at 19:50:01
+1th time the Thread 18 has eaten at 19:50:01
+1th time the Thread 36 eats at 19:50:01
+2th time the Thread 18 becomes hungry at 19:50:01
+1th time the Thread 36 has eaten at 19:50:01
+1th time the Thread 12 eats at 19:50:01
+1th time the Thread 12 has eaten at 19:50:01
+1th time the Thread 28 eats at 19:50:01
+2th time the Thread 36 becomes hungry at 19:50:01
+2th time the Thread 12 becomes hungry at 19:50:01
+1th time the Thread 28 has eaten at 19:50:01
+1th time the Thread 39 eats at 19:50:01
+2th time the Thread 28 becomes hungry at 19:50:01
+1th time the Thread 39 has eaten at 19:50:01
+1th time the Thread 40 eats at 19:50:01
+2th time the Thread 39 becomes hungry at 19:50:01
+1th time the Thread 40 has eaten at 19:50:01
+1th time the Thread 41 eats at 19:50:01
+2th time the Thread 40 becomes hungry at 19:50:01
+1th time the Thread 41 has eaten at 19:50:01
+1th time the Thread 42 eats at 19:50:01
+2th time the Thread 41 becomes hungry at 19:50:01
+1th time the Thread 42 has eaten at 19:50:01
+1th time the Thread 43 eats at 19:50:01
+2th time the Thread 42 becomes hungry at 19:50:01
+1th time the Thread 43 has eaten at 19:50:01
+1th time the Thread 44 eats at 19:50:01
+1th time the Thread 44 has eaten at 19:50:01
+1th time the Thread 45 eats at 19:50:01
+2th time the Thread 44 becomes hungry at 19:50:01
+2th time the Thread 43 becomes hungry at 19:50:01
+1th time the Thread 45 has eaten at 19:50:01
+1th time the Thread 46 eats at 19:50:01
+1th time the Thread 46 has eaten at 19:50:01
+2th time the Thread 45 becomes hungry at 19:50:01
+2th time the Thread 45 eats at 19:50:01
+2th time the Thread 45 has eaten at 19:50:01
+1th time the Thread 48 eats at 19:50:01
+2th time the Thread 46 becomes hungry at 19:50:01
+1th time the Thread 48 has eaten at 19:50:01
+1th time the Thread 49 eats at 19:50:01
+3th time the Thread 45 becomes hungry at 19:50:01
+1th time the Thread 49 has eaten at 19:50:01
+2th time the Thread 48 becomes hungry at 19:50:01
+2th time the Thread 48 eats at 19:50:01
+The cook fills the empty pot at 19:50:01
+2th time the Thread 49 becomes hungry at 19:50:01
+2th time the Thread 48 has eaten at 19:50:01
+3th time the Thread 48 becomes hungry at 19:50:01
+1th time the Thread 16 eats at 19:50:01
+1th time the Thread 16 has eaten at 19:50:01
+1th time the Thread 17 eats at 19:50:01
+1th time the Thread 17 has eaten at 19:50:01
+2th time the Thread 17 becomes hungry at 19:50:01
+2th time the Thread 17 eats at 19:50:01
+2th time the Thread 17 has eaten at 19:50:01
+2th time the Thread 1 eats at 19:50:01
+2th time the Thread 16 becomes hungry at 19:50:01
+3th time the Thread 17 becomes hungry at 19:50:01
+2th time the Thread 1 has eaten at 19:50:01
+4th time the Thread 3 eats at 19:50:01
+4th time the Thread 3 has eaten at 19:50:01
+2th time the Thread 6 eats at 19:50:01
+3th time the Thread 1 becomes hungry at 19:50:01
+2th time the Thread 6 has eaten at 19:50:01
+2th time the Thread 7 eats at 19:50:01
+5th time the Thread 3 becomes hungry at 19:50:01
+3th time the Thread 6 becomes hungry at 19:50:01
+2th time the Thread 7 has eaten at 19:50:01
+2th time the Thread 9 eats at 19:50:01
+2th time the Thread 9 has eaten at 19:50:01
+3th time the Thread 7 becomes hungry at 19:50:01
+3th time the Thread 7 eats at 19:50:01
+3th time the Thread 7 has eaten at 19:50:01
+3th time the Thread 9 becomes hungry at 19:50:01
+2th time the Thread 0 eats at 19:50:01
+4th time the Thread 7 becomes hungry at 19:50:01
+2th time the Thread 0 has eaten at 19:50:01
+3th time the Thread 10 eats at 19:50:01
+3th time the Thread 10 has eaten at 19:50:01
+3th time the Thread 0 becomes hungry at 19:50:01
+3th time the Thread 0 eats at 19:50:01
+4th time the Thread 10 becomes hungry at 19:50:01
+3th time the Thread 0 has eaten at 19:50:01
+3th time the Thread 8 eats at 19:50:01
+3th time the Thread 8 has eaten at 19:50:01
+4th time the Thread 0 becomes hungry at 19:50:01
+4th time the Thread 0 eats at 19:50:01
+4th time the Thread 8 becomes hungry at 19:50:01
+4th time the Thread 0 has eaten at 19:50:01
+5th time the Thread 0 becomes hungry at 19:50:01
+5th time the Thread 0 eats at 19:50:01
+5th time the Thread 0 has eaten at 19:50:01
+2th time the Thread 14 eats at 19:50:01
+2th time the Thread 14 has eaten at 19:50:01
+3th time the Thread 2 eats at 19:50:01
+6th time the Thread 0 becomes hungry at 19:50:01
+3th time the Thread 14 becomes hungry at 19:50:01
+3th time the Thread 2 has eaten at 19:50:01
+2th time the Thread 33 eats at 19:50:01
+4th time the Thread 2 becomes hungry at 19:50:01
+2th time the Thread 33 has eaten at 19:50:01
+1th time the Thread 35 eats at 19:50:01
+1th time the Thread 35 has eaten at 19:50:01
+3th time the Thread 33 becomes hungry at 19:50:01
+2th time the Thread 30 eats at 19:50:01
+2th time the Thread 35 becomes hungry at 19:50:01
+2th time the Thread 30 has eaten at 19:50:01
+3th time the Thread 34 eats at 19:50:01
+3th time the Thread 34 has eaten at 19:50:01
+3th time the Thread 30 becomes hungry at 19:50:01
+3th time the Thread 30 eats at 19:50:01
+4th time the Thread 34 becomes hungry at 19:50:01
+3th time the Thread 30 has eaten at 19:50:01
+2th time the Thread 25 eats at 19:50:01
+2th time the Thread 25 has eaten at 19:50:01
+4th time the Thread 30 becomes hungry at 19:50:01
+2th time the Thread 26 eats at 19:50:01
+2th time the Thread 26 has eaten at 19:50:01
+3th time the Thread 25 becomes hungry at 19:50:01
+0th time the Thread 11 eats at 19:50:01
+3th time the Thread 26 becomes hungry at 19:50:01
+0th time the Thread 11 has eaten at 19:50:01
+1th time the Thread 31 eats at 19:50:01
+1th time the Thread 31 has eaten at 19:50:01
+3th time the Thread 27 eats at 19:50:01
+1th time the Thread 11 becomes hungry at 19:50:01
+2th time the Thread 31 becomes hungry at 19:50:01
+3th time the Thread 27 has eaten at 19:50:01
+1th time the Thread 32 eats at 19:50:01
+4th time the Thread 27 becomes hungry at 19:50:01
+1th time the Thread 32 has eaten at 19:50:01
+3th time the Thread 29 eats at 19:50:01
+3th time the Thread 29 has eaten at 19:50:01
+2th time the Thread 23 eats at 19:50:01
+2th time the Thread 32 becomes hungry at 19:50:01
+2th time the Thread 23 has eaten at 19:50:01
+4th time the Thread 29 becomes hungry at 19:50:01
+4th time the Thread 29 eats at 19:50:01
+4th time the Thread 29 has eaten at 19:50:01
+1th time the Thread 19 eats at 19:50:01
+3th time the Thread 23 becomes hungry at 19:50:01
+1th time the Thread 19 has eaten at 19:50:01
+5th time the Thread 29 becomes hungry at 19:50:01
+2th time the Thread 20 eats at 19:50:01
+2th time the Thread 19 becomes hungry at 19:50:01
+2th time the Thread 20 has eaten at 19:50:01
+3th time the Thread 21 eats at 19:50:01
+3th time the Thread 21 has eaten at 19:50:01
+2th time the Thread 18 eats at 19:50:01
+2th time the Thread 18 has eaten at 19:50:01
+2th time the Thread 36 eats at 19:50:01
+3th time the Thread 18 becomes hungry at 19:50:01
+2th time the Thread 36 has eaten at 19:50:01
+3th time the Thread 36 becomes hungry at 19:50:01
+3th time the Thread 36 eats at 19:50:01
+3th time the Thread 36 has eaten at 19:50:01
+2th time the Thread 28 eats at 19:50:01
+4th time the Thread 21 becomes hungry at 19:50:01
+2th time the Thread 28 has eaten at 19:50:01
+2th time the Thread 39 eats at 19:50:01
+4th time the Thread 36 becomes hungry at 19:50:01
+3th time the Thread 20 becomes hungry at 19:50:01
+2th time the Thread 39 has eaten at 19:50:01
+2th time the Thread 40 eats at 19:50:01
+3th time the Thread 28 becomes hungry at 19:50:01
+3th time the Thread 39 becomes hungry at 19:50:01
+2th time the Thread 40 has eaten at 19:50:01
+2th time the Thread 41 eats at 19:50:01
+3th time the Thread 40 becomes hungry at 19:50:01
+2th time the Thread 41 has eaten at 19:50:01
+2th time the Thread 42 eats at 19:50:01
+3th time the Thread 41 becomes hungry at 19:50:01
+2th time the Thread 42 has eaten at 19:50:01
+2th time the Thread 44 eats at 19:50:01
+3th time the Thread 42 becomes hungry at 19:50:01
+2th time the Thread 44 has eaten at 19:50:01
+2th time the Thread 43 eats at 19:50:01
+3th time the Thread 44 becomes hungry at 19:50:01
+2th time the Thread 43 has eaten at 19:50:01
+1th time the Thread 47 eats at 19:50:01
+3th time the Thread 43 becomes hungry at 19:50:01
+1th time the Thread 47 has eaten at 19:50:01
+2th time the Thread 46 eats at 19:50:01
+2th time the Thread 46 has eaten at 19:50:01
+3th time the Thread 45 eats at 19:50:01
+3th time the Thread 46 becomes hungry at 19:50:01
+2th time the Thread 47 becomes hungry at 19:50:01
+3th time the Thread 45 has eaten at 19:50:01
+1th time the Thread 38 eats at 19:50:01
+1th time the Thread 38 has eaten at 19:50:01
+4th time the Thread 45 becomes hungry at 19:50:01
+4th time the Thread 45 eats at 19:50:01
+4th time the Thread 45 has eaten at 19:50:01
+3th time the Thread 48 eats at 19:50:01
+2th time the Thread 38 becomes hungry at 19:50:01
+5th time the Thread 45 becomes hungry at 19:50:01
+The cook fills the empty pot at 19:50:01
+3th time the Thread 48 has eaten at 19:50:01
+1th time the Thread 4 eats at 19:50:01
+4th time the Thread 48 becomes hungry at 19:50:01
+1th time the Thread 4 has eaten at 19:50:01
+2th time the Thread 16 eats at 19:50:01
+2th time the Thread 4 becomes hungry at 19:50:01
+2th time the Thread 16 has eaten at 19:50:01
+3th time the Thread 17 eats at 19:50:01
+3th time the Thread 17 has eaten at 19:50:01
+3th time the Thread 1 eats at 19:50:01
+3th time the Thread 1 has eaten at 19:50:01
+3th time the Thread 16 becomes hungry at 19:50:01
+5th time the Thread 3 eats at 19:50:01
+4th time the Thread 17 becomes hungry at 19:50:01
+4th time the Thread 1 becomes hungry at 19:50:01
+5th time the Thread 3 has eaten at 19:50:01
+3th time the Thread 6 eats at 19:50:01
+6th time the Thread 3 becomes hungry at 19:50:01
+3th time the Thread 6 has eaten at 19:50:01
+3th time the Thread 9 eats at 19:50:01
+4th time the Thread 6 becomes hungry at 19:50:01
+3th time the Thread 9 has eaten at 19:50:01
+4th time the Thread 7 eats at 19:50:01
+4th time the Thread 9 becomes hungry at 19:50:01
+4th time the Thread 7 has eaten at 19:50:01
+4th time the Thread 10 eats at 19:50:01
+5th time the Thread 7 becomes hungry at 19:50:01
+4th time the Thread 10 has eaten at 19:50:01
+2th time the Thread 37 eats at 19:50:01
+5th time the Thread 10 becomes hungry at 19:50:01
+2th time the Thread 37 has eaten at 19:50:01
+4th time the Thread 8 eats at 19:50:01
+3th time the Thread 37 becomes hungry at 19:50:01
+4th time the Thread 8 has eaten at 19:50:01
+6th time the Thread 0 eats at 19:50:01
+5th time the Thread 8 becomes hungry at 19:50:01
+6th time the Thread 0 has eaten at 19:50:01
+3th time the Thread 14 eats at 19:50:01
+7th time the Thread 0 becomes hungry at 19:50:01
+3th time the Thread 14 has eaten at 19:50:01
+4th time the Thread 2 eats at 19:50:01
+4th time the Thread 14 becomes hungry at 19:50:01
+4th time the Thread 2 has eaten at 19:50:01
+3th time the Thread 33 eats at 19:50:01
+5th time the Thread 2 becomes hungry at 19:50:01
+3th time the Thread 33 has eaten at 19:50:01
+2th time the Thread 35 eats at 19:50:01
+2th time the Thread 35 has eaten at 19:50:01
+2th time the Thread 24 eats at 19:50:01
+4th time the Thread 33 becomes hungry at 19:50:01
+3th time the Thread 35 becomes hungry at 19:50:01
+2th time the Thread 24 has eaten at 19:50:01
+4th time the Thread 34 eats at 19:50:01
+4th time the Thread 34 has eaten at 19:50:01
+3th time the Thread 24 becomes hungry at 19:50:01
+3th time the Thread 24 eats at 19:50:01
+5th time the Thread 34 becomes hungry at 19:50:01
+3th time the Thread 24 has eaten at 19:50:01
+3th time the Thread 25 eats at 19:50:01
+4th time the Thread 24 becomes hungry at 19:50:01
+3th time the Thread 25 has eaten at 19:50:01
+3th time the Thread 26 eats at 19:50:01
+3th time the Thread 26 has eaten at 19:50:01
+1th time the Thread 11 eats at 19:50:01
+4th time the Thread 25 becomes hungry at 19:50:01
+1th time the Thread 11 has eaten at 19:50:01
+2th time the Thread 31 eats at 19:50:01
+4th time the Thread 26 becomes hungry at 19:50:01
+2th time the Thread 11 becomes hungry at 19:50:01
+2th time the Thread 31 has eaten at 19:50:01
+4th time the Thread 27 eats at 19:50:01
+3th time the Thread 31 becomes hungry at 19:50:01
+4th time the Thread 27 has eaten at 19:50:01
+2th time the Thread 32 eats at 19:50:01
+5th time the Thread 27 becomes hungry at 19:50:01
+2th time the Thread 32 has eaten at 19:50:01
+2th time the Thread 22 eats at 19:50:01
+3th time the Thread 32 becomes hungry at 19:50:01
+2th time the Thread 22 has eaten at 19:50:01
+3th time the Thread 23 eats at 19:50:01
+3th time the Thread 22 becomes hungry at 19:50:01
+3th time the Thread 23 has eaten at 19:50:01
+2th time the Thread 5 eats at 19:50:01
+4th time the Thread 23 becomes hungry at 19:50:01
+2th time the Thread 5 has eaten at 19:50:01
+2th time the Thread 13 eats at 19:50:01
+3th time the Thread 5 becomes hungry at 19:50:01
+2th time the Thread 13 has eaten at 19:50:01
+2th time the Thread 15 eats at 19:50:01
+3th time the Thread 13 becomes hungry at 19:50:01
+2th time the Thread 15 has eaten at 19:50:01
+5th time the Thread 29 eats at 19:50:01
+3th time the Thread 15 becomes hungry at 19:50:01
+5th time the Thread 29 has eaten at 19:50:01
+2th time the Thread 19 eats at 19:50:01
+2th time the Thread 19 has eaten at 19:50:01
+6th time the Thread 29 becomes hungry at 19:50:01
+3th time the Thread 18 eats at 19:50:01
+3th time the Thread 19 becomes hungry at 19:50:01
+3th time the Thread 18 has eaten at 19:50:01
+2th time the Thread 12 eats at 19:50:01
+2th time the Thread 12 has eaten at 19:50:01
+4th time the Thread 21 eats at 19:50:01
+4th time the Thread 18 becomes hungry at 19:50:01
+4th time the Thread 21 has eaten at 19:50:01
+3th time the Thread 12 becomes hungry at 19:50:01
+3th time the Thread 12 eats at 19:50:01
+3th time the Thread 12 has eaten at 19:50:01
+5th time the Thread 21 becomes hungry at 19:50:01
+3th time the Thread 20 eats at 19:50:01
+4th time the Thread 12 becomes hungry at 19:50:01
+3th time the Thread 20 has eaten at 19:50:01
+3th time the Thread 28 eats at 19:50:01
+4th time the Thread 20 becomes hungry at 19:50:01
+3th time the Thread 28 has eaten at 19:50:01
+3th time the Thread 39 eats at 19:50:01
+4th time the Thread 28 becomes hungry at 19:50:01
+3th time the Thread 39 has eaten at 19:50:01
+3th time the Thread 40 eats at 19:50:01
+4th time the Thread 39 becomes hungry at 19:50:01
+3th time the Thread 40 has eaten at 19:50:01
+3th time the Thread 41 eats at 19:50:01
+4th time the Thread 40 becomes hungry at 19:50:01
+3th time the Thread 41 has eaten at 19:50:01
+3th time the Thread 42 eats at 19:50:01
+4th time the Thread 41 becomes hungry at 19:50:01
+3th time the Thread 42 has eaten at 19:50:01
+3th time the Thread 44 eats at 19:50:01
+4th time the Thread 42 becomes hungry at 19:50:01
+3th time the Thread 44 has eaten at 19:50:01
+3th time the Thread 43 eats at 19:50:01
+4th time the Thread 44 becomes hungry at 19:50:01
+3th time the Thread 43 has eaten at 19:50:01
+3th time the Thread 46 eats at 19:50:01
+3th time the Thread 46 has eaten at 19:50:01
+2th time the Thread 47 eats at 19:50:01
+4th time the Thread 43 becomes hungry at 19:50:01
+4th time the Thread 46 becomes hungry at 19:50:01
+2th time the Thread 47 has eaten at 19:50:01
+2th time the Thread 49 eats at 19:50:01
+3th time the Thread 47 becomes hungry at 19:50:01
+2th time the Thread 49 has eaten at 19:50:01
+2th time the Thread 38 eats at 19:50:01
+2th time the Thread 38 has eaten at 19:50:01
+5th time the Thread 45 eats at 19:50:01
+3th time the Thread 49 becomes hungry at 19:50:01
+3th time the Thread 38 becomes hungry at 19:50:01
+5th time the Thread 45 has eaten at 19:50:01
+4th time the Thread 48 eats at 19:50:01
+4th time the Thread 48 has eaten at 19:50:01
+6th time the Thread 45 becomes hungry at 19:50:01
+The cook fills the empty pot at 19:50:01
+5th time the Thread 48 becomes hungry at 19:50:01
+2th time the Thread 4 eats at 19:50:01
+2th time the Thread 4 has eaten at 19:50:01
+3th time the Thread 16 eats at 19:50:01
+3th time the Thread 16 has eaten at 19:50:01
+3th time the Thread 4 becomes hungry at 19:50:01
+4th time the Thread 17 eats at 19:50:01
+4th time the Thread 17 has eaten at 19:50:01
+4th time the Thread 1 eats at 19:50:01
+4th time the Thread 16 becomes hungry at 19:50:01
+5th time the Thread 17 becomes hungry at 19:50:01
+4th time the Thread 1 has eaten at 19:50:01
+6th time the Thread 3 eats at 19:50:01
+5th time the Thread 1 becomes hungry at 19:50:01
+6th time the Thread 3 has eaten at 19:50:01
+4th time the Thread 6 eats at 19:50:01
+4th time the Thread 6 has eaten at 19:50:01
+4th time the Thread 9 eats at 19:50:01
+7th time the Thread 3 becomes hungry at 19:50:01
+4th time the Thread 9 has eaten at 19:50:01
+5th time the Thread 7 eats at 19:50:01
+5th time the Thread 6 becomes hungry at 19:50:01
+5th time the Thread 9 becomes hungry at 19:50:01
+5th time the Thread 7 has eaten at 19:50:01
+5th time the Thread 10 eats at 19:50:01
+6th time the Thread 7 becomes hungry at 19:50:01
+5th time the Thread 10 has eaten at 19:50:01
+3th time the Thread 37 eats at 19:50:01
+3th time the Thread 37 has eaten at 19:50:01
+5th time the Thread 8 eats at 19:50:01
+6th time the Thread 10 becomes hungry at 19:50:01
+5th time the Thread 8 has eaten at 19:50:01
+7th time the Thread 0 eats at 19:50:01
+6th time the Thread 8 becomes hungry at 19:50:01
+4th time the Thread 37 becomes hungry at 19:50:01
+7th time the Thread 0 has eaten at 19:50:01
+4th time the Thread 14 eats at 19:50:01
+4th time the Thread 14 has eaten at 19:50:01
+5th time the Thread 2 eats at 19:50:01
+8th time the Thread 0 becomes hungry at 19:50:01
+5th time the Thread 14 becomes hungry at 19:50:01
+5th time the Thread 2 has eaten at 19:50:01
+4th time the Thread 33 eats at 19:50:01
+6th time the Thread 2 becomes hungry at 19:50:01
+4th time the Thread 33 has eaten at 19:50:01
+3th time the Thread 35 eats at 19:50:01
+5th time the Thread 33 becomes hungry at 19:50:01
+3th time the Thread 35 has eaten at 19:50:01
+4th time the Thread 30 eats at 19:50:01
+4th time the Thread 35 becomes hungry at 19:50:01
+4th time the Thread 30 has eaten at 19:50:01
+5th time the Thread 34 eats at 19:50:01
+5th time the Thread 30 becomes hungry at 19:50:01
+5th time the Thread 34 has eaten at 19:50:01
+4th time the Thread 24 eats at 19:50:01
+4th time the Thread 24 has eaten at 19:50:01
+6th time the Thread 34 becomes hungry at 19:50:01
+4th time the Thread 25 eats at 19:50:01
+5th time the Thread 24 becomes hungry at 19:50:01
+4th time the Thread 25 has eaten at 19:50:01
+4th time the Thread 26 eats at 19:50:01
+4th time the Thread 26 has eaten at 19:50:01
+2th time the Thread 11 eats at 19:50:01
+5th time the Thread 25 becomes hungry at 19:50:01
+2th time the Thread 11 has eaten at 19:50:01
+3th time the Thread 31 eats at 19:50:01
+5th time the Thread 26 becomes hungry at 19:50:01
+3th time the Thread 11 becomes hungry at 19:50:01
+3th time the Thread 31 has eaten at 19:50:01
+5th time the Thread 27 eats at 19:50:01
+4th time the Thread 31 becomes hungry at 19:50:01
+5th time the Thread 27 has eaten at 19:50:01
+3th time the Thread 32 eats at 19:50:01
+3th time the Thread 32 has eaten at 19:50:01
+3th time the Thread 22 eats at 19:50:01
+6th time the Thread 27 becomes hungry at 19:50:01
+3th time the Thread 22 has eaten at 19:50:01
+4th time the Thread 22 becomes hungry at 19:50:01
+4th time the Thread 22 eats at 19:50:01
+4th time the Thread 22 has eaten at 19:50:01
+3th time the Thread 5 eats at 19:50:01
+4th time the Thread 32 becomes hungry at 19:50:01
+5th time the Thread 22 becomes hungry at 19:50:01
+3th time the Thread 5 has eaten at 19:50:01
+3th time the Thread 13 eats at 19:50:01
+4th time the Thread 5 becomes hungry at 19:50:01
+3th time the Thread 13 has eaten at 19:50:01
+3th time the Thread 15 eats at 19:50:01
+3th time the Thread 15 has eaten at 19:50:01
+4th time the Thread 13 becomes hungry at 19:50:01
+4th time the Thread 13 eats at 19:50:01
+4th time the Thread 15 becomes hungry at 19:50:01
+4th time the Thread 13 has eaten at 19:50:01
+3th time the Thread 19 eats at 19:50:01
+5th time the Thread 13 becomes hungry at 19:50:01
+3th time the Thread 19 has eaten at 19:50:01
+4th time the Thread 18 eats at 19:50:01
+4th time the Thread 19 becomes hungry at 19:50:01
+4th time the Thread 18 has eaten at 19:50:01
+4th time the Thread 36 eats at 19:50:01
+5th time the Thread 18 becomes hungry at 19:50:01
+4th time the Thread 36 has eaten at 19:50:01
+5th time the Thread 21 eats at 19:50:01
+5th time the Thread 36 becomes hungry at 19:50:01
+5th time the Thread 21 has eaten at 19:50:01
+4th time the Thread 12 eats at 19:50:01
+6th time the Thread 21 becomes hungry at 19:50:01
+4th time the Thread 12 has eaten at 19:50:01
+4th time the Thread 20 eats at 19:50:01
+5th time the Thread 12 becomes hungry at 19:50:01
+4th time the Thread 20 has eaten at 19:50:01
+4th time the Thread 28 eats at 19:50:01
+5th time the Thread 20 becomes hungry at 19:50:01
+4th time the Thread 28 has eaten at 19:50:01
+4th time the Thread 39 eats at 19:50:01
+5th time the Thread 28 becomes hungry at 19:50:01
+4th time the Thread 39 has eaten at 19:50:01
+4th time the Thread 40 eats at 19:50:01
+5th time the Thread 39 becomes hungry at 19:50:01
+4th time the Thread 40 has eaten at 19:50:01
+4th time the Thread 41 eats at 19:50:01
+5th time the Thread 40 becomes hungry at 19:50:01
+4th time the Thread 41 has eaten at 19:50:01
+4th time the Thread 42 eats at 19:50:01
+5th time the Thread 41 becomes hungry at 19:50:01
+4th time the Thread 42 has eaten at 19:50:01
+4th time the Thread 44 eats at 19:50:01
+5th time the Thread 42 becomes hungry at 19:50:01
+4th time the Thread 44 has eaten at 19:50:01
+4th time the Thread 43 eats at 19:50:01
+5th time the Thread 44 becomes hungry at 19:50:01
+4th time the Thread 43 has eaten at 19:50:01
+4th time the Thread 46 eats at 19:50:01
+4th time the Thread 46 has eaten at 19:50:01
+3th time the Thread 47 eats at 19:50:01
+5th time the Thread 43 becomes hungry at 19:50:01
+3th time the Thread 47 has eaten at 19:50:01
+5th time the Thread 46 becomes hungry at 19:50:01
+5th time the Thread 46 eats at 19:50:01
+4th time the Thread 47 becomes hungry at 19:50:01
+5th time the Thread 46 has eaten at 19:50:01
+3th time the Thread 38 eats at 19:50:01
+6th time the Thread 46 becomes hungry at 19:50:01
+3th time the Thread 38 has eaten at 19:50:01
+6th time the Thread 45 eats at 19:50:01
+4th time the Thread 38 becomes hungry at 19:50:01
+6th time the Thread 45 has eaten at 19:50:01
+5th time the Thread 48 eats at 19:50:01
+The cook fills the empty pot at 19:50:01
+5th time the Thread 48 has eaten at 19:50:01
+7th time the Thread 45 becomes hungry at 19:50:01
+6th time the Thread 48 becomes hungry at 19:50:01
+3th time the Thread 4 eats at 19:50:01
+3th time the Thread 4 has eaten at 19:50:01
+4th time the Thread 16 eats at 19:50:01
+4th time the Thread 16 has eaten at 19:50:01
+4th time the Thread 4 becomes hungry at 19:50:01
+5th time the Thread 17 eats at 19:50:01
+5th time the Thread 16 becomes hungry at 19:50:01
+5th time the Thread 17 has eaten at 19:50:01
+5th time the Thread 1 eats at 19:50:01
+6th time the Thread 17 becomes hungry at 19:50:01
+5th time the Thread 1 has eaten at 19:50:01
+7th time the Thread 3 eats at 19:50:01
+6th time the Thread 1 becomes hungry at 19:50:01
+7th time the Thread 3 has eaten at 19:50:01
+5th time the Thread 6 eats at 19:50:01
+8th time the Thread 3 becomes hungry at 19:50:01
+5th time the Thread 6 has eaten at 19:50:01
+5th time the Thread 9 eats at 19:50:01
+6th time the Thread 6 becomes hungry at 19:50:01
+5th time the Thread 9 has eaten at 19:50:01
+6th time the Thread 7 eats at 19:50:01
+6th time the Thread 7 has eaten at 19:50:01
+6th time the Thread 10 eats at 19:50:01
+6th time the Thread 9 becomes hungry at 19:50:01
+7th time the Thread 7 becomes hungry at 19:50:01
+6th time the Thread 10 has eaten at 19:50:01
+6th time the Thread 8 eats at 19:50:01
+6th time the Thread 8 has eaten at 19:50:01
+7th time the Thread 10 becomes hungry at 19:50:01
+7th time the Thread 10 eats at 19:50:01
+7th time the Thread 8 becomes hungry at 19:50:01
+7th time the Thread 10 has eaten at 19:50:01
+8th time the Thread 0 eats at 19:50:01
+8th time the Thread 0 has eaten at 19:50:01
+5th time the Thread 14 eats at 19:50:01
+9th time the Thread 0 becomes hungry at 19:50:01
+8th time the Thread 10 becomes hungry at 19:50:01
+5th time the Thread 14 has eaten at 19:50:01
+6th time the Thread 2 eats at 19:50:01
+6th time the Thread 2 has eaten at 19:50:01
+5th time the Thread 33 eats at 19:50:01
+6th time the Thread 14 becomes hungry at 19:50:01
+5th time the Thread 33 has eaten at 19:50:01
+4th time the Thread 35 eats at 19:50:01
+7th time the Thread 2 becomes hungry at 19:50:01
+4th time the Thread 35 has eaten at 19:50:01
+6th time the Thread 33 becomes hungry at 19:50:01
+6th time the Thread 33 eats at 19:50:01
+6th time the Thread 33 has eaten at 19:50:01
+6th time the Thread 34 eats at 19:50:01
+5th time the Thread 35 becomes hungry at 19:50:01
+6th time the Thread 34 has eaten at 19:50:01
+7th time the Thread 33 becomes hungry at 19:50:01
+7th time the Thread 33 eats at 19:50:01
+7th time the Thread 33 has eaten at 19:50:01
+5th time the Thread 25 eats at 19:50:01
+7th time the Thread 34 becomes hungry at 19:50:01
+8th time the Thread 33 becomes hungry at 19:50:01
+5th time the Thread 25 has eaten at 19:50:01
+5th time the Thread 26 eats at 19:50:01
+5th time the Thread 26 has eaten at 19:50:01
+3th time the Thread 11 eats at 19:50:01
+6th time the Thread 25 becomes hungry at 19:50:01
+3th time the Thread 11 has eaten at 19:50:01
+4th time the Thread 31 eats at 19:50:01
+4th time the Thread 31 has eaten at 19:50:01
+4th time the Thread 11 becomes hungry at 19:50:01
+6th time the Thread 27 eats at 19:50:01
+6th time the Thread 26 becomes hungry at 19:50:01
+5th time the Thread 31 becomes hungry at 19:50:01
+6th time the Thread 27 has eaten at 19:50:01
+4th time the Thread 23 eats at 19:50:01
+7th time the Thread 27 becomes hungry at 19:50:01
+4th time the Thread 23 has eaten at 19:50:01
+4th time the Thread 32 eats at 19:50:01
+4th time the Thread 32 has eaten at 19:50:01
+5th time the Thread 22 eats at 19:50:01
+5th time the Thread 23 becomes hungry at 19:50:01
+5th time the Thread 22 has eaten at 19:50:01
+5th time the Thread 32 becomes hungry at 19:50:01
+5th time the Thread 32 eats at 19:50:01
+5th time the Thread 32 has eaten at 19:50:01
+6th time the Thread 22 becomes hungry at 19:50:01
+6th time the Thread 29 eats at 19:50:01
+6th time the Thread 32 becomes hungry at 19:50:01
+6th time the Thread 29 has eaten at 19:50:01
+4th time the Thread 15 eats at 19:50:01
+7th time the Thread 29 becomes hungry at 19:50:01
+4th time the Thread 15 has eaten at 19:50:01
+5th time the Thread 13 eats at 19:50:01
+5th time the Thread 15 becomes hungry at 19:50:01
+5th time the Thread 13 has eaten at 19:50:01
+4th time the Thread 19 eats at 19:50:01
+4th time the Thread 19 has eaten at 19:50:01
+5th time the Thread 18 eats at 19:50:01
+6th time the Thread 13 becomes hungry at 19:50:01
+5th time the Thread 19 becomes hungry at 19:50:01
+5th time the Thread 18 has eaten at 19:50:01
+5th time the Thread 36 eats at 19:50:01
+6th time the Thread 18 becomes hungry at 19:50:01
+5th time the Thread 36 has eaten at 19:50:01
+6th time the Thread 21 eats at 19:50:01
+6th time the Thread 21 has eaten at 19:50:01
+5th time the Thread 12 eats at 19:50:01
+6th time the Thread 36 becomes hungry at 19:50:01
+5th time the Thread 12 has eaten at 19:50:01
+7th time the Thread 21 becomes hungry at 19:50:01
+5th time the Thread 20 eats at 19:50:01
+5th time the Thread 20 has eaten at 19:50:01
+6th time the Thread 12 becomes hungry at 19:50:01
+6th time the Thread 12 eats at 19:50:01
+6th time the Thread 12 has eaten at 19:50:01
+5th time the Thread 39 eats at 19:50:01
+6th time the Thread 20 becomes hungry at 19:50:01
+5th time the Thread 39 has eaten at 19:50:01
+7th time the Thread 12 becomes hungry at 19:50:01
+7th time the Thread 12 eats at 19:50:01
+6th time the Thread 39 becomes hungry at 19:50:01
+7th time the Thread 12 has eaten at 19:50:01
+5th time the Thread 41 eats at 19:50:01
+5th time the Thread 41 has eaten at 19:50:01
+5th time the Thread 42 eats at 19:50:01
+8th time the Thread 12 becomes hungry at 19:50:01
+5th time the Thread 42 has eaten at 19:50:01
+6th time the Thread 41 becomes hungry at 19:50:01
+6th time the Thread 41 eats at 19:50:01
+6th time the Thread 42 becomes hungry at 19:50:01
+6th time the Thread 41 has eaten at 19:50:01
+5th time the Thread 43 eats at 19:50:01
+5th time the Thread 43 has eaten at 19:50:01
+7th time the Thread 41 becomes hungry at 19:50:01
+3th time the Thread 49 eats at 19:50:01
+6th time the Thread 43 becomes hungry at 19:50:01
+3th time the Thread 49 has eaten at 19:50:01
+4th time the Thread 47 eats at 19:50:01
+4th time the Thread 49 becomes hungry at 19:50:01
+4th time the Thread 47 has eaten at 19:50:01
+6th time the Thread 46 eats at 19:50:01
+5th time the Thread 47 becomes hungry at 19:50:01
+6th time the Thread 46 has eaten at 19:50:01
+4th time the Thread 38 eats at 19:50:01
+7th time the Thread 46 becomes hungry at 19:50:01
+4th time the Thread 38 has eaten at 19:50:01
+7th time the Thread 45 eats at 19:50:01
+5th time the Thread 38 becomes hungry at 19:50:01
+7th time the Thread 45 has eaten at 19:50:01
+6th time the Thread 48 eats at 19:50:01
+The cook fills the empty pot at 19:50:01
+6th time the Thread 48 has eaten at 19:50:01
+8th time the Thread 45 becomes hungry at 19:50:01
+7th time the Thread 48 becomes hungry at 19:50:01
+4th time the Thread 4 eats at 19:50:01
+4th time the Thread 4 has eaten at 19:50:01
+5th time the Thread 16 eats at 19:50:01
+5th time the Thread 4 becomes hungry at 19:50:01
+5th time the Thread 16 has eaten at 19:50:01
+6th time the Thread 17 eats at 19:50:01
+6th time the Thread 16 becomes hungry at 19:50:01
+6th time the Thread 17 has eaten at 19:50:01
+6th time the Thread 1 eats at 19:50:01
+7th time the Thread 17 becomes hungry at 19:50:01
+6th time the Thread 1 has eaten at 19:50:01
+8th time the Thread 3 eats at 19:50:01
+7th time the Thread 1 becomes hungry at 19:50:01
+8th time the Thread 3 has eaten at 19:50:01
+6th time the Thread 6 eats at 19:50:01
+9th time the Thread 3 becomes hungry at 19:50:01
+6th time the Thread 6 has eaten at 19:50:01
+6th time the Thread 9 eats at 19:50:01
+7th time the Thread 6 becomes hungry at 19:50:01
+6th time the Thread 9 has eaten at 19:50:01
+7th time the Thread 7 eats at 19:50:01
+7th time the Thread 9 becomes hungry at 19:50:01
+7th time the Thread 7 has eaten at 19:50:01
+7th time the Thread 8 eats at 19:50:01
+8th time the Thread 7 becomes hungry at 19:50:01
+7th time the Thread 8 has eaten at 19:50:01
+4th time the Thread 37 eats at 19:50:01
+8th time the Thread 8 becomes hungry at 19:50:01
+4th time the Thread 37 has eaten at 19:50:01
+9th time the Thread 0 eats at 19:50:01
+5th time the Thread 37 becomes hungry at 19:50:01
+9th time the Thread 0 has eaten at 19:50:01
+8th time the Thread 10 eats at 19:50:01
+Thread 0 has eaten n times, hence exits
+8th time the Thread 10 has eaten at 19:50:01
+6th time the Thread 14 eats at 19:50:01
+9th time the Thread 10 becomes hungry at 19:50:01
+6th time the Thread 14 has eaten at 19:50:01
+7th time the Thread 2 eats at 19:50:01
+7th time the Thread 14 becomes hungry at 19:50:01
+7th time the Thread 2 has eaten at 19:50:01
+5th time the Thread 30 eats at 19:50:01
+8th time the Thread 2 becomes hungry at 19:50:01
+5th time the Thread 30 has eaten at 19:50:01
+5th time the Thread 35 eats at 19:50:01
+6th time the Thread 30 becomes hungry at 19:50:01
+5th time the Thread 35 has eaten at 19:50:01
+5th time the Thread 24 eats at 19:50:01
+6th time the Thread 35 becomes hungry at 19:50:01
+5th time the Thread 24 has eaten at 19:50:01
+7th time the Thread 34 eats at 19:50:01
+6th time the Thread 24 becomes hungry at 19:50:01
+7th time the Thread 34 has eaten at 19:50:01
+8th time the Thread 33 eats at 19:50:01
+8th time the Thread 34 becomes hungry at 19:50:01
+8th time the Thread 33 has eaten at 19:50:01
+6th time the Thread 25 eats at 19:50:01
+9th time the Thread 33 becomes hungry at 19:50:01
+6th time the Thread 25 has eaten at 19:50:01
+4th time the Thread 11 eats at 19:50:01
+7th time the Thread 25 becomes hungry at 19:50:01
+4th time the Thread 11 has eaten at 19:50:01
+6th time the Thread 26 eats at 19:50:01
+6th time the Thread 26 has eaten at 19:50:01
+5th time the Thread 11 becomes hungry at 19:50:01
+5th time the Thread 11 eats at 19:50:01
+5th time the Thread 11 has eaten at 19:50:01
+7th time the Thread 26 becomes hungry at 19:50:01
+7th time the Thread 26 eats at 19:50:01
+6th time the Thread 11 becomes hungry at 19:50:01
+7th time the Thread 26 has eaten at 19:50:01
+5th time the Thread 23 eats at 19:50:01
+5th time the Thread 23 has eaten at 19:50:01
+4th time the Thread 5 eats at 19:50:01
+4th time the Thread 5 has eaten at 19:50:01
+8th time the Thread 26 becomes hungry at 19:50:01
+6th time the Thread 22 eats at 19:50:01
+6th time the Thread 22 has eaten at 19:50:01
+6th time the Thread 23 becomes hungry at 19:50:01
+5th time the Thread 5 becomes hungry at 19:50:01
+6th time the Thread 23 eats at 19:50:01
+6th time the Thread 23 has eaten at 19:50:01
+7th time the Thread 29 eats at 19:50:01
+7th time the Thread 22 becomes hungry at 19:50:01
+7th time the Thread 23 becomes hungry at 19:50:01
+7th time the Thread 29 has eaten at 19:50:01
+5th time the Thread 15 eats at 19:50:01
+8th time the Thread 29 becomes hungry at 19:50:01
+5th time the Thread 15 has eaten at 19:50:01
+6th time the Thread 13 eats at 19:50:01
+6th time the Thread 15 becomes hungry at 19:50:01
+6th time the Thread 13 has eaten at 19:50:01
+5th time the Thread 19 eats at 19:50:01
+5th time the Thread 19 has eaten at 19:50:01
+6th time the Thread 18 eats at 19:50:01
+7th time the Thread 13 becomes hungry at 19:50:01
+6th time the Thread 18 has eaten at 19:50:01
+6th time the Thread 36 eats at 19:50:01
+6th time the Thread 36 has eaten at 19:50:01
+6th time the Thread 19 becomes hungry at 19:50:01
+7th time the Thread 21 eats at 19:50:01
+7th time the Thread 18 becomes hungry at 19:50:01
+7th time the Thread 21 has eaten at 19:50:01
+5th time the Thread 28 eats at 19:50:01
+5th time the Thread 28 has eaten at 19:50:01
+7th time the Thread 36 becomes hungry at 19:50:01
+7th time the Thread 36 eats at 19:50:01
+8th time the Thread 21 becomes hungry at 19:50:01
+6th time the Thread 28 becomes hungry at 19:50:01
+7th time the Thread 36 has eaten at 19:50:01
+5th time the Thread 40 eats at 19:50:01
+5th time the Thread 40 has eaten at 19:50:01
+8th time the Thread 36 becomes hungry at 19:50:01
+8th time the Thread 36 eats at 19:50:01
+8th time the Thread 36 has eaten at 19:50:01
+6th time the Thread 40 becomes hungry at 19:50:01
+6th time the Thread 40 eats at 19:50:01
+9th time the Thread 36 becomes hungry at 19:50:01
+6th time the Thread 40 has eaten at 19:50:01
+5th time the Thread 44 eats at 19:50:01
+7th time the Thread 40 becomes hungry at 19:50:01
+5th time the Thread 44 has eaten at 19:50:01
+6th time the Thread 42 eats at 19:50:01
+6th time the Thread 42 has eaten at 19:50:01
+7th time the Thread 41 eats at 19:50:01
+6th time the Thread 44 becomes hungry at 19:50:01
+7th time the Thread 42 becomes hungry at 19:50:01
+7th time the Thread 41 has eaten at 19:50:01
+6th time the Thread 43 eats at 19:50:01
+6th time the Thread 43 has eaten at 19:50:01
+4th time the Thread 49 eats at 19:50:01
+8th time the Thread 41 becomes hungry at 19:50:01
+4th time the Thread 49 has eaten at 19:50:01
+5th time the Thread 47 eats at 19:50:01
+5th time the Thread 49 becomes hungry at 19:50:01
+7th time the Thread 43 becomes hungry at 19:50:01
+5th time the Thread 47 has eaten at 19:50:01
+7th time the Thread 46 eats at 19:50:01
+7th time the Thread 46 has eaten at 19:50:01
+5th time the Thread 38 eats at 19:50:01
+6th time the Thread 47 becomes hungry at 19:50:01
+5th time the Thread 38 has eaten at 19:50:01
+8th time the Thread 46 becomes hungry at 19:50:01
+8th time the Thread 46 eats at 19:50:01
+8th time the Thread 46 has eaten at 19:50:01
+7th time the Thread 48 eats at 19:50:01
+9th time the Thread 46 becomes hungry at 19:50:01
+6th time the Thread 38 becomes hungry at 19:50:01
+7th time the Thread 48 has eaten at 19:50:01
+The cook fills the empty pot at 19:50:01
+8th time the Thread 48 becomes hungry at 19:50:01
+5th time the Thread 4 eats at 19:50:01
+5th time the Thread 4 has eaten at 19:50:01
+6th time the Thread 16 eats at 19:50:01
+6th time the Thread 16 has eaten at 19:50:01
+6th time the Thread 4 becomes hungry at 19:50:01
+6th time the Thread 4 eats at 19:50:01
+6th time the Thread 4 has eaten at 19:50:01
+7th time the Thread 1 eats at 19:50:01
+7th time the Thread 16 becomes hungry at 19:50:01
+7th time the Thread 4 becomes hungry at 19:50:01
+7th time the Thread 1 has eaten at 19:50:01
+9th time the Thread 3 eats at 19:50:01
+8th time the Thread 1 becomes hungry at 19:50:01
+9th time the Thread 3 has eaten at 19:50:01
+7th time the Thread 6 eats at 19:50:01
+Thread 3 has eaten n times, hence exits
+7th time the Thread 6 has eaten at 19:50:01
+7th time the Thread 9 eats at 19:50:01
+8th time the Thread 6 becomes hungry at 19:50:01
+7th time the Thread 9 has eaten at 19:50:01
+8th time the Thread 7 eats at 19:50:01
+8th time the Thread 9 becomes hungry at 19:50:01
+8th time the Thread 7 has eaten at 19:50:01
+8th time the Thread 8 eats at 19:50:01
+9th time the Thread 7 becomes hungry at 19:50:01
+8th time the Thread 8 has eaten at 19:50:01
+5th time the Thread 37 eats at 19:50:01
+9th time the Thread 8 becomes hungry at 19:50:01
+5th time the Thread 37 has eaten at 19:50:01
+9th time the Thread 10 eats at 19:50:01
+6th time the Thread 37 becomes hungry at 19:50:01
+9th time the Thread 10 has eaten at 19:50:01
+7th time the Thread 14 eats at 19:50:01
+Thread 10 has eaten n times, hence exits
+7th time the Thread 14 has eaten at 19:50:01
+8th time the Thread 2 eats at 19:50:01
+8th time the Thread 14 becomes hungry at 19:50:01
+8th time the Thread 2 has eaten at 19:50:01
+6th time the Thread 30 eats at 19:50:01
+9th time the Thread 2 becomes hungry at 19:50:01
+6th time the Thread 30 has eaten at 19:50:01
+6th time the Thread 35 eats at 19:50:01
+7th time the Thread 30 becomes hungry at 19:50:01
+6th time the Thread 35 has eaten at 19:50:01
+6th time the Thread 24 eats at 19:50:01
+7th time the Thread 35 becomes hungry at 19:50:01
+6th time the Thread 24 has eaten at 19:50:01
+8th time the Thread 34 eats at 19:50:01
+7th time the Thread 24 becomes hungry at 19:50:01
+8th time the Thread 34 has eaten at 19:50:01
+9th time the Thread 33 eats at 19:50:01
+9th time the Thread 34 becomes hungry at 19:50:01
+9th time the Thread 33 has eaten at 19:50:01
+7th time the Thread 25 eats at 19:50:01
+Thread 33 has eaten n times, hence exits
+7th time the Thread 25 has eaten at 19:50:01
+5th time the Thread 31 eats at 19:50:01
+8th time the Thread 25 becomes hungry at 19:50:01
+5th time the Thread 31 has eaten at 19:50:01
+7th time the Thread 27 eats at 19:50:01
+6th time the Thread 31 becomes hungry at 19:50:01
+7th time the Thread 27 has eaten at 19:50:01
+6th time the Thread 11 eats at 19:50:01
+8th time the Thread 27 becomes hungry at 19:50:01
+6th time the Thread 11 has eaten at 19:50:01
+8th time the Thread 26 eats at 19:50:01
+8th time the Thread 26 has eaten at 19:50:01
+7th time the Thread 11 becomes hungry at 19:50:01
+6th time the Thread 32 eats at 19:50:01
+6th time the Thread 32 has eaten at 19:50:01
+9th time the Thread 26 becomes hungry at 19:50:01
+5th time the Thread 5 eats at 19:50:01
+7th time the Thread 32 becomes hungry at 19:50:01
+5th time the Thread 5 has eaten at 19:50:01
+7th time the Thread 22 eats at 19:50:01
+6th time the Thread 5 becomes hungry at 19:50:01
+7th time the Thread 22 has eaten at 19:50:01
+7th time the Thread 23 eats at 19:50:01
+8th time the Thread 22 becomes hungry at 19:50:01
+7th time the Thread 23 has eaten at 19:50:01
+8th time the Thread 29 eats at 19:50:01
+8th time the Thread 23 becomes hungry at 19:50:01
+8th time the Thread 29 has eaten at 19:50:01
+6th time the Thread 15 eats at 19:50:01
+9th time the Thread 29 becomes hungry at 19:50:01
+6th time the Thread 15 has eaten at 19:50:01
+7th time the Thread 13 eats at 19:50:01
+7th time the Thread 15 becomes hungry at 19:50:01
+7th time the Thread 13 has eaten at 19:50:01
+6th time the Thread 19 eats at 19:50:01
+8th time the Thread 13 becomes hungry at 19:50:01
+6th time the Thread 19 has eaten at 19:50:01
+7th time the Thread 18 eats at 19:50:01
+7th time the Thread 18 has eaten at 19:50:01
+6th time the Thread 20 eats at 19:50:01
+7th time the Thread 19 becomes hungry at 19:50:01
+6th time the Thread 20 has eaten at 19:50:01
+8th time the Thread 18 becomes hungry at 19:50:01
+8th time the Thread 18 eats at 19:50:01
+7th time the Thread 20 becomes hungry at 19:50:01
+8th time the Thread 18 has eaten at 19:50:01
+6th time the Thread 28 eats at 19:50:01
+9th time the Thread 18 becomes hungry at 19:50:01
+6th time the Thread 28 has eaten at 19:50:01
+6th time the Thread 39 eats at 19:50:01
+7th time the Thread 28 becomes hungry at 19:50:01
+6th time the Thread 39 has eaten at 19:50:01
+8th time the Thread 12 eats at 19:50:01
+8th time the Thread 12 has eaten at 19:50:01
+9th time the Thread 36 eats at 19:50:01
+9th time the Thread 12 becomes hungry at 19:50:01
+7th time the Thread 39 becomes hungry at 19:50:01
+9th time the Thread 36 has eaten at 19:50:01
+7th time the Thread 40 eats at 19:50:01
+Thread 36 has eaten n times, hence exits
+7th time the Thread 40 has eaten at 19:50:01
+6th time the Thread 44 eats at 19:50:01
+8th time the Thread 40 becomes hungry at 19:50:01
+6th time the Thread 44 has eaten at 19:50:01
+7th time the Thread 42 eats at 19:50:01
+7th time the Thread 44 becomes hungry at 19:50:01
+7th time the Thread 42 has eaten at 19:50:01
+8th time the Thread 41 eats at 19:50:01
+8th time the Thread 41 has eaten at 19:50:01
+5th time the Thread 49 eats at 19:50:01
+8th time the Thread 42 becomes hungry at 19:50:01
+9th time the Thread 41 becomes hungry at 19:50:01
+5th time the Thread 49 has eaten at 19:50:01
+7th time the Thread 43 eats at 19:50:01
+6th time the Thread 49 becomes hungry at 19:50:01
+7th time the Thread 43 has eaten at 19:50:01
+6th time the Thread 47 eats at 19:50:01
+6th time the Thread 47 has eaten at 19:50:01
+8th time the Thread 45 eats at 19:50:01
+8th time the Thread 43 becomes hungry at 19:50:01
+7th time the Thread 47 becomes hungry at 19:50:01
+8th time the Thread 45 has eaten at 19:50:01
+9th time the Thread 46 eats at 19:50:01
+9th time the Thread 45 becomes hungry at 19:50:01
+9th time the Thread 46 has eaten at 19:50:01
+6th time the Thread 38 eats at 19:50:01
+Thread 46 has eaten n times, hence exits
+6th time the Thread 38 has eaten at 19:50:01
+8th time the Thread 48 eats at 19:50:01
+7th time the Thread 38 becomes hungry at 19:50:01
+8th time the Thread 48 has eaten at 19:50:01
+7th time the Thread 17 eats at 19:50:01
+The cook fills the empty pot at 19:50:01
+9th time the Thread 48 becomes hungry at 19:50:01
+7th time the Thread 17 has eaten at 19:50:01
+7th time the Thread 16 eats at 19:50:01
+8th time the Thread 17 becomes hungry at 19:50:01
+7th time the Thread 16 has eaten at 19:50:01
+7th time the Thread 4 eats at 19:50:01
+8th time the Thread 16 becomes hungry at 19:50:01
+7th time the Thread 4 has eaten at 19:50:01
+8th time the Thread 1 eats at 19:50:01
+8th time the Thread 4 becomes hungry at 19:50:01
+8th time the Thread 1 has eaten at 19:50:01
+8th time the Thread 6 eats at 19:50:01
+9th time the Thread 1 becomes hungry at 19:50:01
+8th time the Thread 6 has eaten at 19:50:01
+8th time the Thread 9 eats at 19:50:01
+9th time the Thread 6 becomes hungry at 19:50:01
+8th time the Thread 9 has eaten at 19:50:01
+9th time the Thread 7 eats at 19:50:01
+9th time the Thread 9 becomes hungry at 19:50:01
+9th time the Thread 7 has eaten at 19:50:01
+9th time the Thread 8 eats at 19:50:01
+Thread 7 has eaten n times, hence exits
+9th time the Thread 8 has eaten at 19:50:01
+6th time the Thread 37 eats at 19:50:01
+Thread 8 has eaten n times, hence exits
+6th time the Thread 37 has eaten at 19:50:01
+8th time the Thread 14 eats at 19:50:01
+7th time the Thread 37 becomes hungry at 19:50:01
+8th time the Thread 14 has eaten at 19:50:01
+9th time the Thread 2 eats at 19:50:01
+9th time the Thread 14 becomes hungry at 19:50:01
+9th time the Thread 2 has eaten at 19:50:01
+7th time the Thread 30 eats at 19:50:01
+Thread 2 has eaten n times, hence exits
+7th time the Thread 30 has eaten at 19:50:01
+7th time the Thread 35 eats at 19:50:01
+7th time the Thread 35 has eaten at 19:50:01
+7th time the Thread 24 eats at 19:50:01
+8th time the Thread 30 becomes hungry at 19:50:01
+8th time the Thread 35 becomes hungry at 19:50:01
+7th time the Thread 24 has eaten at 19:50:01
+9th time the Thread 34 eats at 19:50:01
+9th time the Thread 34 has eaten at 19:50:01
+8th time the Thread 25 eats at 19:50:01
+8th time the Thread 24 becomes hungry at 19:50:01
+Thread 34 has eaten n times, hence exits
+8th time the Thread 25 has eaten at 19:50:01
+6th time the Thread 31 eats at 19:50:01
+9th time the Thread 25 becomes hungry at 19:50:01
+6th time the Thread 31 has eaten at 19:50:01
+8th time the Thread 27 eats at 19:50:01
+7th time the Thread 31 becomes hungry at 19:50:01
+8th time the Thread 27 has eaten at 19:50:01
+7th time the Thread 11 eats at 19:50:01
+9th time the Thread 27 becomes hungry at 19:50:01
+7th time the Thread 11 has eaten at 19:50:01
+9th time the Thread 26 eats at 19:50:01
+8th time the Thread 11 becomes hungry at 19:50:01
+9th time the Thread 26 has eaten at 19:50:01
+7th time the Thread 32 eats at 19:50:01
+Thread 26 has eaten n times, hence exits
+7th time the Thread 32 has eaten at 19:50:01
+6th time the Thread 5 eats at 19:50:01
+6th time the Thread 5 has eaten at 19:50:01
+8th time the Thread 22 eats at 19:50:01
+8th time the Thread 32 becomes hungry at 19:50:01
+8th time the Thread 22 has eaten at 19:50:01
+7th time the Thread 5 becomes hungry at 19:50:01
+8th time the Thread 23 eats at 19:50:01
+8th time the Thread 23 has eaten at 19:50:01
+9th time the Thread 22 becomes hungry at 19:50:01
+9th time the Thread 29 eats at 19:50:01
+9th time the Thread 29 has eaten at 19:50:01
+7th time the Thread 15 eats at 19:50:01
+Thread 29 has eaten n times, hence exits
+9th time the Thread 23 becomes hungry at 19:50:01
+7th time the Thread 15 has eaten at 19:50:01
+8th time the Thread 13 eats at 19:50:01
+8th time the Thread 13 has eaten at 19:50:01
+7th time the Thread 19 eats at 19:50:01
+8th time the Thread 15 becomes hungry at 19:50:01
+7th time the Thread 19 has eaten at 19:50:01
+9th time the Thread 13 becomes hungry at 19:50:01
+9th time the Thread 13 eats at 19:50:01
+9th time the Thread 13 has eaten at 19:50:01
+7th time the Thread 20 eats at 19:50:01
+8th time the Thread 19 becomes hungry at 19:50:01
+7th time the Thread 20 has eaten at 19:50:01
+Thread 13 has eaten n times, hence exits
+9th time the Thread 18 eats at 19:50:01
+9th time the Thread 18 has eaten at 19:50:01
+8th time the Thread 20 becomes hungry at 19:50:01
+7th time the Thread 28 eats at 19:50:01
+Thread 18 has eaten n times, hence exits
+7th time the Thread 28 has eaten at 19:50:01
+9th time the Thread 12 eats at 19:50:01
+9th time the Thread 12 has eaten at 19:50:01
+7th time the Thread 39 eats at 19:50:01
+8th time the Thread 28 becomes hungry at 19:50:01
+7th time the Thread 39 has eaten at 19:50:01
+Thread 12 has eaten n times, hence exits
+8th time the Thread 40 eats at 19:50:01
+8th time the Thread 39 becomes hungry at 19:50:01
+8th time the Thread 40 has eaten at 19:50:01
+7th time the Thread 44 eats at 19:50:01
+7th time the Thread 44 has eaten at 19:50:01
+8th time the Thread 42 eats at 19:50:01
+9th time the Thread 40 becomes hungry at 19:50:01
+8th time the Thread 42 has eaten at 19:50:01
+8th time the Thread 44 becomes hungry at 19:50:01
+9th time the Thread 41 eats at 19:50:01
+9th time the Thread 42 becomes hungry at 19:50:01
+9th time the Thread 41 has eaten at 19:50:01
+6th time the Thread 49 eats at 19:50:01
+6th time the Thread 49 has eaten at 19:50:01
+8th time the Thread 43 eats at 19:50:01
+Thread 41 has eaten n times, hence exits
+8th time the Thread 43 has eaten at 19:50:01
+7th time the Thread 49 becomes hungry at 19:50:01
+7th time the Thread 47 eats at 19:50:01
+7th time the Thread 47 has eaten at 19:50:01
+9th time the Thread 43 becomes hungry at 19:50:01
+9th time the Thread 45 eats at 19:50:01
+8th time the Thread 47 becomes hungry at 19:50:01
+9th time the Thread 45 has eaten at 19:50:01
+7th time the Thread 38 eats at 19:50:01
+7th time the Thread 38 has eaten at 19:50:01
+9th time the Thread 48 eats at 19:50:01
+Thread 45 has eaten n times, hence exits
+8th time the Thread 38 becomes hungry at 19:50:01
+9th time the Thread 48 has eaten at 19:50:01
+8th time the Thread 17 eats at 19:50:01
+8th time the Thread 17 has eaten at 19:50:01
+Thread 48 has eaten n times, hence exits
+8th time the Thread 16 eats at 19:50:01
+9th time the Thread 17 becomes hungry at 19:50:01
+8th time the Thread 16 has eaten at 19:50:01
+8th time the Thread 4 eats at 19:50:01
+8th time the Thread 4 has eaten at 19:50:01
+9th time the Thread 1 eats at 19:50:01
+9th time the Thread 16 becomes hungry at 19:50:01
+9th time the Thread 4 becomes hungry at 19:50:01
+9th time the Thread 1 has eaten at 19:50:01
+9th time the Thread 6 eats at 19:50:01
+Thread 1 has eaten n times, hence exits
+9th time the Thread 6 has eaten at 19:50:01
+9th time the Thread 9 eats at 19:50:01
+Thread 6 has eaten n times, hence exits
+9th time the Thread 9 has eaten at 19:50:01
+7th time the Thread 37 eats at 19:50:01
+The cook fills the empty pot at 19:50:01
+Thread 9 has eaten n times, hence exits
+7th time the Thread 37 has eaten at 19:50:01
+9th time the Thread 14 eats at 19:50:01
+8th time the Thread 37 becomes hungry at 19:50:01
+9th time the Thread 14 has eaten at 19:50:01
+8th time the Thread 30 eats at 19:50:01
+Thread 14 has eaten n times, hence exits
+8th time the Thread 30 has eaten at 19:50:01
+8th time the Thread 35 eats at 19:50:01
+9th time the Thread 30 becomes hungry at 19:50:01
+8th time the Thread 35 has eaten at 19:50:01
+8th time the Thread 24 eats at 19:50:01
+9th time the Thread 35 becomes hungry at 19:50:01
+8th time the Thread 24 has eaten at 19:50:01
+9th time the Thread 25 eats at 19:50:01
+9th time the Thread 25 has eaten at 19:50:01
+7th time the Thread 31 eats at 19:50:01
+Thread 25 has eaten n times, hence exits
+9th time the Thread 24 becomes hungry at 19:50:01
+7th time the Thread 31 has eaten at 19:50:01
+9th time the Thread 27 eats at 19:50:01
+8th time the Thread 31 becomes hungry at 19:50:01
+9th time the Thread 27 has eaten at 19:50:01
+8th time the Thread 11 eats at 19:50:01
+Thread 27 has eaten n times, hence exits
+8th time the Thread 11 has eaten at 19:50:01
+8th time the Thread 32 eats at 19:50:01
+8th time the Thread 32 has eaten at 19:50:01
+7th time the Thread 5 eats at 19:50:01
+9th time the Thread 11 becomes hungry at 19:50:01
+7th time the Thread 5 has eaten at 19:50:01
+9th time the Thread 32 becomes hungry at 19:50:01
+9th time the Thread 22 eats at 19:50:01
+8th time the Thread 5 becomes hungry at 19:50:01
+9th time the Thread 22 has eaten at 19:50:01
+9th time the Thread 23 eats at 19:50:01
+Thread 22 has eaten n times, hence exits
+9th time the Thread 23 has eaten at 19:50:01
+8th time the Thread 15 eats at 19:50:01
+8th time the Thread 15 has eaten at 19:50:01
+8th time the Thread 19 eats at 19:50:01
+Thread 23 has eaten n times, hence exits
+9th time the Thread 15 becomes hungry at 19:50:01
+8th time the Thread 19 has eaten at 19:50:01
+8th time the Thread 21 eats at 19:50:01
+9th time the Thread 19 becomes hungry at 19:50:01
+8th time the Thread 21 has eaten at 19:50:01
+8th time the Thread 20 eats at 19:50:01
+9th time the Thread 21 becomes hungry at 19:50:01
+8th time the Thread 20 has eaten at 19:50:01
+8th time the Thread 28 eats at 19:50:01
+9th time the Thread 20 becomes hungry at 19:50:01
+8th time the Thread 28 has eaten at 19:50:01
+8th time the Thread 39 eats at 19:50:01
+9th time the Thread 28 becomes hungry at 19:50:01
+8th time the Thread 39 has eaten at 19:50:01
+9th time the Thread 40 eats at 19:50:01
+9th time the Thread 39 becomes hungry at 19:50:01
+9th time the Thread 40 has eaten at 19:50:01
+8th time the Thread 44 eats at 19:50:01
+Thread 40 has eaten n times, hence exits
+8th time the Thread 44 has eaten at 19:50:01
+9th time the Thread 42 eats at 19:50:01
+9th time the Thread 44 becomes hungry at 19:50:01
+9th time the Thread 42 has eaten at 19:50:01
+7th time the Thread 49 eats at 19:50:01
+Thread 42 has eaten n times, hence exits
+7th time the Thread 49 has eaten at 19:50:01
+9th time the Thread 43 eats at 19:50:01
+9th time the Thread 43 has eaten at 19:50:01
+8th time the Thread 47 eats at 19:50:01
+8th time the Thread 47 has eaten at 19:50:01
+8th time the Thread 49 becomes hungry at 19:50:01
+8th time the Thread 38 eats at 19:50:01
+Thread 43 has eaten n times, hence exits
+9th time the Thread 47 becomes hungry at 19:50:01
+8th time the Thread 38 has eaten at 19:50:01
+9th time the Thread 17 eats at 19:50:01
+9th time the Thread 17 has eaten at 19:50:01
+9th time the Thread 38 becomes hungry at 19:50:01
+9th time the Thread 38 eats at 19:50:01
+Thread 17 has eaten n times, hence exits
+9th time the Thread 38 has eaten at 19:50:01
+9th time the Thread 4 eats at 19:50:01
+9th time the Thread 4 has eaten at 19:50:01
+8th time the Thread 37 eats at 19:50:01
+Thread 38 has eaten n times, hence exits
+Thread 4 has eaten n times, hence exits
+8th time the Thread 37 has eaten at 19:50:01
+9th time the Thread 30 eats at 19:50:01
+9th time the Thread 30 has eaten at 19:50:01
+9th time the Thread 35 eats at 19:50:01
+9th time the Thread 35 has eaten at 19:50:01
+9th time the Thread 37 becomes hungry at 19:50:01
+9th time the Thread 24 eats at 19:50:01
+Thread 35 has eaten n times, hence exits
+Thread 30 has eaten n times, hence exits
+9th time the Thread 24 has eaten at 19:50:01
+8th time the Thread 31 eats at 19:50:01
+Thread 24 has eaten n times, hence exits
+8th time the Thread 31 has eaten at 19:50:01
+9th time the Thread 11 eats at 19:50:01
+9th time the Thread 31 becomes hungry at 19:50:01
+9th time the Thread 11 has eaten at 19:50:01
+9th time the Thread 32 eats at 19:50:01
+Thread 11 has eaten n times, hence exits
+9th time the Thread 32 has eaten at 19:50:01
+8th time the Thread 5 eats at 19:50:01
+Thread 32 has eaten n times, hence exits
+8th time the Thread 5 has eaten at 19:50:01
+9th time the Thread 15 eats at 19:50:01
+9th time the Thread 5 becomes hungry at 19:50:01
+9th time the Thread 15 has eaten at 19:50:01
+9th time the Thread 19 eats at 19:50:01
+Thread 15 has eaten n times, hence exits
+9th time the Thread 19 has eaten at 19:50:01
+9th time the Thread 21 eats at 19:50:01
+9th time the Thread 21 has eaten at 19:50:01
+9th time the Thread 20 eats at 19:50:01
+Thread 19 has eaten n times, hence exits
+9th time the Thread 20 has eaten at 19:50:01
+9th time the Thread 28 eats at 19:50:01
+Thread 21 has eaten n times, hence exits
+Thread 20 has eaten n times, hence exits
+9th time the Thread 28 has eaten at 19:50:01
+9th time the Thread 39 eats at 19:50:01
+9th time the Thread 39 has eaten at 19:50:01
+9th time the Thread 44 eats at 19:50:01
+Thread 28 has eaten n times, hence exits
+Thread 39 has eaten n times, hence exits
+9th time the Thread 44 has eaten at 19:50:01
+8th time the Thread 49 eats at 19:50:01
+Thread 44 has eaten n times, hence exits
+8th time the Thread 49 has eaten at 19:50:01
+9th time the Thread 47 eats at 19:50:01
+9th time the Thread 47 has eaten at 19:50:01
+9th time the Thread 16 eats at 19:50:01
+Thread 47 has eaten n times, hence exits
+9th time the Thread 49 becomes hungry at 19:50:01
+9th time the Thread 16 has eaten at 19:50:01
+9th time the Thread 37 eats at 19:50:01
+Thread 16 has eaten n times, hence exits
+9th time the Thread 37 has eaten at 19:50:01
+9th time the Thread 31 eats at 19:50:01
+Thread 37 has eaten n times, hence exits
+9th time the Thread 31 has eaten at 19:50:01
+9th time the Thread 5 eats at 19:50:01
+9th time the Thread 5 has eaten at 19:50:01
+9th time the Thread 49 eats at 19:50:01
+Thread 31 has eaten n times, hence exits
+9th time the Thread 49 has eaten at 19:50:01
+The cook fills the empty pot at 19:50:01
+Thread 5 has eaten n times, hence exits
+Thread 49 has eaten n times, hence exits
