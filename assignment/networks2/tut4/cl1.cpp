@@ -1,4 +1,7 @@
 /**
+ * Assumption : Send && Recver's bufffer are of same size
+ * == const int N
+ * 
  * STOP AND WAIT AQR. (on localhost)
  * usage: ./file <port to run on> <port to send to> <filename>
  * Sender. (server?) sends and waits for ACK. then again sends and waits for ack.
