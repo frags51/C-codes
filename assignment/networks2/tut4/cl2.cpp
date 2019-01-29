@@ -1,4 +1,10 @@
+/**
+ * STOP AND WAIT AQR. (on localhost)
+ * usage: ./file <port to run on> <port to send ack to>
+ * Receiver. (client?) sends and waits for ACK. then again sends and waits for ack.
+ */
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 #include <cstdlib>
 #include <sys/socket.h>
@@ -14,14 +20,15 @@
 #include <vector>
 #include <sys/time.h>
 
-#define TIMEOUT 20
+// timeout in micros. 
+#define TIMEOUT 100000 
 int timer = 0;
 int toPort;
 int thisPort;
 using namespace std;
 
 #define MAX_ARGS 40
-const int N = 4; // max number of bytes. 
+const int N = 8; // max number of bytes. 
 
 bool DISCONNECT = false;
 
@@ -33,6 +40,8 @@ int expectedSn = 1;
 bool sendFlag = true;
 
 bool senderTurn = false;
+
+ofstream oFile("recd.txt");
 
 int getNextSeq(){
     return nextSn++;
@@ -52,8 +61,8 @@ typedef struct _data{
     int ack_no;
     bool isAck = false;
     bool isExtra = false;
-    bool fl1 = false; // connection end!
-    bool fl2 = false; // connection start!
+    bool disconnect = false; // connection end!
+    bool start = false; // connection start!
     char bytes[N];
 
 } Data;
@@ -64,6 +73,7 @@ Data object;
 
 void senderFun();
 void recvFun();
+void storeDataToFile(const ofstream& outfile);
 
 void pollEventSender(event_type *ev){
     if(!senderTurn){ // receiver!
@@ -113,7 +123,7 @@ int main(int argc, char **argv){
 
     struct timeval tv;
     tv.tv_sec = 0;
-    tv.tv_usec = 100000;
+    tv.tv_usec = TIMEOUT;
     if (setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
         perror("Error");
     }
@@ -130,6 +140,9 @@ int main(int argc, char **argv){
         recvFun();        
         senderFun();
     }
+
+    oFile.close();
+    close(mySocket);
 
 } //main
 
@@ -180,27 +193,21 @@ void recvFun(){
                 senderTurn = true;
                 return;
             }
-            if(r.fl1 == true){
+            if(r.disconnect == true){
                 // need to close connection!
                 cerr<<"conn close msg recd\n";
                 DISCONNECT = true;
                 return;
             }
-            /*
-            else if(r.fl2){
-                cerr<<"Conn start msg recd\n";
-                setNextExp(); // increment expected seq no.
-                object.isAck = true;
-                object.ack_no = r.seq_no+1;
-                cout<<"correct rec\n";
-            }*/
             cout<<">>>>>>> recd: "<<r.bytes<<" , dsq no: "<< r.seq_no<<endl;
+            cerr<<">>> : "<<(r.bytes[N-1])<<endl;
             cout<<"Expecting sqno:: "<<(expectedSn-1)<<endl;
             if(r.seq_no == expectedSn-1){ // correctly recieved the message!
                 setNextExp(); // increment expected seq no.
                 object.isAck = true;
                 object.ack_no = r.seq_no+1;
-                cout<<"correct rec\n";
+                cout<<"correct rec, writing to file\n";
+                oFile << r.bytes;
             }
             else sendFlag = false;
             // else need to resend packet same packet!

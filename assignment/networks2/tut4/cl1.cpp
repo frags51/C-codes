@@ -1,4 +1,10 @@
+/**
+ * STOP AND WAIT AQR. (on localhost)
+ * usage: ./file <port to run on> <port to send to> <filename>
+ * Sender. (server?) sends and waits for ACK. then again sends and waits for ack.
+ */
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 #include <cstdlib>
 #include <sys/socket.h>
@@ -14,23 +20,24 @@
 #include <vector>
 #include <sys/time.h>
 
-#define TIMEOUT 20
+// timeout in microsecs
+#define TIMEOUT 100000
 int timer = 0;
 int toPort;
 int thisPort;
 using namespace std;
 
 #define MAX_ARGS 40
-const int N = 4; // max number of bytes. 
+const int N = 8; // max number of bytes. 
 
 bool STARTCONN = true; 
 
 int mySocket;
 sockaddr_in toAddr;
 
-int nextSn=0;
-int expectedSn = 1;
-bool sendFlag = true;
+int nextSn=0; // Next free seq number to use!
+int expectedSn = 1; // Expected ack number = nextNumber to use (1 ack for 0 seq sent)!
+bool sendFlag = true; // True, if you DO NOT need to resend same mesage. 
 
 bool senderTurn = true;
 
@@ -53,12 +60,13 @@ typedef struct _data{
     int ack_no;
     bool isAck = false;
     bool isExtra = false;
-    bool fl1 = false; // disconnect
-    bool fl2 = false; // connect
+    bool disconnect = false; // disconnect
+    bool start = false; // connect
     char bytes[N];
 
 } Data;
 
+// useless as of now.
 typedef enum{frame_arrival,err,timeout,no_event} event_type;
 
 Data object;
@@ -76,6 +84,8 @@ char *getData(){
     }
     else return NULL;
 }
+
+char *getDataFromFile( ifstream&);
 
 void pollEventSender(event_type *ev){
     if(!senderTurn){ // receiver!
@@ -109,6 +119,11 @@ int doRecv(Data *rBuf){
 }
 
 int main(int argc, char **argv){
+    if(argc!=4) {
+        cerr<<"Incorrect number of arguments. Need 3!"<<endl;
+        exit(1);
+    }
+
     thisPort = atoi(argv[1]);
     toPort = atoi(argv[2]);
 
@@ -125,7 +140,7 @@ int main(int argc, char **argv){
 
     struct timeval tv;
     tv.tv_sec = 0;
-    tv.tv_usec = 100000;
+    tv.tv_usec = TIMEOUT;
     if (setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
         perror("Error");
     }
@@ -135,15 +150,17 @@ int main(int argc, char **argv){
     toAddr.sin_port = htons(toPort);
     toAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
+    ifstream inf(argv[3]);
+
     while(true){
         char* c;
-        if(!sendFlag || (c=(getData())) !=NULL){
+        if(!sendFlag || (c=(getDataFromFile(inf))) !=NULL){
             senderFun(c);
             recvFun();
         }
         else break;   
     }
-    object.fl1 = true;
+    object.disconnect = true;
     doSend();
     close(mySocket);
 } //main
@@ -152,15 +169,6 @@ void senderFun(char sbytes[N]){
 
     event_type event;
 
-    /*if(STARTCONN){
-        object.fl2 = true;
-        object.seq_no = getNextSeq();
-        
-        cout<<"Starting conn. "<<endl;
-        doSend();
-        senderTurn=false;
-        sendFlag = true;
-    }*/
 
     // The first send!
     if(sendFlag == false){ // to resend!
@@ -183,6 +191,7 @@ void senderFun(char sbytes[N]){
                 sendFlag= true;
                 cout<<"Sent: "<<object.bytes<<" with seq no: "<<object.seq_no<<endl; 
                 senderTurn = false;
+                free(sbytes);
             }
             else{ // sneder timeout!
                 cout<<"TImeout : "<<object.bytes<<" with seq no: "<<object.seq_no<<endl; 
@@ -224,4 +233,14 @@ void recvFun(){
             senderTurn = true;
         
     }
+}
+
+char *getDataFromFile(ifstream& infile){
+    // current position in file.
+    if(infile.eof()) return NULL;
+
+    char *b = (char *)malloc(N*sizeof(char));
+    bzero(b, N*sizeof(char));
+    infile.read(b, N-1);
+    return b;
 }
