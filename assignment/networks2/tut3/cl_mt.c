@@ -24,6 +24,9 @@ typedef struct _msg{
     float args[MAX_ARGS];
 } msg_struct;
 
+
+
+
 int socket_id;
 
 void sigIntHandler(int id){
@@ -90,7 +93,9 @@ struct sigaction handler;
         break;
 
         case ADD:{
-int num; printf("Enter number of arguments to add: ");
+
+            int num; printf("Enter number of arguments to add: ");
+
             scanf("%d", &num);
             float b;
             msg_struct a;            
