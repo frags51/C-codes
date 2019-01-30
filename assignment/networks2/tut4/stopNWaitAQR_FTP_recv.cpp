@@ -2,85 +2,21 @@
  * STOP AND WAIT AQR. (on localhost)
  * usage: ./file <port to run on> <port to send ack to>
  * Receiver. (client?) sends and waits for ACK. then again sends and waits for ack.
- */
-#include <iostream>
-#include <fstream>
-#include <cstdio>
-#include <cstdlib>
-#include <sys/socket.h>
-#include <sys/time.h> 
-#include <netinet/in.h>
-#include <sys/types.h> 
-#include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <pthread.h>
-#include <signal.h>
-#include <cmath>
-#include <vector>
-#include <sys/time.h>
-
-int checkSum(char *p, int Z) {
-
-    unsigned char checksum = 0x02;
-
-    for(int i=0; i<Z; i++)   {
-        checksum ^= *p++;
-    }   
-    checksum ^= 0x03;
-    return (int) checksum;
-}
-
-// timeout in micros. 
-#define TIMEOUT 100000 
-int timer = 0;
-int toPort;
-int thisPort;
-using namespace std;
-
-#define MAX_ARGS 40
-const int N = 1024; // max number of bytes. 
+*/
+#include "ftp_aqr.h"
 
 bool DISCONNECT = false;
 
 int mySocket;
 sockaddr_in toAddr;
 
-int nextSn=0;
-int expectedSn = 1;
+
 bool sendFlag = true;
 
 bool senderTurn = false;
 
 ofstream oFile("recd.txt", ios::binary);
 
-int getNextSeq(){
-    return nextSn++;
-}
-int setNextExp(){
-    expectedSn++;
-}
-
-typedef struct _msg{
-    int id; // what type of function etc
-    int argsize;
-    float args[MAX_ARGS];
-} msg_struct;
-
-typedef struct _data{
-    int csum;
-    int seq_no;
-    int ack_no;
-    bool isAck = false;
-    bool isExtra = false;
-    bool disconnect = false; // disconnect
-    bool start = false; // connect
-    int bytes_length = 0;
-    char bytes[N];
-
-} Data;
-
-typedef enum{frame_arrival,err,timeout,no_event} event_type;
 
 Data object;
 
