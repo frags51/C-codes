@@ -85,12 +85,16 @@ int main(int argc, char **argv){
 
     object.isAck= true;
     object.ack_no = expectedSn;
+    
+    auto start = std::chrono::system_clock::now();
 
     while(!DISCONNECT){
         recvFun();        
         senderFun();
     }
-
+    auto end = std::chrono::system_clock::now();
+    auto elapsed1 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    cout<<"Time taken: "<<elapsed1.count()<<endl;
     oFile.close();
     close(mySocket);
 
@@ -152,11 +156,8 @@ void recvFun(){
             cout<<">>>>>>> recd: "<<r.bytes<<" , dsq no: "<< r.seq_no<<endl;
             cerr<<">>> : "<<(r.bytes[N-1])<<endl;
             cout<<"Expecting sqno:: "<<(expectedSn-1)<<endl;
-            if(r.seq_no == expectedSn-1){ // correctly recieved the message!
-                if(!(r.csum==checkSum(r.bytes, r.bytes_length))){
-                    cerr<<"CHECKSUUNN!! is : "<<checkSum(r.bytes, r.bytes_length)<<endl;
-                    exit(1);
-                }
+            if(r.seq_no == expectedSn-1 && (r.csum==checkSum(r.bytes, r.bytes_length))) { // correctly recieved the message!
+                
                 setNextExp(); // increment expected seq no.
                 object.isAck = true;
                 object.ack_no = r.seq_no+1;
