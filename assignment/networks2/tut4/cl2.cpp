@@ -20,6 +20,17 @@
 #include <vector>
 #include <sys/time.h>
 
+int checkSum(char *p, int Z) {
+
+    unsigned char checksum = 0x02;
+
+    for(int i=0; i<Z; i++)   {
+        checksum ^= *p++;
+    }   
+    checksum ^= 0x03;
+    return (int) checksum;
+}
+
 // timeout in micros. 
 #define TIMEOUT 100000 
 int timer = 0;
@@ -28,7 +39,7 @@ int thisPort;
 using namespace std;
 
 #define MAX_ARGS 40
-const int N = 8; // max number of bytes. 
+const int N = 1024; // max number of bytes. 
 
 bool DISCONNECT = false;
 
@@ -41,7 +52,7 @@ bool sendFlag = true;
 
 bool senderTurn = false;
 
-ofstream oFile("recd.txt");
+ofstream oFile("recd.txt", ios::binary);
 
 int getNextSeq(){
     return nextSn++;
@@ -57,12 +68,14 @@ typedef struct _msg{
 } msg_struct;
 
 typedef struct _data{
+    int csum;
     int seq_no;
     int ack_no;
     bool isAck = false;
     bool isExtra = false;
-    bool disconnect = false; // connection end!
-    bool start = false; // connection start!
+    bool disconnect = false; // disconnect
+    bool start = false; // connect
+    int bytes_length = 0;
     char bytes[N];
 
 } Data;
@@ -122,7 +135,7 @@ int main(int argc, char **argv){
         cerr<<"Error, bind failed!"<<endl;
 
     struct timeval tv;
-    tv.tv_sec = 0;
+    tv.tv_sec = 1;
     tv.tv_usec = TIMEOUT;
     if (setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
         perror("Error");
@@ -203,11 +216,15 @@ void recvFun(){
             cerr<<">>> : "<<(r.bytes[N-1])<<endl;
             cout<<"Expecting sqno:: "<<(expectedSn-1)<<endl;
             if(r.seq_no == expectedSn-1){ // correctly recieved the message!
+                if(!(r.csum==checkSum(r.bytes, r.bytes_length))){
+                    cerr<<"CHECKSUUNN!! is : "<<checkSum(r.bytes, r.bytes_length)<<endl;
+                    exit(1);
+                }
                 setNextExp(); // increment expected seq no.
                 object.isAck = true;
                 object.ack_no = r.seq_no+1;
                 cout<<"correct rec, writing to file\n";
-                oFile << r.bytes;
+                oFile.write( r.bytes, r.bytes_length);
             }
             else sendFlag = false;
             // else need to resend packet same packet!

@@ -23,6 +23,16 @@
 #include <vector>
 #include <sys/time.h>
 
+int checkSum(char *p, int Z) {
+
+    unsigned char checksum = 0x02;
+
+    for(int i=0; i<Z; i++)   {
+        checksum ^= *p++;
+    }   
+    checksum ^= 0x03;
+    return (int) checksum;
+}
 // timeout in microsecs
 #define TIMEOUT 100000
 int timer = 0;
@@ -31,7 +41,7 @@ int thisPort;
 using namespace std;
 
 #define MAX_ARGS 40
-const int N = 8; // max number of bytes. 
+const int N = 1024; // max number of bytes. 
 
 bool STARTCONN = true; 
 
@@ -59,12 +69,14 @@ typedef struct _msg{
 } msg_struct;
 
 typedef struct _data{
+    int csum;
     int seq_no;
     int ack_no;
     bool isAck = false;
     bool isExtra = false;
     bool disconnect = false; // disconnect
     bool start = false; // connect
+    int bytes_length = 0;
     char bytes[N];
 
 } Data;
@@ -106,7 +118,7 @@ int doSend(){
     toAddr.sin_port = htons(toPort);
     toAddr.sin_family = AF_INET;
 
-    size_t echoStringLen = sizeof(Data);
+    size_t echoStringLen = sizeof(object);
     if(sendto(mySocket, &object, echoStringLen, 0, (sockaddr * )&toAddr, sizeof(toAddr))<0){
         cerr<<"Error in sending"<<endl;
         return -1;
@@ -142,7 +154,7 @@ int main(int argc, char **argv){
         cerr<<"Error, bind failed!"<<endl;
 
     struct timeval tv;
-    tv.tv_sec = 0;
+    tv.tv_sec = 1;
     tv.tv_usec = TIMEOUT;
     if (setsockopt(mySocket, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
         perror("Error");
@@ -153,7 +165,7 @@ int main(int argc, char **argv){
     toAddr.sin_port = htons(toPort);
     toAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    ifstream inf(argv[3]);
+    ifstream inf(argv[3], ios::binary);
 
     while(true){
         char* c;
@@ -179,14 +191,14 @@ void senderFun(char sbytes[N]){
         //strncpy(object.bytes, sbytes, N);
         doSend();
         timer = 0;
-        cout<<"ReSent: "<<object.bytes<<" with seq no: "<<object.seq_no<<endl;
+        cout<<"ReSent: "<<" with seq no: "<<object.seq_no<<endl;
         senderTurn = false;
         sendFlag = true;
     }
 
     if(senderTurn == true){
             object.seq_no = getNextSeq();
-            strncpy(object.bytes, sbytes, N);
+            memcpy(object.bytes, sbytes, object.bytes_length);
             timer = 0;
             int r = doSend();
             if(!r) 
@@ -238,12 +250,19 @@ void recvFun(){
     }
 }
 
+//ofstream off("recd2.txt",ios::binary);
+
 char *getDataFromFile(ifstream& infile){
     // current position in file.
+
     if(infile.eof()) return NULL;
 
     char *b = (char *)malloc(N*sizeof(char));
     bzero(b, N*sizeof(char));
-    infile.read(b, N-1);
+    infile.read(b, N);
+    object.bytes_length = infile.gcount();
+    object.csum = checkSum(b, object.bytes_length);
+    cerr<<"::: Got checksum: "<<object.csum<<endl;
+    //off.write(b, object.bytes_length);
     return b;
 }
