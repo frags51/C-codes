@@ -4,6 +4,7 @@
  * 
  * STOP AND WAIT AQR. (on localhost)
  * usage: ./file <port to run on> <port to send to> <filename>
+ * port to run on == port to send to of receiver and vice-versa.
  * Sender. (server?) sends and waits for ACK. then again sends and waits for ack.
  */
 #include "ftp_aqr.h"
