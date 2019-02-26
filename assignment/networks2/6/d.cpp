@@ -24,7 +24,7 @@
 
 #define BUF_SIZE 5000
 
-const std::string oDir = "resp/";
+const std::string oDir = "resp";
 
 char buf[BUF_SIZE+1];
 
@@ -96,7 +96,10 @@ int main(int argc, char **argv){
 
     // wiat for response now!
 
-    std::ofstream oFile(oDir+"f.txt", std::ios::binary);
+    p = url.find_last_of("/");
+    string f_name = url.substr(p+1);
+    if(f_name=="") f_name = "dl_file";
+    std::ofstream oFile(oDir+"/"+f_name, std::ios::binary);
 
     int recvMsgSize;
     if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
@@ -115,15 +118,7 @@ int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
     memcpy(buf, bufD, cur_cont_size);
 
-    /*
     
-    memcpy(bufD,(stripHeader(std::string(buf))).c_str(), recvMsgSize - headerlen);
-    //stripHeader();
-    bzero(buf, BUF_SIZE+1);
-    memcpy(buf, bufD, BUF_SIZE);
-
-    int gotSize = recvMsgSize-headerlen;
-    */
     int gotSize = cur_cont_size;
     sz-= headerlen;
 
