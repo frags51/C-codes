@@ -29,6 +29,7 @@ using namespace std;
 
 int parseHeader(std::string resp);
 std::string stripHeader(std::string r);
+int getHeaderLen(std::string r);
 
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE);
@@ -81,12 +82,13 @@ int main(int argc, char **argv){
     cout<<">>>>>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
 
     char bufD[BUF_SIZE];
-    strcpy(bufD,(stripHeader(std::string(buf))).c_str() );
-    
+    int headerlen = getHeaderLen(std::string(buf));
+    memcpy(bufD,(stripHeader(std::string(buf))).c_str(), recvMsgSize - headerlen);
+    //stripHeader();
     bzero(buf, BUF_SIZE);
     memcpy(buf, bufD, BUF_SIZE);
 
-    oFile.write(buf, recvMsgSize);
+    oFile.write(buf, recvMsgSize - headerlen);
     cout<<"wrote: "<<buf<<endl;
         
     while(gotSize < sz){
@@ -100,8 +102,11 @@ int main(int argc, char **argv){
         }
         gotSize+=recvMsgSize;
     
-        oFile.write(buf, recvMsgSize);    
-        cout<<">>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+        oFile.write(buf, recvMsgSize);  
+            cout<<">>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+
+            cout<<"wrote: "<<buf<<endl;
+  
     }
 
     cout<<"EOT"<<endl;
@@ -120,7 +125,7 @@ int parseHeader(std::string r){
 
     while(true){
         std::getline(resp, cur);
-        if(resp.eof() || cur.compare("\r") == 0) {return tL+2; /*For last \r\n*/}
+        if(cur.compare("\r") == 0) {return tL+2; /*For last \r\n*/}
         int v; 
         if( (v = cur.find("Content-Length: "))==string::npos) {
             //cout<<";GheadeR: "<<cur<<", Lngt: "<<(cur.length()+1)<<endl;
@@ -131,6 +136,7 @@ int parseHeader(std::string r){
             
             std::string len_s = cur.substr(16);
 //            cout<<"LEN_PARSE: "<<len_s<<"\n";
+            
             tL+= stoi(len_s);
             tL+=cur.length()+1;
         }
@@ -140,5 +146,10 @@ int parseHeader(std::string r){
 
 std::string stripHeader(std::string r){
     int p = r.find("\r\n\r\n");
-    return r.substr(p+4);
+    return  r.substr(p+4);
+}
+
+int getHeaderLen(std::string r){
+    int p = r.find("\r\n\r\n");
+    return p+4+1 // +1 cuz 0 indexed;
 }
