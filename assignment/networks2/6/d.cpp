@@ -20,6 +20,7 @@
 #include <sys/time.h>
 #include <sstream>
 #include <chrono>
+#include <netdb.h>          /* for gethostbyname() */
 
 #define BUF_SIZE 5000
 
@@ -35,14 +36,39 @@ int getHeaderLen(std::string r);
 
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
-    std::cout << "Usage: ./a.out IP FilePath HostName\n";
+    std::cout << "Usage: ./a.out <URL: http(s)://<>\n";
     int mySocket = socket(AF_INET, SOCK_STREAM, 0);
     if(mySocket < 0) {std::cerr<<"Error, Socket Creation failed!"<<std::endl; exit(1);}
 
-    if(argc!=4) {std::cerr<<"Pls enter IP + file path of object to fetch!"; exit(1);}
+    if(argc!=2) {std::cerr<<"Pls enter IP + file path of object to fetch!"; exit(1);}
+
+    // Getting IP from host!
+    struct hostent *he;
+    struct in_addr **addr_list;  
+    char ip[100];
+    char hostname[50];
+    bzero(hostname, 50);
+    string url(argv[1]);
+    int p = url.find_first_of(":");
+    url = url.substr(p+3);
+    p = url.find_first_of("/");
+    strcpy(hostname, url.substr(0, p).c_str());
+    url = url.substr(p);
+
+
+    if ( (he = gethostbyname( hostname ) ) == NULL){
+        cerr<<"Cound fimd hostname: "<< hostname<< "!!\n";
+        close(mySocket);
+        exit(1);
+    }
+    addr_list = (struct in_addr **) he->h_addr_list;
+ 
+    strcpy(ip , inet_ntoa(*addr_list[0]) );
+    
+    cout<<"ip::: >>>> "<<ip<<endl;
 
     struct sockaddr_in server;
-    server.sin_addr.s_addr = inet_addr(argv[1]);
+    server.sin_addr.s_addr = inet_addr(ip);
     server.sin_family = AF_INET;
     server.sin_port = htons(80);
 
@@ -54,10 +80,10 @@ int main(int argc, char **argv){
 
     std::string req("");
     req.append("GET ");
-    req.append(argv[2]);
+    req.append(url);
     req.append(" HTTP/1.1\r\n");
     req.append("Host: ");
-    req.append(argv[3]);
+    req.append(hostname);
     req.append("\r\n\r\n");
 
     std::cout<<"dbg: sending req to server: "<< req << std::endl;
