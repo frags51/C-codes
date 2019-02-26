@@ -77,9 +77,7 @@ int main(int argc, char **argv){
         exit(1);
     }
 
-    int sz = parseHeader(std::string(buf));
-    int gotSize = recvMsgSize;
-    cout<<">>>>>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+    int sz = parseHeader(std::string(buf))-1;
 
     char bufD[BUF_SIZE];
     int headerlen = getHeaderLen(std::string(buf));
@@ -88,6 +86,9 @@ int main(int argc, char **argv){
     bzero(buf, BUF_SIZE);
     memcpy(buf, bufD, BUF_SIZE);
 
+    int gotSize = recvMsgSize-headerlen;
+    cout<<">>>>>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+    
     oFile.write(buf, recvMsgSize - headerlen);
     cout<<"wrote: "<<buf<<endl;
         
@@ -125,7 +126,7 @@ int parseHeader(std::string r){
 
     while(true){
         std::getline(resp, cur);
-        if(cur.compare("\r") == 0) {return tL+2; /*For last \r\n*/}
+        if(cur.compare("\r") == 0) {/*return tL+2; */ /*For last \r\n*/}
         int v; 
         if( (v = cur.find("Content-Length: "))==string::npos) {
             //cout<<";GheadeR: "<<cur<<", Lngt: "<<(cur.length()+1)<<endl;
@@ -136,7 +137,7 @@ int parseHeader(std::string r){
             
             std::string len_s = cur.substr(16);
 //            cout<<"LEN_PARSE: "<<len_s<<"\n";
-            
+            return stoi(len_s);
             tL+= stoi(len_s);
             tL+=cur.length()+1;
         }
@@ -151,5 +152,5 @@ std::string stripHeader(std::string r){
 
 int getHeaderLen(std::string r){
     int p = r.find("\r\n\r\n");
-    return p+4+1 // +1 cuz 0 indexed;
+    return p+4+1; // +1 cuz 0 indexed;
 }
