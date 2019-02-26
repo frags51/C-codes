@@ -1,3 +1,4 @@
+// std::string doesn;t store after '\0' char by default!
 #include <string>
 #include <iostream>
 

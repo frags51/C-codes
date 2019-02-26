@@ -1,4 +1,6 @@
-
+/**
+ * Download a file using GET request.
+ */
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -132,7 +134,7 @@ int main(int argc, char **argv){
     return 0;
 } // main
 
-int parseHeader(std::string r){
+int parseHeader(std::string r){ // return content-size! tL is useless as of now
     std::string cur;
     std::istringstream resp(r);
     
@@ -166,5 +168,5 @@ std::string stripHeader(std::string r){
 
 int getHeaderLen(std::string r){
     int p = r.find("\r\n\r\n");
-    return p+4; // +1 cuz 0 indexed;
+    return p+4; // +1 cuz 0 indexed???;
 }
