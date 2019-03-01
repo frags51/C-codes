@@ -24,6 +24,10 @@
 #include <chrono>
 #include <netdb.h>          /* for gethostbyname() */
 #include <errno.h>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx;
 
 #define BUF_SIZE 5000
 
@@ -41,6 +45,8 @@ int getHeaderLen(std::string r);
 
 void fetchObject(std::string toFetch, int &mySocket, bool &);
 
+void threadMain(ifstream& f);
+
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
     std::cout << "Usage: ./a.out <file containing list of object URL>\n";
@@ -51,17 +57,14 @@ int main(int argc, char **argv){
     // Getting IP from host!
     ifstream inFile(argv[1]);
     
-    int mySocket = socket(AF_INET, SOCK_STREAM, 0);
-    if(mySocket < 0) {std::cerr<<"Error, Socket Creation failed!"<<std::endl; exit(1);}
+    std::thread pool[6];
+    for(int i=0; i<6; i++) pool[i] = std::thread(threadMain, std::ref(inFile));
+
+    for(int i=0; i<6; i++) pool[i].join(); 
     
-    bool conFlag = false;
-    for (std::string line; std::getline(inFile, line); )
-    {
-        fetchObject(line, mySocket, conFlag);
-    }
-    
+    //std::thread t1(threadMain, inFile);
+
     inFile.close();
-    close(mySocket);
     return 0;
 } // main
 
@@ -218,4 +221,20 @@ std::string stripHeader(std::string r){
 int getHeaderLen(std::string r){
     int p = r.find("\r\n\r\n");
     return p+4; // +1 cuz 0 indexed???;
+}
+
+void threadMain(ifstream& inFile){
+    int mySocket = socket(AF_INET, SOCK_STREAM, 0);
+    if(mySocket < 0) {std::cerr<<"Error, Socket Creation failed!"<<std::endl; exit(1);}
+    
+    bool conFlag = false;
+    std::string line;
+    while(inFile.good()){
+        mtx.lock();
+        std::getline(inFile, line);
+        mtx.unlock();
+        if(inFile.good()) fetchObject(line, mySocket, conFlag);
+    }
+    
+    close(mySocket);
 }
