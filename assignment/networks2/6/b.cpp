@@ -1,5 +1,5 @@
 /**
- * Download a file using GET request.
+ * (b) Download a file using GET request.
  * Create new TCP connection for each http request!
  */
 #include <iostream>
