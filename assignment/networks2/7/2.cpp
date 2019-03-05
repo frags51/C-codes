@@ -268,7 +268,7 @@ int parseReqGET(char *req, char*resp, int clSock){
             cerr<<"Failed to send resp back to client out loop\n";
         }
         else{
-            cerr<<"Sent to client: "<<(buf)<<endl;
+            //cerr<<"Sent to client: "<<(buf)<<endl;
         }
         
             cout<<">>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
