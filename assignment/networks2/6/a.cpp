@@ -107,10 +107,17 @@ int main(int argc, char **argv){
         close(mySocket);
         exit(1);
     }
+    else{
+        cerr<<"rexcd Init: \n";
+        //cerr<<buf<<endl;
+    }
 
     int sz = parseHeader(std::string(buf))+getHeaderLen(std::string(buf));
     int headerlen = getHeaderLen(std::string(buf));
     int cur_cont_size = recvMsgSize - headerlen;
+
+    //cerr<<"Full resp: "<<buf<<endl; 
+
 
     char bufD[BUF_SIZE+1];
     bzero(bufD,BUF_SIZE+1);
@@ -118,7 +125,7 @@ int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
     memcpy(buf, bufD, cur_cont_size);
 
-    
+
     int gotSize = cur_cont_size;
     sz-= headerlen;
 
@@ -159,6 +166,11 @@ int parseHeader(std::string r){ // return content-size! tL is useless as of now
     std::string cur;
     std::istringstream resp(r);
     
+    if(r.find("Content-Length")==string::npos) {
+        cerr<<"No content length!"<<endl;
+        exit(1);
+    }
+
     int tL = 0;
 
     while(true){

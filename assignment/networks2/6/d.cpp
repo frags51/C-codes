@@ -1,7 +1,7 @@
 /**
  * (c) Download a file using GET request.
  * Create single TCP connection for each http request!
- * Assuming same website links!
+ * Assuming same DOMAIN links!
  */
 #include <iostream>
 #include <fstream>
@@ -235,6 +235,6 @@ void threadMain(ifstream& inFile){
         mtx.unlock();
         if(inFile.good()) fetchObject(line, mySocket, conFlag);
     }
-    
+
     close(mySocket);
 }
