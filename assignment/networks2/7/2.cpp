@@ -13,7 +13,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <pthread.h>
+#include <thread>
 #include <signal.h>
 #include <cmath>
 #include <vector>
@@ -38,6 +38,7 @@ int parseReq(char *req, char*resp, int clSock);
 int parseReqGET(char *req, char*resp, int clSock);
 int parseReqHEAD(char *req, char*resp, int clSock);
 int parseReqPOST(char *req, char*resp, int clSock);
+void threadMain(int incoming_socket);
 
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
@@ -75,25 +76,15 @@ int main(int argc, char **argv){
 
         // now recv req from socket!
 
-        char reqFromCl[BUF_SIZE];
-        if(recv(incoming_socket, reqFromCl, BUF_SIZE, 0)<0){
-            cerr<<"recv from cl failed. "<<endl;
-            close(clSocket);
-            exit(1);
-        }
-        else{
-            cerr<<"DBG: Received from client: "<<endl;
-            cerr<<reqFromCl<<endl;
-        }
-        char response[BUF_SIZE];
-
-        parseReq(reqFromCl, response, incoming_socket);
-        close(clSocket);
-        exit(0);
+        
+        std::thread t(threadMain, incoming_socket);
+        t.detach();
+        //exit(0);
 
     } // while 
 
-
+    close(clSocket);
+    
 
     //if(argc!=2) {std::cerr<<"Pls enter IP + file path of object to fetch!"; exit(1);}
 
@@ -293,4 +284,20 @@ int parseReqHEAD(char *req, char*resp, int clSock){
 }
 int parseReqPOST(char *req, char*resp, int clSock){
     return 0;
+}
+
+void threadMain(int incoming_socket){
+    char reqFromCl[BUF_SIZE];
+        if(recv(incoming_socket, reqFromCl, BUF_SIZE, 0)<0){
+            cerr<<"recv from cl failed. "<<endl;
+            close(incoming_socket);
+            exit(1);
+        }
+        else{
+            cerr<<"DBG: Received from client: "<<endl;
+            cerr<<reqFromCl<<endl;
+        }
+    char response[BUF_SIZE];
+        
+    parseReq(reqFromCl, response, incoming_socket);
 }
