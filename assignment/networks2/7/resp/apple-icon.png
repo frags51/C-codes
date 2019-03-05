@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Date: Tue, 05 Mar 2019 12:45:13 GMT
+Content-Type: image/png
+Content-Length: 5642
+Connection: keep-alive
+Set-Cookie: __cfduid=d052131d47270bcd2aa201e2f84eea8301551789913; expires=Wed, 04-Mar-20 12:45:13 GMT; path=/; domain=.iconarchive.com; HttpOnly
+Cache-Control: public, max-age=172800
+Expires: Thu, 07 Mar 2019 12:45:13 GMT
+ETag: "3892383803"
+Last-Modified: Wed, 25 Apr 2018 21:59:32 GMT
+CF-Cache-Status: HIT
+Accept-Ranges: bytes
+Server: cloudflare
+CF-RAY: 4b2c2f923e03aabc-SIN
+

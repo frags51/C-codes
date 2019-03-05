@@ -1,7 +1,5 @@
 /**
- * (c) Download a file using GET request.
- * Create single TCP connection for each http request!
- * Assuming same website links!
+ * (a) Download a file using GET request.
  */
 #include <iostream>
 #include <fstream>
@@ -23,7 +21,8 @@
 #include <sstream>
 #include <chrono>
 #include <netdb.h>          /* for gethostbyname() */
-#include <errno.h>
+
+#include "port.h"
 
 #define BUF_SIZE 5000
 
@@ -31,37 +30,137 @@ const std::string oDir = "resp";
 
 char buf[BUF_SIZE+1];
 
-struct sockaddr_in server;
-
 using namespace std;
 
 int parseHeader(std::string resp);
 std::string stripHeader(std::string r);
 int getHeaderLen(std::string r);
 
-void fetchObject(std::string toFetch, int &mySocket, bool &);
-
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
-    std::cout << "Usage: ./a.out <file containing list of object URL>\n";
-    
-
-    if(argc!=2) {std::cerr<<"Pls enter IP + file containing the objects to fetch!"; exit(1);}
-
-    // Getting IP from host!
-    ifstream inFile(argv[1]);
-    
+    std::cout << "Usage: ./a.out <URL: http(s)://<>\n";
     int mySocket = socket(AF_INET, SOCK_STREAM, 0);
     if(mySocket < 0) {std::cerr<<"Error, Socket Creation failed!"<<std::endl; exit(1);}
-    
-    bool conFlag = false;
-    for (std::string line; std::getline(inFile, line); )
-    {
-        fetchObject(line, mySocket, conFlag);
+
+    if(argc!=2) {std::cerr<<"Pls enter IP + file path of object to fetch!"; exit(1);}
+
+    // Getting IP from host!
+    struct hostent *he;
+    struct in_addr **addr_list;  
+    char ip[100];
+    char hostname[50];
+    bzero(hostname, 50);
+    string url(argv[1]);
+    int p = url.find_first_of(":");
+    url = url.substr(p+3);
+    p = url.find_first_of("/");
+    strcpy(hostname, url.substr(0, p).c_str());
+    url = url.substr(p);
+
+
+    if ( (he = gethostbyname( hostname ) ) == NULL){
+        cerr<<"Cound fimd hostname: "<< hostname<< "!!\n";
+        close(mySocket);
+        exit(1);
     }
+    addr_list = (struct in_addr **) he->h_addr_list;
+ 
+    strcpy(ip , inet_ntoa(*addr_list[0]) );
     
-    inFile.close();
+    cout<<"ip::: >>>> "<<ip<<endl;
+
+    struct sockaddr_in server;
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_family = AF_INET;
+    server.sin_port = htons(PORT);
+
+    if (connect(mySocket , (struct sockaddr *)&server , sizeof(server)) < 0)
+    {
+        puts("connect error\n");
+        exit(1);
+    }
+
+    std::string req("");
+    req.append("GET ");
+    req.append(url);
+    req.append(" HTTP/1.1\r\n");
+    req.append("Host: ");
+    req.append(hostname);
+    req.append("\r\n\r\n");
+
+    std::cout<<"dbg: sending req to server: "<< req << std::endl;
+
+    if(send(mySocket, req.c_str(), strlen(req.c_str()), 0)<0){
+        std::cout<<"Send failed!";
+        close(mySocket);
+        exit(1);
+    }
+
+    // wiat for response now!
+
+    p = url.find_last_of("/");
+    string f_name = url.substr(p+1);
+    if(f_name=="") f_name = "dl_file";
+    std::ofstream oFile(oDir+"/"+f_name, std::ios::binary);
+
+    int recvMsgSize;
+    if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
+        cerr<<"RecvFailed outside loop\n";
+        close(mySocket);
+        exit(1);
+    }
+    else{
+        cerr<<"rexcd Init: \n";
+        cerr<<buf<<endl;
+    }
+
+    int sz = parseHeader(std::string(buf))+getHeaderLen(std::string(buf));
+    int headerlen = getHeaderLen(std::string(buf));
+    int cur_cont_size = recvMsgSize - headerlen;
+
+    //cerr<<"Full resp: "<<buf<<endl; 
+
+
+    char bufD[BUF_SIZE+1];
+    bzero(bufD,BUF_SIZE+1);
+    memcpy(bufD, buf+headerlen, cur_cont_size);
+    bzero(buf, BUF_SIZE+1);
+    memcpy(buf, bufD, cur_cont_size);
+
+
+    int gotSize = cur_cont_size;
+    sz-= headerlen;
+
+    cout<<">>>>>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+    
+    //oFile.write(buf, recvMsgSize - headerlen);
+    oFile.write(buf, cur_cont_size);
+
+    cout<<"wrote: "<<buf<<endl;
+        
+    while(gotSize < sz){
+        
+        bzero(buf, BUF_SIZE+1);
+
+        if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
+            cerr<<"RecvFailed outside loop\n";
+            close(mySocket);
+            exit(1);
+        }
+        gotSize+=recvMsgSize;
+    
+        oFile.write(buf, recvMsgSize);  
+            cout<<">>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
+
+            cout<<"wrote: "<<buf<<endl;
+  
+    }
+
+    cout<<"EOT"<<endl;
+
     close(mySocket);
+    oFile.close();    
+
     return 0;
 } // main
 
@@ -69,6 +168,11 @@ int parseHeader(std::string r){ // return content-size! tL is useless as of now
     std::string cur;
     std::istringstream resp(r);
     
+    if(r.find("Content-Length")==string::npos) {
+        cerr<<"No content length!"<<endl;
+        exit(1);
+    }
+
     int tL = 0;
 
     while(true){
@@ -91,124 +195,6 @@ int parseHeader(std::string r){ // return content-size! tL is useless as of now
     }
     
 }
-
-void fetchObject(std::string toFetch, int &mySocket, bool& conFlag){
-    cerr<<"--> Got URL: "<<toFetch<<endl;
-    
-
-    struct hostent *he;
-    struct in_addr **addr_list;  
-    char ip[100];
-    char hostname[50];
-    bzero(hostname, 50);
-    string url(toFetch);
-    int p = url.find_first_of(":");
-    url = url.substr(p+3);
-    p = url.find_first_of("/");
-    strcpy(hostname, url.substr(0, p).c_str());
-    url = url.substr(p);
-
-
-    if ( (he = gethostbyname( hostname ) ) == NULL){
-        cerr<<"Cound fimd hostname: "<< hostname<< "!!\n";
-        close(mySocket);
-        exit(1);
-    }
-    addr_list = (struct in_addr **) he->h_addr_list;
- 
-    strcpy(ip , inet_ntoa(*addr_list[0]) );
-    
-    cout<<"ip::: >>>> "<<ip<<endl;
-
-    
-    server.sin_addr.s_addr = inet_addr(ip);
-    server.sin_family = AF_INET;
-    server.sin_port = htons(80);
-
-    if (!conFlag && connect(mySocket , (struct sockaddr *)&server , sizeof(server)) < 0)
-    {
-        puts("connect error\n");
-        exit(1);
-    }
-    else{
-        conFlag = true;
-    }
-
-    std::string req("");
-    req.append("GET ");
-    req.append(url);
-    req.append(" HTTP/1.1\r\n");
-    req.append("Host: ");
-    req.append(hostname);
-    req.append("\r\nConnection: keep-alive\r\n\r\n");
-
-    std::cout<<"dbg: sending req to server: "<< req << std::endl;
-
-    if(send(mySocket, req.c_str(), strlen(req.c_str()), 0)<0){
-        std::cout<<"Send failed!: Errno: "<<errno<<endl;
-        close(mySocket);
-        exit(1);
-    }
-
-    // wiat for response now!
-
-    p = url.find_last_of("/");
-    string f_name = url.substr(p+1);
-    if(f_name=="") f_name = "dl_file";
-    std::ofstream oFile(oDir+"/"+f_name, std::ios::binary);
-
-    int recvMsgSize;
-    if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
-        cerr<<"RecvFailed outside loop\n";
-        close(mySocket);
-        exit(1);
-    }
-
-    int sz = parseHeader(std::string(buf))+getHeaderLen(std::string(buf));
-    int headerlen = getHeaderLen(std::string(buf));
-    int cur_cont_size = recvMsgSize - headerlen;
-
-    char bufD[BUF_SIZE+1];
-    bzero(bufD,BUF_SIZE+1);
-    memcpy(bufD, buf+headerlen, cur_cont_size);
-    bzero(buf, BUF_SIZE+1);
-    memcpy(buf, bufD, cur_cont_size);
-
-    
-    int gotSize = cur_cont_size;
-    sz-= headerlen;
-
-    cout<<">>>>>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
-    
-    //oFile.write(buf, recvMsgSize - headerlen);
-    oFile.write(buf, cur_cont_size);
-
-    //cout<<"wrote: "<<buf<<endl;
-        
-    while(gotSize < sz){
-        
-        bzero(buf, BUF_SIZE+1);
-
-        if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
-            cerr<<"RecvFailed outside loop\n";
-            close(mySocket);
-            exit(1);
-        }
-        gotSize+=recvMsgSize;
-    
-        oFile.write(buf, recvMsgSize);  
-            cout<<">>>>>>>>> tot: "<<sz<<", got: "<<gotSize<<"\n";
-
-            //cout<<"wrote: "<<buf<<endl;
-  
-    }
-
-    cout<<"EOT"<<endl;
-
-    //close(mySocket);
-    oFile.close();   
-}
-
 
 std::string stripHeader(std::string r){
     int p = r.find("\r\n\r\n");
