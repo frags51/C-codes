@@ -4,7 +4,7 @@
 #include <random>
 #include <fstream>
 #include <atomic>
-
+#include <unordered_map>
 // line_65: array declared on stack, re init to some thing on heap.
 int n;
 const int NUM_THREADS = 51;
@@ -17,6 +17,7 @@ template<typename T> class StampedValue{
 		T value;
 		StampedValue(){
 			stamp = 0;
+			value = 0;
 		}
 		StampedValue(T init){
 			stamp=0;
@@ -42,17 +43,20 @@ private:
 	StampedValue<T>* r_value;
 
 public:
-	thread_local static StampedValue<T>* lastRead;
-
+	//thread_local static StampedValue<T>* lastRead;
+	static thread_local std::unordered_map<SRSW_Atomic*, StampedValue<T>*> s_B;
 	SRSW_Atomic(){
 		lastStamp = 0;
 		r_value = new StampedValue<T>();
-		lastRead = r_value;
+		s_B.insert({this, r_value});
+		//lastRead = r_value;
 	}
 	SRSW_Atomic(T init){
 		r_value = new StampedValue<T>(init);
 		lastStamp = 0;
-		lastRead = r_value;
+		s_B.insert({this, r_value});
+		
+		//lastRead = r_value;
 	}
 
 	~SRSW_Atomic(){
@@ -66,18 +70,21 @@ public:
 	}
 
 	T read(){
-		if(lastRead == nullptr)
-			lastRead = r_value;
+		if(s_B[this] == nullptr) s_B[this] = r_value;
 		StampedValue<T>* value = r_value;
-		StampedValue<T>* last = lastRead;
+		//StampedValue<T>* last = lastRead;
+		StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
-		lastRead = result;
+
+		//lastRead = result;
+		s_B[this] = result;
 		return result->value;
 	}
 	
 };
 template<typename T> thread_local long SRSW_Atomic<T>::lastStamp;
-template<typename T> thread_local StampedValue<T>* SRSW_Atomic<T>::lastRead;
+//template<typename T> thread_local StampedValue<T>* SRSW_Atomic<T>::lastRead;
+template<typename T> thread_local std::unordered_map<SRSW_Atomic<T>*, StampedValue<T>*> SRSW_Atomic<T>::s_B;
 
 template<typename T> class MRSW_Atomic{
 private:
@@ -112,7 +119,7 @@ public:
 		for (int i = 0; i < NUM_THREADS; i++) {
 			value = StampedValue<T>::max(value, a_table[i][me].read());
 		}
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < NUM_THREADS; i++) {
 			a_table[me][i].write(value);
 		}
 		return value->value; // ?
@@ -136,7 +143,9 @@ public:
 	void write(T value, int me){
 		StampedValue<T>* max = StampedValue<T>::MIN_VALUE;
 		for (int i = 0; i < NUM_THREADS; i++) {
-			max = StampedValue<T>::max(max, a_table[me].read(me));
+			int xx;
+			max = StampedValue<T>::max(max, a_table[i].read(me));
+			int yy;
 		}
 		a_table[me].write(new StampedValue<T>(max->stamp + 1, value));
 	}
@@ -144,7 +153,8 @@ public:
 	T read(int me){
 		StampedValue<T>* max = StampedValue<T>::MIN_VALUE;
 		for (int i = 0; i < NUM_THREADS; i++) {
-			max = StampedValue<T>::max(max, a_table[me].read(me));
+			int xx;
+			max = StampedValue<T>::max(max, a_table[i].read(me));
 		}
 		return max->value;
 	}
@@ -194,7 +204,7 @@ void threadMain(int me){
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp, "%dth Action completed by %d at %s\n", i, id, buf);
-        //std::this_thread::sleep_for(std::chrono::duration<double>(csRand(e1)));
+        std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(csRand(e1)));
 	}
 	return;
 }
@@ -227,7 +237,7 @@ void threadMainDef(int me){
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp2, "%dth Action completed by %d at %s\n", i, id, buf);
-        //std::this_thread::sleep_for(std::chrono::duration<double>(csRand(e1)));
+        std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(csRand(e1)));
 	}
 	return;
 }
