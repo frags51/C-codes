@@ -1,3 +1,4 @@
+// SLEEP DURATION FOR THREADMAIN 1 AND 2 ARE DIFFERENT!
 #include <iostream>
 #include <cstdlib>
 #include <thread>
@@ -7,10 +8,13 @@
 #include <unordered_map>
 // line_65: array declared on stack, re init to some thing on heap.
 int n;
-const int NUM_THREADS = 51;
+const int NUM_THREADS = 2;
+
+const bool DEB = true;
 
 using namespace std;
 
+// A <stamp, value> Pair!
 template<typename T> class StampedValue{
 	public:
 		long stamp;
@@ -36,6 +40,7 @@ template<typename T> class StampedValue{
 
 template <typename T> StampedValue<T>* StampedValue<T>::MIN_VALUE ;
 
+// Atomic SRSW registers!
 template<typename T> class SRSW_Atomic
 {
 private:
@@ -44,6 +49,7 @@ private:
 
 public:
 	//thread_local static StampedValue<T>* lastRead;
+	// This map stores per instance thread local variables!
 	static thread_local std::unordered_map<SRSW_Atomic*, StampedValue<T>*> s_B;
 	SRSW_Atomic(){
 		lastStamp = 0;
@@ -55,7 +61,7 @@ public:
 		r_value = new StampedValue<T>(init);
 		lastStamp = 0;
 		s_B.insert({this, r_value});
-		
+
 		//lastRead = r_value;
 	}
 
@@ -64,9 +70,11 @@ public:
 	}
 
 	void write(T v){
+		if(s_B[this] == nullptr) s_B[this] = r_value;
 		long stamp = lastStamp+1;
 		r_value = new StampedValue<T>(stamp, v);
 		lastStamp = stamp;
+
 	}
 
 	T read(){
@@ -75,7 +83,6 @@ public:
 		//StampedValue<T>* last = lastRead;
 		StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
-
 		//lastRead = result;
 		s_B[this] = result;
 		return result->value;
@@ -190,12 +197,12 @@ void threadMain(int me){
 
         if(action){ // read
         	lVar = reg.read(me);
-        	fprintf(fp, "Value Read: %d\n", lVar);
+        	fprintf(fp, "Value Read: %d, by %d : %dth\n", lVar, id, i);
         }
         else{
         	lVar = k * me;
         	reg.write(lVar, me);
-        	fprintf(fp, "Value Write: %d\n", lVar);
+        	fprintf(fp, "Value Write: %d by %d : %dth\n", lVar, id , i);
         }
         auto _exitTime = chrono::system_clock::now(); //the timepoint
         auto exitTime = std::chrono::system_clock::to_time_t(_exitTime);
@@ -204,7 +211,7 @@ void threadMain(int me){
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp, "%dth Action completed by %d at %s\n", i, id, buf);
-        std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(csRand(e1)));
+        std::this_thread::sleep_for(std::chrono::duration<double>(csRand(e1)));
 	}
 	return;
 }
