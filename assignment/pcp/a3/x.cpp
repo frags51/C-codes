@@ -66,13 +66,15 @@ public:
 	}
 
 	~SRSW_Atomic(){
-		delete[] r_value;
+		delete r_value;
 	}
 
 	void write(T v){
 		//if(s_B.count(this)==0) s_B[this] = r_value;
 		long stamp = lastStamp+1;
+		auto temp = r_value;
 		r_value = new StampedValue<T>(stamp, v);
+		if(lastRead!=temp) {delete temp; /*cout<<"deleting: "<<temp<<",lastRead: "<<lastRead<<endl;*/}
 		lastStamp = stamp;
 
 	}
@@ -83,6 +85,9 @@ public:
 		StampedValue<T>* last = lastRead;
 		//StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
+		if(result==r_value && r_value!=lastRead){
+			delete lastRead;
+		}
 		lastRead = result;
 		//s_B[this] = result;
 		return result->value;
@@ -97,7 +102,7 @@ template<typename T> class MRSW_Atomic{
 private:
 	 long lastStamp;
 	//thread_local static std::unordered_map<MRSW_Atomic<T>*, long> lastStamp;
-	SRSW_Atomic<StampedValue<T>*> **a_table;
+	SRSW_Atomic<StampedValue<T>*> **a_table; // array of arrays
 
 public:
 	MRSW_Atomic(){
@@ -165,7 +170,9 @@ public:
 			a_table[j].write(value);
 
 	}
-	~MRMW_Atomic() = default;
+	~MRMW_Atomic(){
+		;
+	}
 
 	void write(T value, int me){
 		StampedValue<T>* max = StampedValue<T>::MIN_VALUE;
