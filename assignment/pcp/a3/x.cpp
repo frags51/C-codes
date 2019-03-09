@@ -90,7 +90,7 @@ public:
 		StampedValue<T>* last = lastRead;
 		//StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
-		if(result==r_value && r_value!=lastRead){
+		if(result==r_value && r_value!=lastRead && DEB){
 			delete lastRead;
 		}
 		lastRead = result;
@@ -215,9 +215,9 @@ std::atomic<int> std_reg;
 FILE* fp = fopen("MRMW_log.txt", "w");
 FILE* fp2 = fopen("Atomic_log.txt", "w");
 
-void threadMain(int me){
+void threadMain(int me, double *wta){
 	//SRSW_Atomic<int>::lastRead = new StampedValue<int>();
-	int lVar; int id = me;
+	int lVar; int id = me; wta[me] = 0.0;
 	char buf[100];
 	for(int i=0; i<k; i++){
 		auto _reqTime = chrono::system_clock::now(); //the timepoint
@@ -228,18 +228,30 @@ void threadMain(int me){
         bool action = whichAct(e2);
 
         if(action){ // read
+        	auto _st = chrono::system_clock::now();
+        	// read
         	lVar = reg.read(me);
+
+        	auto _et = chrono::system_clock::now();
+        	chrono::duration<double> _wt= _et - _st;
+        	*(wta+id)+= _wt.count(); // Setting Wait Time
+
         	fprintf(fp, "Value Read: %d\n", lVar);
         }
         else{
         	lVar = k * me;
+        	auto _st = chrono::system_clock::now();
+
         	reg.write(lVar, me);
+
+        	auto _et = chrono::system_clock::now();
+        	chrono::duration<double> _wt= _wt= _et - _st;
+        	*(wta+id)+= _wt.count(); // Setting Wait Time
         	fprintf(fp, "Value Write: %d\n", lVar);
         }
         auto _exitTime = chrono::system_clock::now(); //the timepoint
         auto exitTime = std::chrono::system_clock::to_time_t(_exitTime);
-        chrono::duration<double> _wt= _exitTime - _reqTime;
-        //wait_time+= _wt.count(); // Setting Wait Time
+       
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp, "%dth Action completed by %d at %s\n", i, id, buf);
@@ -248,10 +260,11 @@ void threadMain(int me){
 	return;
 }
 
-void threadMainDef(int me){
+void threadMainDef(int me, double* wta){
 	int lVar;
 	char buf[100];
 	int id = me;
+	wta[me] = 0;
 	for(int i=0; i<k; i++){
 		auto _reqTime = chrono::system_clock::now(); //the timepoint
         time_t reqTime = std::chrono::system_clock::to_time_t(_reqTime);
@@ -261,18 +274,31 @@ void threadMainDef(int me){
         bool action = whichAct(e2);
 
         if(action){ // read
+        	auto _st = chrono::system_clock::now();
+
         	lVar = std_reg.load();
+			
+			auto _et = chrono::system_clock::now();
+        	chrono::duration<double> _wt= _wt= _et - _st;
+        	*(wta+id)+= _wt.count(); // Setting Wait Time
+
         	fprintf(fp2, "Value Read: %d\n", lVar);
         }
         else{
         	lVar = k * me;
+        	auto _st = chrono::system_clock::now();
+        	
         	std_reg.store(lVar);
+        	auto _et = chrono::system_clock::now();
+        	chrono::duration<double> _wt= _wt= _et - _st;
+        	*(wta+id)+= _wt.count(); // Setting Wait Time
+
         	fprintf(fp2, "Value Write: %d\n", lVar);
         }
         auto _exitTime = chrono::system_clock::now(); //the timepoint
         auto exitTime = std::chrono::system_clock::to_time_t(_exitTime);
-        //chrono::duration<double> _wt= _exitTime - _reqTime;
-        //wait_time+= _wt.count(); // Setting Wait Time
+        chrono::duration<double> _wt= _exitTime - _reqTime;
+        *(wta+id)+= _wt.count(); // Setting Wait Time
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp2, "%dth Action completed by %d at %s\n", i, id, buf);
@@ -280,6 +306,8 @@ void threadMainDef(int me){
 	}
 	return;
 }
+
+double* wta = nullptr;
 
 int main(){
 	StampedValue<int>::MIN_VALUE = new StampedValue<int>();
@@ -289,6 +317,7 @@ int main(){
 	ifstream inp{"inp-params.txt"}; 
 
 	// INIT
+	
     inp>>n>>k>>l1>>p;
     NUM_THREADS = n;
     reg = MRMW_Atomic<int>(0);
@@ -297,16 +326,21 @@ int main(){
     csRand = std::exponential_distribution<double>(l1);
     whichAct =  std::bernoulli_distribution(p);
 
+    wta = new double[n];
+
     // Using my registers
 	thread tid[n];
-	auto st = chrono::system_clock::now();
+	//auto st = chrono::system_clock::now();
 	for(int i=0; i<n; i++) 
-		tid[i] = std::thread(threadMain, i);
+		tid[i] = std::thread(threadMain, i, wta);
 	for(int i=0; i<n; i++) 
 		tid[i].join();
-	auto en = chrono::system_clock::now();
-	chrono::duration<double> f = en-st;
-	wait_time = f.count();
+	//auto en = chrono::system_clock::now();
+	//chrono::duration<double> f = en-st;
+	wait_time = 0;
+	for(int i =0; i<n; i++){
+		wait_time+=wta[i];
+	}
 	wait_time=wait_time/(n*k);
 
 	cout<< "Wait time for my implementation: "<<wait_time<<endl;
@@ -314,18 +348,22 @@ int main(){
 	wait_time = 0;
 	
 	// Useing std::atomic registers!
-	st = chrono::system_clock::now();
+	//st = chrono::system_clock::now();
 	for(int i=0; i<n; i++) 
-		tid[i] = std::thread(threadMainDef, i);
+		tid[i] = std::thread(threadMainDef, i, wta);
 	for(int i=0; i<n; i++) 
 		tid[i].join();
-	en = chrono::system_clock::now();
-	f = en-st;
-	wait_time = f.count();
+	//en = chrono::system_clock::now();
+	//f = en-st;
+	wait_time = 0;
+	for(int i =0; i<n; i++){
+		wait_time+=wta[i];
+	}
+
 	wait_time=wait_time/(n*k);
 
 	cout<< "Wait time for C++ std::atomic: "<<wait_time<<endl;
 
-
+	//delete [] wta;
 	return 0;
 }
