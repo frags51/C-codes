@@ -1,4 +1,5 @@
 // SLEEP DURATION FOR THREADMAIN 1 AND 2 ARE DIFFERENT!
+// In Case of segfaults, commemnt out delete in SRSW::Write or set DEB to false
 #include <iostream>
 #include <cstdlib>
 #include <thread>
@@ -6,6 +7,7 @@
 #include <fstream>
 #include <atomic>
 #include <unordered_map>
+#include <vector>
 // line_65: array declared on stack, re init to some thing on heap.
 int n;
 int NUM_THREADS = 10;
@@ -13,6 +15,7 @@ int NUM_THREADS = 10;
 const bool DEB = true;
 
 using namespace std;
+
 
 // A <stamp, value> Pair!
 template<typename T> class StampedValue{
@@ -38,6 +41,7 @@ template<typename T> class StampedValue{
 		static StampedValue<T>* MIN_VALUE;
 }; 
 
+// declaration!
 template <typename T> StampedValue<T>* StampedValue<T>::MIN_VALUE ;
 
 // Atomic SRSW registers!
@@ -46,7 +50,7 @@ template<typename T> class SRSW_Atomic
 private:
 	long lastStamp;
 	StampedValue<T>* r_value;
-
+	StampedValue<T>* value = nullptr;
 public:
 	StampedValue<T>* lastRead;
 	// This map stores per instance thread local variables!
@@ -74,14 +78,15 @@ public:
 		long stamp = lastStamp+1;
 		auto temp = r_value;
 		r_value = new StampedValue<T>(stamp, v);
-		if(lastRead!=temp) {delete temp; /*cout<<"deleting: "<<temp<<",lastRead: "<<lastRead<<endl;*/}
+		
 		lastStamp = stamp;
+		if(lastRead!=temp && value!=temp && DEB ) {delete temp;}
 
 	}
 
 	T read(){
 		//if(s_B.count(this)==0) s_B[this] = r_value;
-		StampedValue<T>* value = r_value;
+		value = r_value;
 		StampedValue<T>* last = lastRead;
 		//StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
@@ -171,7 +176,7 @@ public:
 
 	}
 	~MRMW_Atomic(){
-		;
+		//delete[] a_table;
 	}
 
 	void write(T value, int me){
@@ -283,6 +288,7 @@ int main(){
 	cout<<"starting: "<<endl;
 	ifstream inp{"inp-params.txt"}; 
 
+	// INIT
     inp>>n>>k>>l1>>p;
     NUM_THREADS = n;
     reg = MRMW_Atomic<int>(5);
@@ -291,6 +297,7 @@ int main(){
     csRand = std::exponential_distribution<double>(l1);
     whichAct =  std::bernoulli_distribution(p);
 
+    // Using my registers
 	thread tid[n];
 	auto st = chrono::system_clock::now();
 	for(int i=0; i<n; i++) 
@@ -303,9 +310,10 @@ int main(){
 	wait_time=wait_time/(n*k);
 
 	cout<< "Wait time for my implementation: "<<wait_time<<endl;
-
+	
 	wait_time = 0;
 	
+	// Useing std::atomic registers!
 	st = chrono::system_clock::now();
 	for(int i=0; i<n; i++) 
 		tid[i] = std::thread(threadMainDef, i);
