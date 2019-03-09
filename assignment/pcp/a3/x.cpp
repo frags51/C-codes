@@ -8,7 +8,7 @@
 #include <unordered_map>
 // line_65: array declared on stack, re init to some thing on heap.
 int n;
-const int NUM_THREADS = 10;
+int NUM_THREADS = 10;
 
 const bool DEB = true;
 
@@ -97,16 +97,27 @@ template<typename T> class MRSW_Atomic{
 private:
 	 long lastStamp;
 	//thread_local static std::unordered_map<MRSW_Atomic<T>*, long> lastStamp;
-	SRSW_Atomic<StampedValue<T>*> a_table[NUM_THREADS][NUM_THREADS];
+	SRSW_Atomic<StampedValue<T>*> **a_table;
 
 public:
 	MRSW_Atomic(){
+		a_table = new SRSW_Atomic<StampedValue<T>*>*[NUM_THREADS];
+		for (int i = 0; i < NUM_THREADS; ++i)
+		{
+			a_table[i] = new SRSW_Atomic<StampedValue<T>*>[NUM_THREADS];
+		}
 		lastStamp = 0;
 		StampedValue<T>* value = new StampedValue<T>();
 		for(int i=0; i<NUM_THREADS;i++) for(int j=0; j<NUM_THREADS;j++)
 			a_table[i][j].write(value);
 	}
 	MRSW_Atomic(T init){
+		a_table = new SRSW_Atomic<StampedValue<T>*>*[NUM_THREADS];
+		for (int i = 0; i < NUM_THREADS; ++i)
+		{
+			a_table[i] = new SRSW_Atomic<StampedValue<T>*>[NUM_THREADS];
+		}
+
 		lastStamp = 0;
 		//a_table = new SRSW_Atomic<StampedValue<T>*>[NUM_THREADS][NUM_THREADS];
 		StampedValue<T>* value = new StampedValue<T>(init);
@@ -138,9 +149,10 @@ public:
 
 template <typename T> class MRMW_Atomic{
 public:
-	MRSW_Atomic<StampedValue<T>*> a_table[NUM_THREADS];
+	MRSW_Atomic<StampedValue<T>*>* a_table;
 
 	MRMW_Atomic(T init){
+		a_table = new MRSW_Atomic<StampedValue<T>*>[NUM_THREADS];
 		StampedValue<T>* value = new StampedValue<T>(init);
 		for(int j=0; j<NUM_THREADS;j++)
 			a_table[j].write(value);
