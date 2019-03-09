@@ -12,7 +12,7 @@
 int n;
 int NUM_THREADS = 10;
 
-const bool DEB = true;
+const bool DEB = false;
 
 using namespace std;
 
@@ -229,17 +229,17 @@ void threadMain(int me){
 
         if(action){ // read
         	lVar = reg.read(me);
-        	fprintf(fp, "Value Read: %d, by %d : %dth\n", lVar, id, i);
+        	fprintf(fp, "Value Read: %d\n", lVar);
         }
         else{
         	lVar = k * me;
         	reg.write(lVar, me);
-        	fprintf(fp, "Value Write: %d by %d : %dth\n", lVar, id , i);
+        	fprintf(fp, "Value Write: %d\n", lVar);
         }
         auto _exitTime = chrono::system_clock::now(); //the timepoint
         auto exitTime = std::chrono::system_clock::to_time_t(_exitTime);
         chrono::duration<double> _wt= _exitTime - _reqTime;
-        wait_time+= _wt.count(); // Setting Wait Time
+        //wait_time+= _wt.count(); // Setting Wait Time
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp, "%dth Action completed by %d at %s\n", i, id, buf);
@@ -276,7 +276,7 @@ void threadMainDef(int me){
         tinfo= localtime(&exitTime);
         strftime (buf, sizeof (buf), "%H:%M:%S", tinfo);
         fprintf(fp2, "%dth Action completed by %d at %s\n", i, id, buf);
-        std::this_thread::sleep_for(std::chrono::duration<double, std::milli>(csRand(e1)));
+        std::this_thread::sleep_for(std::chrono::duration<double>(csRand(e1)));
 	}
 	return;
 }
@@ -291,7 +291,7 @@ int main(){
 	// INIT
     inp>>n>>k>>l1>>p;
     NUM_THREADS = n;
-    reg = MRMW_Atomic<int>(5);
+    reg = MRMW_Atomic<int>(0);
     e1.seed(std::chrono::system_clock::now().time_since_epoch().count());
     e2.seed(std::chrono::system_clock::now().time_since_epoch().count());
     csRand = std::exponential_distribution<double>(l1);
