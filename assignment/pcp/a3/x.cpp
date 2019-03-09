@@ -125,6 +125,13 @@ public:
 			a_table[i][j].write(value);
 	}
 
+	~MRSW_Atomic(){
+		for(int i = 0; i < NUM_THREADS; ++i) {
+    		delete [] a_table[i];
+		}
+		delete [] a_table;
+	}
+
 	void write(T v){
 		long stamp = lastStamp+ 1;
 		lastStamp = stamp;
@@ -190,7 +197,7 @@ std::bernoulli_distribution whichAct;
 int k;
 double l1, p, wait_time = 0;
 // The actual register.
-MRMW_Atomic<int> reg(5);
+MRMW_Atomic<int> reg(2);
 std::atomic<int> std_reg;
 
 FILE* fp = fopen("MRMW_log.txt", "w");
@@ -266,10 +273,12 @@ int main(){
 	StampedValue<int>::MIN_VALUE = new StampedValue<int>();
 	
 	//reg.write(56, 0);
-	cout<<"starting: "<<reg.read(0)<<endl;
+	cout<<"starting: "<<endl;
 	ifstream inp{"inp-params.txt"}; 
 
     inp>>n>>k>>l1>>p;
+    NUM_THREADS = n;
+    reg = MRMW_Atomic<int>(5);
     e1.seed(std::chrono::system_clock::now().time_since_epoch().count());
     e2.seed(std::chrono::system_clock::now().time_since_epoch().count());
     csRand = std::exponential_distribution<double>(l1);
