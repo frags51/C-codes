@@ -8,7 +8,7 @@
 #include <unordered_map>
 // line_65: array declared on stack, re init to some thing on heap.
 int n;
-const int NUM_THREADS = 2;
+const int NUM_THREADS = 10;
 
 const bool DEB = true;
 
@@ -44,25 +44,25 @@ template <typename T> StampedValue<T>* StampedValue<T>::MIN_VALUE ;
 template<typename T> class SRSW_Atomic
 {
 private:
-	thread_local static long lastStamp;
+	long lastStamp;
 	StampedValue<T>* r_value;
 
 public:
-	//thread_local static StampedValue<T>* lastRead;
+	StampedValue<T>* lastRead;
 	// This map stores per instance thread local variables!
-	static thread_local std::unordered_map<SRSW_Atomic*, StampedValue<T>*> s_B;
+	//static thread_local std::unordered_map<SRSW_Atomic*, StampedValue<T>*> s_B;
 	SRSW_Atomic(){
 		lastStamp = 0;
 		r_value = new StampedValue<T>();
-		s_B.insert({this, r_value});
-		//lastRead = r_value;
+		//s_B.insert({this, r_value});
+		lastRead = r_value;
 	}
 	SRSW_Atomic(T init){
 		r_value = new StampedValue<T>(init);
 		lastStamp = 0;
-		s_B.insert({this, r_value});
+		//s_B.insert({this, r_value});
 
-		//lastRead = r_value;
+		lastRead = r_value;
 	}
 
 	~SRSW_Atomic(){
@@ -70,7 +70,7 @@ public:
 	}
 
 	void write(T v){
-		if(s_B[this] == nullptr) s_B[this] = r_value;
+		//if(s_B.count(this)==0) s_B[this] = r_value;
 		long stamp = lastStamp+1;
 		r_value = new StampedValue<T>(stamp, v);
 		lastStamp = stamp;
@@ -78,24 +78,25 @@ public:
 	}
 
 	T read(){
-		if(s_B[this] == nullptr) s_B[this] = r_value;
+		//if(s_B.count(this)==0) s_B[this] = r_value;
 		StampedValue<T>* value = r_value;
-		//StampedValue<T>* last = lastRead;
-		StampedValue<T>* last = s_B[this];
+		StampedValue<T>* last = lastRead;
+		//StampedValue<T>* last = s_B[this];
 		StampedValue<T>* result = StampedValue<T>::max(value, last);
-		//lastRead = result;
-		s_B[this] = result;
+		lastRead = result;
+		//s_B[this] = result;
 		return result->value;
 	}
 	
 };
-template<typename T> thread_local long SRSW_Atomic<T>::lastStamp;
-//template<typename T> thread_local StampedValue<T>* SRSW_Atomic<T>::lastRead;
-template<typename T> thread_local std::unordered_map<SRSW_Atomic<T>*, StampedValue<T>*> SRSW_Atomic<T>::s_B;
+//template<typename T> long SRSW_Atomic<T>::lastStamp;
+//template<typename T> StampedValue<T>* SRSW_Atomic<T>::lastRead;
+//template<typename T> thread_local std::unordered_map<SRSW_Atomic<T>*, StampedValue<T>*> SRSW_Atomic<T>::s_B;
 
 template<typename T> class MRSW_Atomic{
 private:
-	thread_local static long lastStamp;
+	 long lastStamp;
+	//thread_local static std::unordered_map<MRSW_Atomic<T>*, long> lastStamp;
 	SRSW_Atomic<StampedValue<T>*> a_table[NUM_THREADS][NUM_THREADS];
 
 public:
@@ -133,7 +134,7 @@ public:
 	}
 
 };
-template<typename T> thread_local long MRSW_Atomic<T>::lastStamp;
+//template<typename T> long MRSW_Atomic<T>::lastStamp;
 
 template <typename T> class MRMW_Atomic{
 public:
