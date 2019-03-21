@@ -101,7 +101,8 @@ int parseHeader(std::string r){ // return content-size! tL is useless as of now
     
     if(r.find("Content-Length")==string::npos) {
         cerr<<"No content length!"<<endl;
-        exit(1);
+        return 0;
+        //exit(1);
     }
 
     int tL = 0;
