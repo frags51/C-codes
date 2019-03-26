@@ -24,6 +24,7 @@
 #include <map>
 #include <mutex>
 #include <algorithm>
+#include <cerrno>
 //#include "port.h"
 
 
@@ -33,6 +34,7 @@ const std::string oDir = "resp";
 std::map<std::string, std::vector<char>> cache;
 std::mutex cacheMtx;
 
+int clSocket;
 
 char buf[BUF_SIZE+1];
 
@@ -48,9 +50,26 @@ int parseReqHEAD(char *req, char*resp, int clSock);
 int parseReqPOST(char *req, char*resp, int clSock);
 void threadMain(int incoming_socket);
 
+void sigIntHandler(int id){
+    close(clSocket);
+    printf(">> Closed!\n");
+    
+    exit(1);
+}
+
 int main(int argc, char **argv){
     bzero(buf, BUF_SIZE+1);
     std::cout << "Usage: ./a.out port\n";
+
+    struct sigaction handler;
+    handler.sa_handler = sigIntHandler;
+    sigfillset(&handler.sa_mask);
+    handler.sa_flags =0;
+    if (sigaction(SIGINT, &handler, 0)<0)
+    {
+        perror("sigaction faield!@\n");
+        exit(1);
+    }
 
     short PORT;
     
@@ -62,7 +81,7 @@ int main(int argc, char **argv){
     PORT = stoi(argv[1]);
     cout<<"Deb: Running on port: "<<PORT<<"\n";
 
-    int clSocket = socket(AF_INET, SOCK_STREAM, 0);
+    clSocket = socket(AF_INET, SOCK_STREAM, 0);
     if(clSocket < 0) {std::cerr<<"Error, CL Socket Creation failed!"<<std::endl; exit(1);}
     struct sockaddr_in forCL;
     forCL.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -82,13 +101,14 @@ int main(int argc, char **argv){
         exit(1);
     }
     else{ cerr<<"Listening for connections!\n";}
-    long length;
+    long length = sizeof(forCL);
     while(1){
         int incoming_socket = accept(clSocket, (struct sockaddr *)&forCL,  
                        (socklen_t*)&length);
         if ((incoming_socket  <0) )
         { 
             printf("error in accept\n");
+            cout<<strerror(errno)<<", "<<errno<<endl;
         }
         else printf(">> COnnnected to id: %d\n", incoming_socket); 
 
@@ -298,7 +318,7 @@ int parseReqGET(char *req, char*resp, int clSock){
     }
     else{
         std::copy(buf, buf+recvMsgSize,std::back_inserter(toBeCached));
-        cerr<<"Sent to client: "<<(buf)<<endl;
+        //cerr<<"Sent to client: "<<(buf)<<endl;
     }
     //oFile.write(buf, cur_cont_size);
 
@@ -333,7 +353,7 @@ int parseReqGET(char *req, char*resp, int clSock){
     cacheMtx.lock();
     cache[cacheKey] = toBeCached;
     cacheMtx.unlock();
-    
+
     close(clSock);
     close(mySocket);
 } // reqGet
