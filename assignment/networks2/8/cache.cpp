@@ -22,6 +22,8 @@
 #include <chrono>
 #include <netdb.h>          /* for gethostbyname() */
 #include <map>
+#include <mutex>
+#include <algorithm>
 //#include "port.h"
 
 
@@ -29,6 +31,8 @@
 const std::string oDir = "resp";
 
 std::map<std::string, std::vector<char>> cache;
+std::mutex cacheMtx;
+
 
 char buf[BUF_SIZE+1];
 
@@ -182,6 +186,44 @@ int parseReqGET(char *req, char*resp, int clSock){
         }
     }
 
+    // deciding on caching
+    string url = r.substr(4); // After "GET "
+    int _p = url.find_first_of(" ");
+    url = url.substr(0, _p);
+    cerr<<"Got URL to GET: "<<url<<endl;
+    
+    std::string cacheKey = host_name + url; 
+
+    int p = url.find_last_of("/");
+    string f_name = url.substr(p+1);
+    if(f_name=="") f_name = "dl_file";
+
+    cacheMtx.lock();
+    if(cache.find(cacheKey)==cache.end()){
+        cache[cacheKey] = std::vector<char>();
+        cacheMtx.unlock();
+        cerr<<"DBG: "<<cacheKey<<" not found in cache!"<<endl;
+    }
+    else{
+        cerr<<"DBH: "<<cacheKey<<" found in cache!"<<endl;
+        std::vector<char> _resp = cache[cacheKey]; 
+        cacheMtx.unlock();
+
+        if(_resp.empty()){
+            cerr<<"Error: cahced entry is empty!\n";
+            exit(1);
+        }
+        if(send(clSock, &_resp[0], _resp.size(), 0)<0){
+            cerr<<"Failed to send resp back to client out loop\n";
+        }
+
+        cout<<"EOT"<<endl;
+        close(clSock);
+        return 0;
+    } // found in cache
+
+    std::vector<char> toBeCached;
+
     // Getting IP from host!
     struct hostent *he;
     struct in_addr **addr_list;  
@@ -224,14 +266,9 @@ int parseReqGET(char *req, char*resp, int clSock){
         exit(1);
     }
 
-    string url = r.substr(4); // After "GET "
-    int _p = url.find_first_of(" ");
-    url = url.substr(0, _p);
-    cerr<<"Got URL to GET: "<<url<<endl;
-    int p = url.find_last_of("/");
-    string f_name = url.substr(p+1);
-    if(f_name=="") f_name = "dl_file";
+
     //std::ofstream oFile(oDir+"/"+f_name, std::ios::binary);
+
 
     int recvMsgSize;
     if( (recvMsgSize = recv(mySocket, buf , sizeof buf , 0)) < 0){
@@ -260,6 +297,7 @@ int parseReqGET(char *req, char*resp, int clSock){
         cerr<<"Failed to send resp back to client out loop\n";
     }
     else{
+        std::copy(buf, buf+recvMsgSize,std::back_inserter(toBeCached));
         cerr<<"Sent to client: "<<(buf)<<endl;
     }
     //oFile.write(buf, cur_cont_size);
@@ -282,6 +320,7 @@ int parseReqGET(char *req, char*resp, int clSock){
             cerr<<"Failed to send resp back to client out loop\n";
         }
         else{
+            std::copy(buf, buf+recvMsgSize,std::back_inserter(toBeCached));
             //cerr<<"Sent to client: "<<(buf)<<endl;
         }
         
@@ -290,6 +329,11 @@ int parseReqGET(char *req, char*resp, int clSock){
     }
 
     cout<<"EOT"<<endl;
+
+    cacheMtx.lock();
+    cache[cacheKey] = toBeCached;
+    cacheMtx.unlock();
+    
     close(clSock);
     close(mySocket);
 } // reqGet
