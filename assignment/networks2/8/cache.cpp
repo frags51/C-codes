@@ -24,6 +24,7 @@
 #include <map>
 #include <mutex>
 #include <algorithm>
+#include <chrono>
 #include <cerrno>
 //#include "port.h"
 
@@ -33,6 +34,10 @@ const std::string oDir = "resp";
 
 std::map<std::string, std::vector<char>> cache;
 std::mutex cacheMtx;
+
+std::map<std::string, int> statsVis;
+std::map<std::string, bool> statsCookies;
+std::mutex visMtx;
 
 int clSocket;
 
@@ -52,8 +57,17 @@ void threadMain(int incoming_socket);
 
 void sigIntHandler(int id){
     close(clSocket);
-    printf(">> Closed!\n");
+    printf(">> Closed clSocket!\n");
     
+    cout<<"-------------\nVisited Stats: Host_name, visited count\n\n";
+    for(auto elem:statsVis)
+     cout<<elem.first<<", "<<elem.second<<endl;
+
+    cout<<"-------------\nCookie use Stats: Host_name, uses cookies?\n\n";
+    for(auto elem:statsCookies)
+     cout<<elem.first<<", "<<elem.second<<endl;
+
+    cout<<"-------------\n";
     exit(1);
 }
 
@@ -188,11 +202,13 @@ int parseReqGET(char *req, char*resp, int clSock){
     std::istringstream r_stream(r);
     string cur;
     string host_name;
+    bool usesCookies = false;
     // find Host
     while(true){
         std::getline(r_stream, cur);
         if(cur.compare("\r") == 0) {cerr<<"Host: not fpund in GET!\n"; break;}
-        int v; 
+        int v;
+
         if( (v = cur.find("Host: "))==string::npos) {
             //cout<<";GheadeR: "<<cur<<", Lngt: "<<(cur.length()+1)<<endl;
             continue;
@@ -205,6 +221,16 @@ int parseReqGET(char *req, char*resp, int clSock){
             break;
         }
     }
+    if(r.find("Cookie")!=string::npos)
+        usesCookies = true;
+    // stats work!
+    visMtx.lock();
+    if(statsVis.find(host_name)==statsVis.end()) statsVis[host_name] = 1;
+    else statsVis[host_name]++;
+
+    statsCookies[host_name] = usesCookies;
+    
+    visMtx.unlock();
 
     // deciding on caching
     string url = r.substr(4); // After "GET "
@@ -228,7 +254,7 @@ int parseReqGET(char *req, char*resp, int clSock){
         cerr<<"DBH: "<<cacheKey<<" found in cache!"<<endl;
         std::vector<char> _resp = cache[cacheKey]; 
         cacheMtx.unlock();
-
+        auto _start = std::chrono::steady_clock::now();
         if(_resp.empty()){
             cerr<<"Error: cahced entry is empty!\n";
             exit(1);
@@ -237,12 +263,16 @@ int parseReqGET(char *req, char*resp, int clSock){
             cerr<<"Failed to send resp back to client out loop\n";
         }
 
-        cout<<"EOT"<<endl;
+        cout<<"EOT"<<endl<<endl;
+        cout<<"Elapsed Cache Time in micros: "<<(chrono::duration_cast<chrono::microseconds>
+            (chrono::steady_clock::now()-_start).count())<<endl;
+
         close(clSock);
         return 0;
     } // found in cache
 
     std::vector<char> toBeCached;
+    auto _start = std::chrono::steady_clock::now();
 
     // Getting IP from host!
     struct hostent *he;
@@ -348,11 +378,14 @@ int parseReqGET(char *req, char*resp, int clSock){
   
     }
 
-    cout<<"EOT"<<endl;
+    cout<<"EOT"<<endl<<endl;
 
     cacheMtx.lock();
     cache[cacheKey] = toBeCached;
     cacheMtx.unlock();
+    
+    cout<<"Elapsed Non-Cache Time in micros: "<<(chrono::duration_cast<chrono::microseconds>
+        (chrono::steady_clock::now()-_start).count())<<endl;
 
     close(clSock);
     close(mySocket);
