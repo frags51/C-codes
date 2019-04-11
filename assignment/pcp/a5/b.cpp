@@ -90,8 +90,8 @@ public:
 class BackoffLock
 {
     std::atomic<bool> lck;
-    const int minDelay = 1;
-    const int maxDelay = 32;
+    const int minDelay = 4;
+    const int maxDelay = 128;
 public:
     BackoffLock(){
         lck = false;
