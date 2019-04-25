@@ -154,7 +154,10 @@ int main(int argc, char** argv){
 		cerr<<err;
 		exit(1);
 	}
+	cout<<"Fine-Grained Locking:"<<endl;
+	doReadWriteTest(std::atoi(argv[1]), std::stod(argv[2]));
 	
+	cout<<"Lock Free:"<<endl;
 	doReadWriteTest2(std::atoi(argv[1]), std::stod(argv[2]));
 
 	//malloc_stats_print(NULL, NULL, NULL);

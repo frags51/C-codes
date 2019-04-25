@@ -146,7 +146,7 @@ public:
 				if(!nodeFound->marked.load()){
 					while(!nodeFound->fullyLinked.load());
 					delGarbage(garbage);
-
+					
 					return false;
 				}
 				continue;
@@ -164,7 +164,11 @@ public:
 				highestLocked  = level;
 				valid = !pred->marked && !succ->marked && pred->next[level]==succ;
 			} // for
-			if(!valid) continue;
+			if(!valid) {
+				for (int level = 0; level <= highestLocked; level++) 
+				preds[level]->unlock();
+				continue;
+			}
 
 			Node<T>* newNode = new Node<T>(x, topLevel);
 			for (int level=0; level<=topLevel; level++) newNode->next[level] = succs[level];
@@ -224,7 +228,11 @@ public:
 					highestLocked = level;
 					valid = !pred->marked && pred->next[level]==victim;
 				} // for level=0
-				if(!valid) continue;
+				if(!valid) {
+					for (int level = 0; level <= highestLocked; level++) 
+						preds[level]->unlock();
+					continue;
+				}
 				
 				for (int level = topLevel; level >= 0; level--) {
 					preds[level]->next[level] = victim->next[level];
