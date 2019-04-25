@@ -185,8 +185,8 @@ public:
 		bool isMarked=false;
 		int topLevel=-1;
 
-		std::vector<Node<T>*> preds{MAX_LEVEL+1};
-		std::vector<Node<T>*> succs{MAX_LEVEL+1};
+		std::vector<Node<T>*> preds(MAX_LEVEL+1);
+		std::vector<Node<T>*> succs(MAX_LEVEL+1);
 		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
 		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
 
@@ -246,8 +246,8 @@ public:
 	} // remove
 
 	bool contains(T x){
-		std::vector<Node<T>*> preds{MAX_LEVEL+1};
-		std::vector<Node<T>*> succs{MAX_LEVEL+1};
+		std::vector<Node<T>*> preds(MAX_LEVEL+1);
+		std::vector<Node<T>*> succs(MAX_LEVEL+1);
 		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
 		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
 
