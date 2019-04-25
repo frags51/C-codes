@@ -28,13 +28,13 @@ public:
 };
 */
 
-// Node<G> stores a G* 
+// Node<G> stores a G: Must be copy constructible!
 template <typename T> class LazySkipList{
 	static const int MAX_LEVEL = 8;
 
 	template <typename G> class Node{
 	public:
-		const G* item;
+		const G item;
 		const int64_t key;
 		
 		std::recursive_mutex mtx;
@@ -44,14 +44,14 @@ template <typename T> class LazySkipList{
 	public:
 		int topLevel;
 	public:
-		Node(): key(-10), item(NULL) {;}
-		Node(int64_t k): key(k), item(NULL){
+		Node(): key(-10), item(0) {;}
+		Node(int64_t k): key(k), item(0){
 			
 			next.reserve(MAX_LEVEL+1);
 			for(int i=0; i<MAX_LEVEL+1;i++) next[i] = new Node();
 			topLevel = MAX_LEVEL;
 		}
-		Node(G* x, int64_t height): item(x), key((int64_t) x){
+		Node(G x, int64_t height): item(x), key((int64_t) x){
 			next.reserve(height+1);
 			for(int i=0; i<height+1;i++) next[i] = new Node();
 			topLevel = height;
@@ -86,7 +86,7 @@ public:
 		delete tail;
 	}
 
-	int find(T* x, std::vector<Node<T>*> preds, std::vector<Node<T>*> succs){
+	int find(T x, std::vector<Node<T>*> preds, std::vector<Node<T>*> succs){
 		int64_t key  = (int64_t) x;
 		int lFound = -1;
 		
@@ -104,8 +104,8 @@ public:
 		return lFound;
 	} // find
 
-	bool add(T* x){
-		
+	bool add(T x){
+
 	}
 };
 
