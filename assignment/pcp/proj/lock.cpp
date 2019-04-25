@@ -76,7 +76,7 @@ template <typename T> class LazySkipList{
 	void delGarbage(std::unordered_set<Node<T>*> &garbage){
 		for(auto v: garbage) delete v;
 		//garbage.clear();
-	}
+	} // delGarbage
 
 public:
 	LazySkipList(){
@@ -89,7 +89,19 @@ public:
 	}
 	
 	~LazySkipList(){
+		Node<T>* p = head->next[0];
+		Node<T>* q;
+		while(p!=tail){
+			q = p->next[0];
+			//cout<<"delling ~LazySkipList(): "<<p<<endl;
+			delete p;
+			p = q;
+		}
 		delete head;
+		int s = (tail->topLevel)+1;
+		for (int i=0; i<s; i++) {
+			delete tail->next[i];
+		}
 		delete tail;
 	}
 
@@ -247,6 +259,15 @@ public:
 		return (lFound != -1 && succs[lFound]->fullyLinked &&  !succs[lFound]->marked);
 	}
 
+	void display(){
+		cout<<"Display\n";
+		Node<T>* p = head->next[0];
+		while(p!=tail){
+			cout<<"ptr: "<<p<<endl;
+			cout<<p->key<<endl;
+			p = p->next[0];
+		}
+	}
 }; // class LazySkipList<T>
 
 
@@ -254,15 +275,16 @@ public:
 int main(){
 	LazySkipList<int> b{};
 	//auto a = new LazySkipList<int>::Node<int>(5);
-	cout<<INT64_MIN<<"\n";
+	//cout<<INT64_MIN<<"\n";
 	b.add(2);
-	b.add(3);
-	b.add(1);
+	//b.add(3);
+	//b.add(1);
 	cout<<(b.contains(2)?"true":"false")<<endl;
-	b.remove(2);
+	//b.remove(2);
 	cout<<(b.contains(2)?"true":"false")<<endl;
 	cout<<(b.contains(3)?"true":"false")<<endl;
 	cout<<(b.contains(1)?"true":"false")<<endl;
 
+	b.display();
 	return 0;
 }
