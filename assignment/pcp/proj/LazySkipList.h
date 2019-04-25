@@ -3,8 +3,9 @@
  * Lock-based SkipList
  * Supreet Singh, Mayank Hooda
  */
+#ifndef __LZ_SKP_LST 
+#define __LZ_SKP_LST
 
-#include <iostream>
 #include <mutex>			/* Recursive Mutex */
 #include <atomic>			/* Emulation of java's volatile */
 #include <vector>			/* Vectors instead of heap based arrays */
@@ -55,7 +56,7 @@ template <typename T> class LazySkipList{
 		Node(G x, int64_t height): item(x), key((int64_t) x){
 			next.reserve(height+1);
 			for(int i=0; i<height+1;i++) next.push_back(new Node());
-			cout<<"height=="<<height<<", sz: "<<next.size()<<endl;
+			//cout<<"height=="<<height<<", sz: "<<next.size()<<endl;
 			topLevel = height;
 		}
 
@@ -260,34 +261,16 @@ public:
 		return (lFound != -1 && succs[lFound]->fullyLinked &&  !succs[lFound]->marked);
 	}
 
-	void display(){
+	void display(char delim){
 		cout<<"Display\n";
 		Node<T>* p = head->next[0];
 		while(p!=tail){
-			cout<<"ptr: "<<p<<endl;
-			cout<<p->key<<endl;
+			//cout<<"ptr: "<<p<<endl;
+			cout<<p->key<<delim;
 			p = p->next[0];
 		}
+		cout<<endl;
 	}
 }; // class LazySkipList<T>
 
-
-
-int main(){
-	LazySkipList<int> b{};
-	//auto a = new LazySkipList<int>::Node<int>(5);
-	//cout<<INT64_MIN<<"\n";
-	b.add(2);
-	b.add(3);
-	b.add(1);
-	cout<<(b.contains(2)?"true":"false")<<endl;
-	//b.remove(2);
-	cout<<(b.contains(2)?"true":"false")<<endl;
-	cout<<(b.contains(3)?"true":"false")<<endl;
-	cout<<(b.contains(1)?"true":"false")<<endl;
-
-	b.display();
-
-	//malloc_stats_print(NULL, NULL, NULL);
-	return 0;
-}
+#endif
