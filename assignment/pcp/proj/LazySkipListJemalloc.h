@@ -11,10 +11,10 @@
 #include <vector>			/* Vectors instead of heap based arrays */
 #include <cstdint>			/* For int64_t min, max vals*/
 #include <random>			/* For random level selection! */
-#include <cstdlib>			/*	time() */
+//#include <cstdlib>			/*	time() */
 #include <ctime>
 #include <unordered_set>	/* Garbage Colllection */
-//#include <jemalloc/jemalloc.h> /* -ljemalloc, sudo apt install libjemalloc-dev*/
+#include <jemalloc/jemalloc.h> /* -ljemalloc, sudo apt install libjemalloc-dev*/
 using namespace std;
 
 
@@ -69,6 +69,10 @@ template <typename T> class LazySkipList{
 
 		~Node(){
 			//for(int i=0; i<next.size();i++) delete next[i];
+		}
+
+		void * operator new(size_t size){
+			return malloc(size);
 		}
 
 	}; // Node<T> ends
