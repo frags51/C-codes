@@ -3,35 +3,29 @@
 #include <atomic>			/* Emulation of java's volatile */
 #include <vector>			/* Vectors instead of heap based arrays */
 #include <cstdint>			/* For int64_t min, max vals*/
+#include <random>			/* For random level selection! */
+#include <cstdlib>			/*	time() */
+#include <ctime>
 using namespace std;
 
-/*
-template<class T>
-class MarkableReference
-{
-private:
-    uintptr_t val;
-    static const uintptr_t mask = 1;
-public:
-    MarkableReference(T* ref = NULL, bool mark = false)
-    {
-        val = ((uintptr_t)ref & ~mask) | (mark ? 1 : 0);
-    }
-    T* getRef(void)
-    {
-        return (T*)(val & ~mask);
-    }
-    bool getMark(void)
-    {
-        return (val & mask);
-    }
-};
-*/
 
 // Node<G> stores a G: Must be copy constructible!
 template <typename T> class LazySkipList{
 	static const int MAX_LEVEL = 8;
 
+	// required for level selection!
+	std::default_random_engine generator{time(NULL)};
+	std::geometric_distribution<int> distribution{0.5};
+
+	int randomLevel(){
+		int temp = distribution(generator) + 1;
+		if(temp < MAX_LEVEL) 	
+			return temp;
+		
+		return MAX_LEVEL;
+	} // randomLevel
+
+	// The Node Class
 	template <typename G> class Node{
 	public:
 		const G item;
@@ -86,7 +80,7 @@ public:
 		delete tail;
 	}
 
-	int find(T x, std::vector<Node<T>*> preds, std::vector<Node<T>*> succs){
+	int find(T x, std::vector<Node<T>*> &preds, std::vector<Node<T>*> &succs){
 		int64_t key  = (int64_t) x;
 		int lFound = -1;
 		
@@ -104,9 +98,53 @@ public:
 		return lFound;
 	} // find
 
-	bool add(T x){
+	
 
-	}
+	bool add(T x){
+		int topLevel = randomLevel();
+		std::vector<Node<T>*> preds;
+		std::vector<Node<T>*> succs;
+		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
+		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
+
+		while(true){
+			int lFound = find(x, preds, succs);
+			if(lFound!=-1){
+				Node<T>* nodeFound = succs[lFound];
+				if(!nodeFound->marked.load()){
+					while(!nodeFound->fullyLinked.load());
+					return false;
+				}
+				continue;
+			} // if Lfound!=-1
+
+			int highestLocked = -1;
+
+			Node<T> * pred, succ;
+			bool valid = true;
+			for(int level=0; valid && (level<=topLevel); level++){
+				pred = preds[level];
+				succ = succs[level];
+				pred->lock();
+				highestLocked  = level;
+				valid = !pred->marked && !succ->marked && pred->next[level]==succ;
+			} // for
+			if(!valid) continue;
+
+			Node<T>* newNode = new Node<T>(x, topLevel);
+			for (int level=0; level<=topLevel; level++) newNode->next[level] = succs[level];
+			for (int level=0; level<=topLevel; level++) preds[level]->next[level]=newNode;
+			
+			newNode->fullyLinked = true; // successful add linearization point
+
+			// unlock!
+			for (int level = 0; level <= highestLocked; level++) 
+				preds[level]->unlock();
+
+			return true;
+		}// while(true)
+
+	} // add ends
 };
 
 
