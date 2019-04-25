@@ -1,18 +1,24 @@
+/**
+ * PCP Project
+ * Lock-based SkipList
+ * Supreet Singh, Mayank Hooda
+ */
+
 #include <iostream>
-#include <mutex>
+#include <mutex>			/* Recursive Mutex */
 #include <atomic>			/* Emulation of java's volatile */
 #include <vector>			/* Vectors instead of heap based arrays */
 #include <cstdint>			/* For int64_t min, max vals*/
 #include <random>			/* For random level selection! */
 #include <cstdlib>			/*	time() */
 #include <ctime>
+#include <unordered_set>	/* Garbage Colllection */
 using namespace std;
 
 
 // Node<G> stores a G: Must be copy constructible!
 template <typename T> class LazySkipList{
 	static const int MAX_LEVEL = 8;
-
 	// required for level selection!
 	std::default_random_engine generator{time(NULL)};
 	std::geometric_distribution<int> distribution{0.5};
@@ -67,12 +73,19 @@ template <typename T> class LazySkipList{
 	Node<T>* head = new Node<T>(INT64_MIN);
 	Node<T>* tail = new Node<T>(INT64_MAX);
 
+	void delGarbage(std::unordered_set<Node<T>*> &garbage){
+		for(auto v: garbage) delete v;
+		//garbage.clear();
+	}
+
 public:
 	LazySkipList(){
 		int s = (head->topLevel)+1;
-		cout<<s<<endl;
-		// TODO : Add deletion for the pointers that were alreay om head->next[]
-		for (int i=0; i<s; i++) head->next[i]=tail;
+		//cout<<s<<endl;
+		for (int i=0; i<s; i++) {
+			delete head->next[i];
+			head->next[i]=tail;
+		}
 	}
 	
 	~LazySkipList(){
@@ -102,10 +115,15 @@ public:
 
 	bool add(T x){
 		int topLevel = randomLevel();
-		std::vector<Node<T>*> preds;
-		std::vector<Node<T>*> succs;
+		std::vector<Node<T>*> preds{MAX_LEVEL+1};
+		std::vector<Node<T>*> succs{MAX_LEVEL+1};
 		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
 		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
+
+		// garbage collection
+		std::unordered_set<Node<T>*> garbage{};
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(preds[i]);
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(succs[i]);
 
 		while(true){
 			int lFound = find(x, preds, succs);
@@ -113,6 +131,8 @@ public:
 				Node<T>* nodeFound = succs[lFound];
 				if(!nodeFound->marked.load()){
 					while(!nodeFound->fullyLinked.load());
+					delGarbage(garbage);
+
 					return false;
 				}
 				continue;
@@ -120,7 +140,8 @@ public:
 
 			int highestLocked = -1;
 
-			Node<T> * pred, succ;
+			Node<T> * pred;
+			Node<T> * succ;
 			bool valid = true;
 			for(int level=0; valid && (level<=topLevel); level++){
 				pred = preds[level];
@@ -140,18 +161,108 @@ public:
 			// unlock!
 			for (int level = 0; level <= highestLocked; level++) 
 				preds[level]->unlock();
-
+			delGarbage(garbage);
 			return true;
 		}// while(true)
 
 	} // add ends
-};
+
+	bool remove(T x){
+		Node<T>* victim=NULL;
+		bool isMarked=false;
+		int topLevel=-1;
+
+		std::vector<Node<T>*> preds{MAX_LEVEL+1};
+		std::vector<Node<T>*> succs{MAX_LEVEL+1};
+		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
+		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
+
+		// garbage collection!
+		std::unordered_set<Node<T>*> garbage{};
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(preds[i]);
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(succs[i]);
+
+		while(true){
+			int lFound = find(x, preds, succs);
+			if (lFound != -1) victim = succs[lFound];
+
+			if(isMarked||
+				 (lFound!=-1&&
+				 	(victim->fullyLinked && victim->topLevel==lFound &&!victim->marked))){
+				if(!isMarked){
+					topLevel = victim->topLevel;
+					victim->lock();
+					if(victim->marked){
+						victim->unlock();
+						delGarbage(garbage);
+
+						return false;
+					} // victim marked
+					victim->marked=true;
+					isMarked=true;
+				} // if !isMarked 
+			
+				int highestLocked=-1;
+				Node<T>* pred, succ; bool valid = true;
+				for (int level = 0; valid && (level <= topLevel); level++){
+					pred = preds[level];
+					pred->lock();
+					highestLocked = level;
+					valid = !pred->marked && pred->next[level]==victim;
+				} // for level=0
+				if(!valid) continue;
+				
+				for (int level = topLevel; level >= 0; level--) {
+					preds[level]->next[level] = victim->next[level];
+				} // for level
+
+				victim->unlock();
+				for (int i = 0; i <= highestLocked; i++) 
+					preds[i]->unlock();
+				
+				delGarbage(garbage);
+
+				return true;
+			} // big if
+			else {
+				delGarbage(garbage);
+
+				return false;
+			}
+		} // while true
+	} // remove
+
+	bool contains(T x){
+		std::vector<Node<T>*> preds{MAX_LEVEL+1};
+		std::vector<Node<T>*> succs{MAX_LEVEL+1};
+		for(int i=0; i<MAX_LEVEL+1; i++) preds[i] = new Node<T>();
+		for(int i=0; i<MAX_LEVEL+1; i++) succs[i] = new Node<T>();
+
+		std::unordered_set<Node<T>*> garbage{};
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(preds[i]);
+		for(int i=0; i<MAX_LEVEL+1; i++) garbage.insert(succs[i]);
+
+		int lFound = find(x, preds, succs);
+		delGarbage(garbage);
+		return (lFound != -1 && succs[lFound]->fullyLinked &&  !succs[lFound]->marked);
+	}
+
+}; // class LazySkipList<T>
 
 
 
 int main(){
-	auto b = new LazySkipList<int>();
-	delete b;
+	LazySkipList<int> b{};
 	//auto a = new LazySkipList<int>::Node<int>(5);
 	cout<<INT64_MIN<<"\n";
+	b.add(2);
+	b.add(3);
+	b.add(1);
+	cout<<(b.contains(2)?"true":"false")<<endl;
+	b.remove(2);
+	cout<<(b.contains(2)?"true":"false")<<endl;
+	cout<<(b.contains(3)?"true":"false")<<endl;
+	cout<<(b.contains(1)?"true":"false")<<endl;
+
+	return 0;
 }
