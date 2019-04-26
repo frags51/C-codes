@@ -9,11 +9,16 @@
 #include <string>
 #include <cstdlib>
 #include <chrono>		/* Measuring Time */
+#include <random>		/* For random libraries */
 
 #include "LazySkipList.h"
 #include "LockFree.h"
 
 using namespace std;
+
+
+std::default_random_engine e2;
+std::exponential_distribution<double> rmRand;
 
 // Init with uniformly distributed random elements
 void InitReadOnlyTest(LazySkipList<int> &a, int num_elements=5000){
@@ -55,7 +60,10 @@ void thFunRW(LazySkipList<int> &a, const double read_frac,
 			f = a.remove(rand()%num_elements);
 			wt = std::chrono::high_resolution_clock::now() - start;
 		} // else
-		times[id]+=std::chrono::duration_cast<std::chrono::microseconds>(wt).count();;
+		times[id]+=std::chrono::duration_cast<std::chrono::microseconds>(wt).count();
+
+        std::this_thread::sleep_for(std::chrono::duration<double,std::micro>(rmRand(e2)));
+
 	} // for
 } // thFunRW
 
@@ -88,7 +96,10 @@ void thFunRW2(LockFreeSkipList<int> &a, const double read_frac,
 			f = a.remove(rand()%num_elements);
 			wt = std::chrono::high_resolution_clock::now() - start;
 		} // else
-		times[id]+=std::chrono::duration_cast<std::chrono::microseconds>(wt).count();;
+		times[id]+=std::chrono::duration_cast<std::chrono::microseconds>(wt).count();
+        
+        std::this_thread::sleep_for(std::chrono::duration<double,std::micro>(rmRand(e2)));
+
 	} // for
 } // thFunRW
 
@@ -154,10 +165,16 @@ int main(int argc, char** argv){
 		cerr<<err;
 		exit(1);
 	}
-	cout<<"Fine-Grained Locking:"<<endl;
+
+	// delay in microseconds!
+	double l2 = 50;
+    e2.seed(std::chrono::system_clock::now().time_since_epoch().count());
+    rmRand = std::exponential_distribution<double>(1/l2);
+
+	cerr<<"Fine-Grained Locking:"<<endl;
 	doReadWriteTest(std::atoi(argv[1]), std::stod(argv[2]));
 	
-	cout<<"Lock Free:"<<endl;
+	cerr<<"Lock Free:"<<endl;
 	doReadWriteTest2(std::atoi(argv[1]), std::stod(argv[2]));
 
 	//malloc_stats_print(NULL, NULL, NULL);
