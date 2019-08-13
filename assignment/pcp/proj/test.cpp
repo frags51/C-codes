@@ -138,9 +138,9 @@ void doReadWriteTest(const short num_threads, const double read_frac ){
 	LazySkipList<int> a{};
 	
 	/**
-	 * Test for 5000 elements 
+	 * Test for 50000 elements 
 	 */
-	int num_elements = 5000;
+	int num_elements = 50000;
 	const short iterations = 100;
 
 	InitReadOnlyTest(a, num_elements/2);
@@ -164,7 +164,7 @@ void doReadWriteTest(const short num_threads, const double read_frac ){
 	double total_time = 0;
 	for(double e:times) total_time+=e;
 	cerr<<"Format: num_threads read_frac ops time(microseconds)\nOperations per millisecond\n";
-	cout<<num_threads<<" "<<read_frac<<" "<<(num_threads*iterations)<<" "<<total_time<<endl;
+	//cout<<num_threads<<" "<<read_frac<<" "<<(num_threads*iterations)<<" "<<total_time<<endl;
 	cout<<((num_threads*iterations*1000)/total_time)<<endl;
 } // doReadOnlyTest
 
@@ -174,9 +174,9 @@ void doReadWriteTest2(const short num_threads, const double read_frac ){
 	LockFreeSkipList<int> a{};
 
 	/**
-	 * Test for 5000 elements 
+	 * Test for 50000 elements 
 	 */
-	int num_elements = 5000;
+	int num_elements = 50000;
 	const short iterations = 100;
 
 	InitReadOnlyTest(a, num_elements/2);
@@ -200,7 +200,7 @@ void doReadWriteTest2(const short num_threads, const double read_frac ){
 	double total_time = 0;
 	for(double e:times) total_time+=e;
 	cerr<<"Format: num_threads read_frac ops time(microseconds)\nOperations per millisecond\n";
-	cout<<num_threads<<" "<<read_frac<<" "<<(num_threads*iterations)<<" "<<total_time<<endl;
+	//cout<<num_threads<<" "<<read_frac<<" "<<(num_threads*iterations)<<" "<<total_time<<endl;
 	cout<<((num_threads*iterations*1000)/total_time)<<endl;
 } // doReadOnlyTest
 
@@ -223,7 +223,7 @@ int main(int argc, char** argv){
 	cerr<<"Fine-Grained Locking:"<<endl;
 	doReadWriteTest(std::atoi(argv[1]), std::stod(argv[2]));
 	
-	cerr<<"Lock Free:"<<endl;
+	cerr<<"\nLock Free:"<<endl;
 	doReadWriteTest2(std::atoi(argv[1]), std::stod(argv[2]));
 
 	// jemalloc:
